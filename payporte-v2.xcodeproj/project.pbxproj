@@ -1,0 +1,1021 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DC5B627A34E76098A2F56C8 /* Pods_payporte_v2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */; };
+		20F8740DE19ECC6451EBF97B /* Pods_payporte_v2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282FAC0E0479CCDA8BE9FB3D /* Pods_payporte_v2UITests.framework */; };
+		940A51481F0FC515000A2253 /* Drop in Resources */ = {isa = PBXBuildFile; fileRef = 940A51471F0FC515000A2253 /* Drop */; };
+		9433E7951F0E715600FD1A6D /* ProductListingVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9433E7941F0E715600FD1A6D /* ProductListingVC+Extension.swift */; };
+		9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9433E7971F0E7A5800FD1A6D /* FilterSortViews.swift */; };
+		9433E79A1F0EC6A800FD1A6D /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9433E7991F0EC6A800FD1A6D /* ProductListCell.swift */; };
+		944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885A61F0B933400FEC55D /* Profile+Extension.swift */; };
+		944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885A91F0BB29800FEC55D /* ProductListingVC.swift */; };
+		944885AC1F0BB33B00FEC55D /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885AB1F0BB33B00FEC55D /* GMStepper.swift */; };
+		949295861F05209E00A403CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295851F05209E00A403CE /* AppDelegate.swift */; };
+		9492958B1F05209E00A403CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 949295891F05209E00A403CE /* Main.storyboard */; };
+		9492958D1F05209E00A403CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9492958C1F05209E00A403CE /* Assets.xcassets */; };
+		949295901F05209E00A403CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9492958E1F05209E00A403CE /* LaunchScreen.storyboard */; };
+		9492959B1F05209E00A403CE /* payporte_v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492959A1F05209E00A403CE /* payporte_v2Tests.swift */; };
+		949295A61F05209E00A403CE /* payporte_v2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295A51F05209E00A403CE /* payporte_v2UITests.swift */; };
+		949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295B51F05235A00A403CE /* MainTabViewController.swift */; };
+		949295B81F0523D200A403CE /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295B71F0523D200A403CE /* HomeVC.swift */; };
+		949295BA1F05242300A403CE /* StoresVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295B91F05242300A403CE /* StoresVC.swift */; };
+		949295BC1F0524A500A403CE /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295BB1F0524A500A403CE /* CartVC.swift */; };
+		949295BE1F05258800A403CE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295BD1F05258800A403CE /* ProfileVC.swift */; };
+		949295C31F0527AF00A403CE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295C21F0527AF00A403CE /* Extensions.swift */; };
+		949295C71F05280400A403CE /* AvenirNextLTPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 949295C41F05280400A403CE /* AvenirNextLTPro-Light.otf */; };
+		949295C81F05280400A403CE /* AvenirNextLTPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 949295C51F05280400A403CE /* AvenirNextLTPro-Medium.otf */; };
+		949295C91F05280400A403CE /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 949295C61F05280400A403CE /* AvenirNextLTPro-Regular.otf */; };
+		949295CB1F0547B900A403CE /* ZCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295CA1F0547B900A403CE /* ZCarousel.swift */; };
+		949295CE1F054EC000A403CE /* HomeVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295CD1F054EC000A403CE /* HomeVC+Extension.swift */; };
+		949295D01F05898000A403CE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295CF1F05898000A403CE /* CardView.swift */; };
+		949295D61F058E3B00A403CE /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295D51F058E3B00A403CE /* CategoryCell.swift */; };
+		949295D81F058F8B00A403CE /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295D71F058F8B00A403CE /* InsetLabel.swift */; };
+		949A31031F09B8DF00567A17 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31021F09B8DF00567A17 /* DrawerController.swift */; };
+		949A31411F0A8E3E00567A17 /* Tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 949A31401F0A8E3E00567A17 /* Tree.json */; };
+		949A31481F0AA74400567A17 /* Childs2ndStageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31421F0AA74400567A17 /* Childs2ndStageTableViewCell.swift */; };
+		949A31491F0AA74400567A17 /* Childs2ndStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949A31431F0AA74400567A17 /* Childs2ndStageTableViewCell.xib */; };
+		949A314A1F0AA74400567A17 /* Childs3rdStageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31441F0AA74400567A17 /* Childs3rdStageTableViewCell.swift */; };
+		949A314B1F0AA74400567A17 /* Childs3rdStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949A31451F0AA74400567A17 /* Childs3rdStageTableViewCell.xib */; };
+		949A314C1F0AA74400567A17 /* ParentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31461F0AA74400567A17 /* ParentsTableViewCell.swift */; };
+		949A314D1F0AA74400567A17 /* ParentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949A31471F0AA74400567A17 /* ParentsTableViewCell.xib */; };
+		94D70C5B1F095687006E375A /* CartVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D70C5A1F095687006E375A /* CartVC+Extension.swift */; };
+		94D70C5D1F09680B006E375A /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D70C5C1F09680B006E375A /* CartCell.swift */; };
+		94D70C5F1F096D82006E375A /* CustomStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D70C5E1F096D82006E375A /* CustomStepperView.swift */; };
+		94D70C641F0983AF006E375A /* Orkney-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94D70C601F0982FD006E375A /* Orkney-Bold.ttf */; };
+		94D70C651F0983AF006E375A /* Orkney-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94D70C611F0982FD006E375A /* Orkney-Light.ttf */; };
+		94D70C661F0983AF006E375A /* Orkney-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94D70C621F0982FD006E375A /* Orkney-Medium.ttf */; };
+		94D70C671F0983AF006E375A /* Orkney-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94D70C631F0982FD006E375A /* Orkney-Regular.ttf */; };
+		94DAEC231F06AA1C005E4AE4 /* StoreVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC221F06AA1C005E4AE4 /* StoreVC+Extension.swift */; };
+		94DAEC251F06ACF6005E4AE4 /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC241F06ACF6005E4AE4 /* StoreCell.swift */; };
+		94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC261F06C299005E4AE4 /* CollectionParallaxHeader.swift */; };
+		94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC281F06C376005E4AE4 /* CustomHeaderView.swift */; };
+		94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ED9F7C1F0C05DD0037A7D5 /* Utilities.swift */; };
+		94F5ED281F06CD8E0061917A /* CollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */; };
+		ED75C164D432025FF35B07C6 /* Pods_payporte_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		949295971F05209E00A403CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9492957A1F05209E00A403CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 949295811F05209E00A403CE;
+			remoteInfo = "payporte-v2";
+		};
+		949295A21F05209E00A403CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9492957A1F05209E00A403CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 949295811F05209E00A403CE;
+			remoteInfo = "payporte-v2";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A0B08897052FB0EBCBA0993 /* Pods-payporte-v2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2Tests/Pods-payporte-v2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		0AB9738E325D2D0D4FC77AB6 /* Pods-payporte-v2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		282FAC0E0479CCDA8BE9FB3D /* Pods_payporte_v2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_payporte_v2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		367F3A903E1982010AD669AE /* Pods-payporte-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2.release.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2.release.xcconfig"; sourceTree = "<group>"; };
+		62616CA4F0E51A2CFBD60D63 /* Pods-payporte-v2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2Tests/Pods-payporte-v2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_payporte_v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		940A51471F0FC515000A2253 /* Drop */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Drop; sourceTree = "<group>"; };
+		9433E7941F0E715600FD1A6D /* ProductListingVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProductListingVC+Extension.swift"; sourceTree = "<group>"; };
+		9433E7971F0E7A5800FD1A6D /* FilterSortViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSortViews.swift; sourceTree = "<group>"; };
+		9433E7991F0EC6A800FD1A6D /* ProductListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListCell.swift; sourceTree = "<group>"; };
+		944885A61F0B933400FEC55D /* Profile+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Extension.swift"; sourceTree = "<group>"; };
+		944885A91F0BB29800FEC55D /* ProductListingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingVC.swift; sourceTree = "<group>"; };
+		944885AB1F0BB33B00FEC55D /* GMStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMStepper.swift; sourceTree = "<group>"; };
+		949295821F05209E00A403CE /* payporte-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "payporte-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		949295851F05209E00A403CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9492958A1F05209E00A403CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9492958C1F05209E00A403CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9492958F1F05209E00A403CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		949295911F05209E00A403CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		949295961F05209E00A403CE /* payporte-v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "payporte-v2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9492959A1F05209E00A403CE /* payporte_v2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = payporte_v2Tests.swift; sourceTree = "<group>"; };
+		9492959C1F05209E00A403CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		949295A11F05209E00A403CE /* payporte-v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "payporte-v2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		949295A51F05209E00A403CE /* payporte_v2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = payporte_v2UITests.swift; sourceTree = "<group>"; };
+		949295A71F05209E00A403CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		949295B51F05235A00A403CE /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		949295B71F0523D200A403CE /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		949295B91F05242300A403CE /* StoresVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresVC.swift; sourceTree = "<group>"; };
+		949295BB1F0524A500A403CE /* CartVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
+		949295BD1F05258800A403CE /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		949295C21F0527AF00A403CE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		949295C41F05280400A403CE /* AvenirNextLTPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Light.otf"; sourceTree = "<group>"; };
+		949295C51F05280400A403CE /* AvenirNextLTPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Medium.otf"; sourceTree = "<group>"; };
+		949295C61F05280400A403CE /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; };
+		949295CA1F0547B900A403CE /* ZCarousel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZCarousel.swift; sourceTree = "<group>"; };
+		949295CD1F054EC000A403CE /* HomeVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HomeVC+Extension.swift"; sourceTree = "<group>"; };
+		949295CF1F05898000A403CE /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		949295D51F058E3B00A403CE /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		949295D71F058F8B00A403CE /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		949A31021F09B8DF00567A17 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
+		949A31401F0A8E3E00567A17 /* Tree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tree.json; sourceTree = "<group>"; };
+		949A31421F0AA74400567A17 /* Childs2ndStageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Childs2ndStageTableViewCell.swift; sourceTree = "<group>"; };
+		949A31431F0AA74400567A17 /* Childs2ndStageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Childs2ndStageTableViewCell.xib; sourceTree = "<group>"; };
+		949A31441F0AA74400567A17 /* Childs3rdStageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Childs3rdStageTableViewCell.swift; sourceTree = "<group>"; };
+		949A31451F0AA74400567A17 /* Childs3rdStageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Childs3rdStageTableViewCell.xib; sourceTree = "<group>"; };
+		949A31461F0AA74400567A17 /* ParentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentsTableViewCell.swift; sourceTree = "<group>"; };
+		949A31471F0AA74400567A17 /* ParentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParentsTableViewCell.xib; sourceTree = "<group>"; };
+		94D70C5A1F095687006E375A /* CartVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CartVC+Extension.swift"; sourceTree = "<group>"; };
+		94D70C5C1F09680B006E375A /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		94D70C5E1F096D82006E375A /* CustomStepperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStepperView.swift; sourceTree = "<group>"; };
+		94D70C601F0982FD006E375A /* Orkney-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orkney-Bold.ttf"; sourceTree = "<group>"; };
+		94D70C611F0982FD006E375A /* Orkney-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orkney-Light.ttf"; sourceTree = "<group>"; };
+		94D70C621F0982FD006E375A /* Orkney-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orkney-Medium.ttf"; sourceTree = "<group>"; };
+		94D70C631F0982FD006E375A /* Orkney-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orkney-Regular.ttf"; sourceTree = "<group>"; };
+		94DAEC221F06AA1C005E4AE4 /* StoreVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreVC+Extension.swift"; sourceTree = "<group>"; };
+		94DAEC241F06ACF6005E4AE4 /* StoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
+		94DAEC261F06C299005E4AE4 /* CollectionParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionParallaxHeader.swift; sourceTree = "<group>"; };
+		94DAEC281F06C376005E4AE4 /* CustomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		94ED9F7C1F0C05DD0037A7D5 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionHeader.swift; sourceTree = "<group>"; };
+		AE40B7EDB1DFB95E681E68EC /* Pods-payporte-v2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2.debug.xcconfig"; sourceTree = "<group>"; };
+		F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_payporte_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9492957F1F05209E00A403CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED75C164D432025FF35B07C6 /* Pods_payporte_v2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		949295931F05209E00A403CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DC5B627A34E76098A2F56C8 /* Pods_payporte_v2Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9492959E1F05209E00A403CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F8740DE19ECC6451EBF97B /* Pods_payporte_v2UITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E55E9B33A1DEEC327BE0125 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */,
+				88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */,
+				282FAC0E0479CCDA8BE9FB3D /* Pods_payporte_v2UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9433E7921F0E70EB00FD1A6D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				944885A91F0BB29800FEC55D /* ProductListingVC.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9433E7931F0E713300FD1A6D /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9433E7941F0E715600FD1A6D /* ProductListingVC+Extension.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		9433E7961F0E7A3300FD1A6D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9433E7971F0E7A5800FD1A6D /* FilterSortViews.swift */,
+				9433E7991F0EC6A800FD1A6D /* ProductListCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		944885A81F0BB23000FEC55D /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				9433E7961F0E7A3300FD1A6D /* Views */,
+				9433E7931F0E713300FD1A6D /* extensions */,
+				9433E7921F0E70EB00FD1A6D /* Controllers */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
+		949295791F05209E00A403CE = {
+			isa = PBXGroup;
+			children = (
+				949295841F05209E00A403CE /* payporte-v2 */,
+				949295991F05209E00A403CE /* payporte-v2Tests */,
+				949295A41F05209E00A403CE /* payporte-v2UITests */,
+				949295831F05209E00A403CE /* Products */,
+				FE36925907C42021C779251B /* Pods */,
+				6E55E9B33A1DEEC327BE0125 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		949295831F05209E00A403CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				949295821F05209E00A403CE /* payporte-v2.app */,
+				949295961F05209E00A403CE /* payporte-v2Tests.xctest */,
+				949295A11F05209E00A403CE /* payporte-v2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		949295841F05209E00A403CE /* payporte-v2 */ = {
+			isa = PBXGroup;
+			children = (
+				944885A81F0BB23000FEC55D /* Product */,
+				949295C11F05279C00A403CE /* CustomViews */,
+				949295C01F05279600A403CE /* Helper */,
+				949295B31F05232900A403CE /* Main */,
+				949295BF1F05277700A403CE /* Resource */,
+				9492958C1F05209E00A403CE /* Assets.xcassets */,
+			);
+			path = "payporte-v2";
+			sourceTree = "<group>";
+		};
+		949295991F05209E00A403CE /* payporte-v2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9492959A1F05209E00A403CE /* payporte_v2Tests.swift */,
+				9492959C1F05209E00A403CE /* Info.plist */,
+			);
+			path = "payporte-v2Tests";
+			sourceTree = "<group>";
+		};
+		949295A41F05209E00A403CE /* payporte-v2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				949295A51F05209E00A403CE /* payporte_v2UITests.swift */,
+				949295A71F05209E00A403CE /* Info.plist */,
+			);
+			path = "payporte-v2UITests";
+			sourceTree = "<group>";
+		};
+		949295B31F05232900A403CE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				949295D41F058E2900A403CE /* Views */,
+				949295CC1F054EAE00A403CE /* extensions */,
+				949295B41F05233300A403CE /* Controller */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		949295B41F05233300A403CE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				94DAEC1E1F06A8AD005E4AE4 /* Home */,
+				94DAEC1F1F06A8BD005E4AE4 /* Store */,
+				94DAEC201F06A8CA005E4AE4 /* Cart */,
+				94DAEC211F06A8D4005E4AE4 /* Profile */,
+				949295B51F05235A00A403CE /* MainTabViewController.swift */,
+				949A31021F09B8DF00567A17 /* DrawerController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		949295BF1F05277700A403CE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				940A51471F0FC515000A2253 /* Drop */,
+				94D70C601F0982FD006E375A /* Orkney-Bold.ttf */,
+				94D70C611F0982FD006E375A /* Orkney-Light.ttf */,
+				94D70C621F0982FD006E375A /* Orkney-Medium.ttf */,
+				94D70C631F0982FD006E375A /* Orkney-Regular.ttf */,
+				949295C41F05280400A403CE /* AvenirNextLTPro-Light.otf */,
+				949295C51F05280400A403CE /* AvenirNextLTPro-Medium.otf */,
+				949295C61F05280400A403CE /* AvenirNextLTPro-Regular.otf */,
+				949295851F05209E00A403CE /* AppDelegate.swift */,
+				949295891F05209E00A403CE /* Main.storyboard */,
+				9492958E1F05209E00A403CE /* LaunchScreen.storyboard */,
+				949295911F05209E00A403CE /* Info.plist */,
+				949A31401F0A8E3E00567A17 /* Tree.json */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		949295C01F05279600A403CE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				949295C21F0527AF00A403CE /* Extensions.swift */,
+				94ED9F7C1F0C05DD0037A7D5 /* Utilities.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		949295C11F05279C00A403CE /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				94D70C5E1F096D82006E375A /* CustomStepperView.swift */,
+				949295CA1F0547B900A403CE /* ZCarousel.swift */,
+				949295CF1F05898000A403CE /* CardView.swift */,
+				949295D71F058F8B00A403CE /* InsetLabel.swift */,
+				94DAEC261F06C299005E4AE4 /* CollectionParallaxHeader.swift */,
+				94DAEC281F06C376005E4AE4 /* CustomHeaderView.swift */,
+				94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */,
+				944885AB1F0BB33B00FEC55D /* GMStepper.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		949295CC1F054EAE00A403CE /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				949295CD1F054EC000A403CE /* HomeVC+Extension.swift */,
+				94DAEC221F06AA1C005E4AE4 /* StoreVC+Extension.swift */,
+				94D70C5A1F095687006E375A /* CartVC+Extension.swift */,
+				944885A61F0B933400FEC55D /* Profile+Extension.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		949295D41F058E2900A403CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				949A31421F0AA74400567A17 /* Childs2ndStageTableViewCell.swift */,
+				949A31431F0AA74400567A17 /* Childs2ndStageTableViewCell.xib */,
+				949A31441F0AA74400567A17 /* Childs3rdStageTableViewCell.swift */,
+				949A31451F0AA74400567A17 /* Childs3rdStageTableViewCell.xib */,
+				949A31461F0AA74400567A17 /* ParentsTableViewCell.swift */,
+				949A31471F0AA74400567A17 /* ParentsTableViewCell.xib */,
+				949295D51F058E3B00A403CE /* CategoryCell.swift */,
+				94DAEC241F06ACF6005E4AE4 /* StoreCell.swift */,
+				94D70C5C1F09680B006E375A /* CartCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		94DAEC1E1F06A8AD005E4AE4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				949295B71F0523D200A403CE /* HomeVC.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		94DAEC1F1F06A8BD005E4AE4 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				949295B91F05242300A403CE /* StoresVC.swift */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		94DAEC201F06A8CA005E4AE4 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				949295BB1F0524A500A403CE /* CartVC.swift */,
+			);
+			name = Cart;
+			sourceTree = "<group>";
+		};
+		94DAEC211F06A8D4005E4AE4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				949295BD1F05258800A403CE /* ProfileVC.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		FE36925907C42021C779251B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */,
+				367F3A903E1982010AD669AE /* Pods-payporte-v2.release.xcconfig */,
+				0A0B08897052FB0EBCBA0993 /* Pods-payporte-v2Tests.debug.xcconfig */,
+				62616CA4F0E51A2CFBD60D63 /* Pods-payporte-v2Tests.release.xcconfig */,
+				AE40B7EDB1DFB95E681E68EC /* Pods-payporte-v2UITests.debug.xcconfig */,
+				0AB9738E325D2D0D4FC77AB6 /* Pods-payporte-v2UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		949295811F05209E00A403CE /* payporte-v2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 949295AA1F05209E00A403CE /* Build configuration list for PBXNativeTarget "payporte-v2" */;
+			buildPhases = (
+				69211DCD017B867901DD2FE4 /* [CP] Check Pods Manifest.lock */,
+				9492957E1F05209E00A403CE /* Sources */,
+				9492957F1F05209E00A403CE /* Frameworks */,
+				949295801F05209E00A403CE /* Resources */,
+				A662DBB5F1CBC5FA404B5ADB /* [CP] Embed Pods Frameworks */,
+				2AAF2791D19D3F7BBEF98472 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "payporte-v2";
+			productName = "payporte-v2";
+			productReference = 949295821F05209E00A403CE /* payporte-v2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		949295951F05209E00A403CE /* payporte-v2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 949295AD1F05209E00A403CE /* Build configuration list for PBXNativeTarget "payporte-v2Tests" */;
+			buildPhases = (
+				E4CDA6876372A04E49247B56 /* [CP] Check Pods Manifest.lock */,
+				949295921F05209E00A403CE /* Sources */,
+				949295931F05209E00A403CE /* Frameworks */,
+				949295941F05209E00A403CE /* Resources */,
+				3386C9DA0F5EA94E3614E461 /* [CP] Embed Pods Frameworks */,
+				81065A141D5755FA07AFDC20 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				949295981F05209E00A403CE /* PBXTargetDependency */,
+			);
+			name = "payporte-v2Tests";
+			productName = "payporte-v2Tests";
+			productReference = 949295961F05209E00A403CE /* payporte-v2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		949295A01F05209E00A403CE /* payporte-v2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 949295B01F05209E00A403CE /* Build configuration list for PBXNativeTarget "payporte-v2UITests" */;
+			buildPhases = (
+				9C1143AF716EED2591FA7595 /* [CP] Check Pods Manifest.lock */,
+				9492959D1F05209E00A403CE /* Sources */,
+				9492959E1F05209E00A403CE /* Frameworks */,
+				9492959F1F05209E00A403CE /* Resources */,
+				7E90ECCD20152C44A8F4A579 /* [CP] Embed Pods Frameworks */,
+				B0A812319904152B5E6CACF5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				949295A31F05209E00A403CE /* PBXTargetDependency */,
+			);
+			name = "payporte-v2UITests";
+			productName = "payporte-v2UITests";
+			productReference = 949295A11F05209E00A403CE /* payporte-v2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9492957A1F05209E00A403CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = SimpuMind;
+				TargetAttributes = {
+					949295811F05209E00A403CE = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = NS5XW2Q4P8;
+						ProvisioningStyle = Automatic;
+					};
+					949295951F05209E00A403CE = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = G5NKVP88SZ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 949295811F05209E00A403CE;
+					};
+					949295A01F05209E00A403CE = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = G5NKVP88SZ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 949295811F05209E00A403CE;
+					};
+				};
+			};
+			buildConfigurationList = 9492957D1F05209E00A403CE /* Build configuration list for PBXProject "payporte-v2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 949295791F05209E00A403CE;
+			productRefGroup = 949295831F05209E00A403CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				949295811F05209E00A403CE /* payporte-v2 */,
+				949295951F05209E00A403CE /* payporte-v2Tests */,
+				949295A01F05209E00A403CE /* payporte-v2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		949295801F05209E00A403CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D70C641F0983AF006E375A /* Orkney-Bold.ttf in Resources */,
+				949A314D1F0AA74400567A17 /* ParentsTableViewCell.xib in Resources */,
+				94D70C651F0983AF006E375A /* Orkney-Light.ttf in Resources */,
+				94D70C661F0983AF006E375A /* Orkney-Medium.ttf in Resources */,
+				949A31411F0A8E3E00567A17 /* Tree.json in Resources */,
+				94D70C671F0983AF006E375A /* Orkney-Regular.ttf in Resources */,
+				949295901F05209E00A403CE /* LaunchScreen.storyboard in Resources */,
+				949A31491F0AA74400567A17 /* Childs2ndStageTableViewCell.xib in Resources */,
+				9492958D1F05209E00A403CE /* Assets.xcassets in Resources */,
+				949295C71F05280400A403CE /* AvenirNextLTPro-Light.otf in Resources */,
+				9492958B1F05209E00A403CE /* Main.storyboard in Resources */,
+				949A314B1F0AA74400567A17 /* Childs3rdStageTableViewCell.xib in Resources */,
+				949295C91F05280400A403CE /* AvenirNextLTPro-Regular.otf in Resources */,
+				940A51481F0FC515000A2253 /* Drop in Resources */,
+				949295C81F05280400A403CE /* AvenirNextLTPro-Medium.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		949295941F05209E00A403CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9492959F1F05209E00A403CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2AAF2791D19D3F7BBEF98472 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3386C9DA0F5EA94E3614E461 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2Tests/Pods-payporte-v2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69211DCD017B867901DD2FE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7E90ECCD20152C44A8F4A579 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81065A141D5755FA07AFDC20 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2Tests/Pods-payporte-v2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C1143AF716EED2591FA7595 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A662DBB5F1CBC5FA404B5ADB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0A812319904152B5E6CACF5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4CDA6876372A04E49247B56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9492957E1F05209E00A403CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94F5ED281F06CD8E0061917A /* CollectionViewSectionHeader.swift in Sources */,
+				94D70C5D1F09680B006E375A /* CartCell.swift in Sources */,
+				94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */,
+				94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */,
+				944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */,
+				94DAEC231F06AA1C005E4AE4 /* StoreVC+Extension.swift in Sources */,
+				949295BA1F05242300A403CE /* StoresVC.swift in Sources */,
+				949A314C1F0AA74400567A17 /* ParentsTableViewCell.swift in Sources */,
+				944885AC1F0BB33B00FEC55D /* GMStepper.swift in Sources */,
+				94D70C5B1F095687006E375A /* CartVC+Extension.swift in Sources */,
+				949295BE1F05258800A403CE /* ProfileVC.swift in Sources */,
+				94D70C5F1F096D82006E375A /* CustomStepperView.swift in Sources */,
+				94DAEC251F06ACF6005E4AE4 /* StoreCell.swift in Sources */,
+				949295CE1F054EC000A403CE /* HomeVC+Extension.swift in Sources */,
+				949A31481F0AA74400567A17 /* Childs2ndStageTableViewCell.swift in Sources */,
+				949295CB1F0547B900A403CE /* ZCarousel.swift in Sources */,
+				949295D01F05898000A403CE /* CardView.swift in Sources */,
+				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
+				9433E7951F0E715600FD1A6D /* ProductListingVC+Extension.swift in Sources */,
+				949295B81F0523D200A403CE /* HomeVC.swift in Sources */,
+				949295861F05209E00A403CE /* AppDelegate.swift in Sources */,
+				94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */,
+				9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */,
+				944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */,
+				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,
+				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
+				949295D81F058F8B00A403CE /* InsetLabel.swift in Sources */,
+				9433E79A1F0EC6A800FD1A6D /* ProductListCell.swift in Sources */,
+				949295D61F058E3B00A403CE /* CategoryCell.swift in Sources */,
+				949A314A1F0AA74400567A17 /* Childs3rdStageTableViewCell.swift in Sources */,
+				949A31031F09B8DF00567A17 /* DrawerController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		949295921F05209E00A403CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9492959B1F05209E00A403CE /* payporte_v2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9492959D1F05209E00A403CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				949295A61F05209E00A403CE /* payporte_v2UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		949295981F05209E00A403CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 949295811F05209E00A403CE /* payporte-v2 */;
+			targetProxy = 949295971F05209E00A403CE /* PBXContainerItemProxy */;
+		};
+		949295A31F05209E00A403CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 949295811F05209E00A403CE /* payporte-v2 */;
+			targetProxy = 949295A21F05209E00A403CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		949295891F05209E00A403CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9492958A1F05209E00A403CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9492958E1F05209E00A403CE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9492958F1F05209E00A403CE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		949295A81F05209E00A403CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		949295A91F05209E00A403CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		949295AB1F05209E00A403CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NS5XW2Q4P8;
+				INFOPLIST_FILE = "payporte-v2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rom-flex.payporte-v2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		949295AC1F05209E00A403CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367F3A903E1982010AD669AE /* Pods-payporte-v2.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NS5XW2Q4P8;
+				INFOPLIST_FILE = "payporte-v2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rom-flex.payporte-v2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		949295AE1F05209E00A403CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A0B08897052FB0EBCBA0993 /* Pods-payporte-v2Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = G5NKVP88SZ;
+				INFOPLIST_FILE = "payporte-v2Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpumind.payporte-v2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/payporte-v2.app/payporte-v2";
+			};
+			name = Debug;
+		};
+		949295AF1F05209E00A403CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62616CA4F0E51A2CFBD60D63 /* Pods-payporte-v2Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = G5NKVP88SZ;
+				INFOPLIST_FILE = "payporte-v2Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpumind.payporte-v2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/payporte-v2.app/payporte-v2";
+			};
+			name = Release;
+		};
+		949295B11F05209E00A403CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE40B7EDB1DFB95E681E68EC /* Pods-payporte-v2UITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = G5NKVP88SZ;
+				INFOPLIST_FILE = "payporte-v2UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpumind.payporte-v2UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "payporte-v2";
+			};
+			name = Debug;
+		};
+		949295B21F05209E00A403CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AB9738E325D2D0D4FC77AB6 /* Pods-payporte-v2UITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = G5NKVP88SZ;
+				INFOPLIST_FILE = "payporte-v2UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpumind.payporte-v2UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "payporte-v2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9492957D1F05209E00A403CE /* Build configuration list for PBXProject "payporte-v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				949295A81F05209E00A403CE /* Debug */,
+				949295A91F05209E00A403CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		949295AA1F05209E00A403CE /* Build configuration list for PBXNativeTarget "payporte-v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				949295AB1F05209E00A403CE /* Debug */,
+				949295AC1F05209E00A403CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		949295AD1F05209E00A403CE /* Build configuration list for PBXNativeTarget "payporte-v2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				949295AE1F05209E00A403CE /* Debug */,
+				949295AF1F05209E00A403CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		949295B01F05209E00A403CE /* Build configuration list for PBXNativeTarget "payporte-v2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				949295B11F05209E00A403CE /* Debug */,
+				949295B21F05209E00A403CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9492957A1F05209E00A403CE /* Project object */;
+}
