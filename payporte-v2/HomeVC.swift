@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import CLabsImageSlider
+import CSStickyHeaderFlowLayout
 
 class StringData {
     var img: String?
@@ -67,24 +68,9 @@ class HomeVC: UIViewController, UISearchBarDelegate, imageSliderDelegate {
     
     var collectionView: UICollectionView!
     
-    var animations: [HeroDefaultAnimationType] = [
-        .push(direction: .left),
-        .pull(direction: .left),
-        .slide(direction: .left),
-        .zoomSlide(direction: .left),
-        .cover(direction: .up),
-        .uncover(direction: .up),
-        .pageIn(direction: .left),
-        .pageOut(direction: .left),
-        .fade,
-        .zoom,
-        .zoomOut,
-        .none
-    ]
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         data.append(StringData(img: "01B", name: "Bags"))
         data.append(StringData(img: "02", name: "Sports & Outdoor"))

@@ -13,7 +13,6 @@ class CartCell: UITableViewCell {
     
     var productImageView: UIImageView = {
        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "01B")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv

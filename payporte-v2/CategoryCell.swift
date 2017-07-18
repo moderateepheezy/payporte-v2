@@ -14,7 +14,6 @@ class CategoryCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
-        iv.image = #imageLiteral(resourceName: "02")
         return iv
     }()
     

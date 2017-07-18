@@ -1,0 +1,6 @@
+framework module RGBottomSheet {
+  umbrella header "RGBottomSheet-umbrella.h"
+
+  export *
+  module * { export * }
+}

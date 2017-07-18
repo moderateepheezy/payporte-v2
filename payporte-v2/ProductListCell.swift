@@ -14,7 +14,6 @@ class ProductListCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.layer.masksToBounds = true
-        iv.image = #imageLiteral(resourceName: "t6")
         return iv
     }()
     

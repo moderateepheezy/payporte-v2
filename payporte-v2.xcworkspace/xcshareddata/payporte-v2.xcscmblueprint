@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CBD1204E32AE49D55065F706E344B04D2F82CBEE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BF99DE6BB5BB74624B53DF8C1D1CAC692569E22F" : 9223372036854775807,
+    "CBD1204E32AE49D55065F706E344B04D2F82CBEE" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ECD1D354-48E8-409B-ABF0-32D697B111D3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BF99DE6BB5BB74624B53DF8C1D1CAC692569E22F" : "",
+    "CBD1204E32AE49D55065F706E344B04D2F82CBEE" : "payporte-v2\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "payporte-v2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "payporte-v2.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/rfnldevs\/payporte-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BF99DE6BB5BB74624B53DF8C1D1CAC692569E22F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/moderateepheezy\/payporte-v2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CBD1204E32AE49D55065F706E344B04D2F82CBEE"
+    }
+  ]
+}

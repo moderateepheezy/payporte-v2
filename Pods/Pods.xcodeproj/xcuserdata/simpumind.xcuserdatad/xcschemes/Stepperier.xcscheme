@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1407F070CC1AD56E1107C97D78445CFB'
+               BlueprintIdentifier = '297C36FEBA996B846BB19BAB891A03E1'
                BlueprintName = 'Stepperier'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Stepperier.framework'>
