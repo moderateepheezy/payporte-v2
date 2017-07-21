@@ -8,16 +8,23 @@
 
 import UIKit
 import CLabsImageSlider
+import SwiftImageCarousel
 
-class CustomHeaderView: UIView, imageSliderDelegate  {
+class CustomHeaderView: UIView, imageSliderDelegate, SwiftImageCarouselVCDelegate  {
     
-    let urlImages =    ["https://s26.postimg.org/3n85yisu1/one_5_51_58_PM.png","https://s26.postimg.org/65tuz7ek9/two_5_41_53_PM.png","https://s26.postimg.org/7ywrnizqx/three_5_41_53_PM.png","https://s26.postimg.org/6l54s80hl/four.png","https://s26.postimg.org/ioagfsbjt/five.png"]
+    var baners = [String]()
     
     let imgArray = ["03", "04", "05", "6"]
     
     var banners: CLabsImageSlider = {
         let zc = CLabsImageSlider()
         return zc
+    }()
+    
+    let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
     }()
     
     var pageController: UIPageControl = {
@@ -36,6 +43,23 @@ class CustomHeaderView: UIView, imageSliderDelegate  {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func fetchBanners(){
+        Payporte.sharedInstance.fetchBanners { (bans: [Banner]) in
+            self.baners.removeAll()
+            for i in 0 ..< (bans.count - 1){
+                guard let img = bans[i].image_path else {return}
+                self.baners.append(img)
+            }
+            
+            
+            self.banners.setUpView(imageSource: .Url(imageArray:self.baners,
+                                                     placeHolderImage:UIImage(named:"placeholder")),slideType:.Automatic(timeIntervalinSeconds: 5),isArrowBtnEnabled: false)
+            
+            self.pageController.numberOfPages = self.baners.count
+            
+        }
+    }
+    
     func setUpView() {
         
         addSubview(banners)
@@ -44,9 +68,6 @@ class CustomHeaderView: UIView, imageSliderDelegate  {
         banners.sliderDelegate = self
         banners.contentMode = .scaleAspectFill
         banners.clipsToBounds = true
-        pageController.numberOfPages = urlImages.count
-        
-        self.banners.setUpView(imageSource: .Url(imageArray:self.urlImages,placeHolderImage:UIImage(named:"placeholder")),slideType:.Automatic(timeIntervalinSeconds: 5),isArrowBtnEnabled: false)
         
         banners.snp.makeConstraints { (make) in
             make.top.equalTo(self).offset(2)
@@ -60,10 +81,14 @@ class CustomHeaderView: UIView, imageSliderDelegate  {
             make.width.equalTo(150)
             make.height.equalTo(20)
         }
+        
+        DispatchQueue.main.async {
+            self.fetchBanners()
+        }
     }
     
     func didMovedToIndex(index: Int) {
-        pageController.currentPage = index
+        self.pageController.currentPage = index
     }
     
     func ZCarouselShowingIndex(scrollview: ZCarousel, index: Int) {

@@ -46,7 +46,7 @@ class GalleryItemVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        closeButton.layer.cornerRadius = 30
+        closeButton.layer.cornerRadius = 20
         closeButton.clipsToBounds = true
     }
 }

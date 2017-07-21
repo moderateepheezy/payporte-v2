@@ -2,6 +2,27 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../application/application.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../build_ios/deps/restful_mapper.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../build_ios/deps/curlcpp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../build_ios/deps/sqlite3.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../build_ios/deps/yajl.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../build_ios/support-lib/support_lib.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../build_ios/oaktree/liboaktree.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:payporte-v2.xcodeproj">
    </FileRef>
    <FileRef

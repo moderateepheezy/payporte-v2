@@ -2,9 +2,13 @@ PODS:
   - CLabsImageSlider (0.1.2)
   - CSStickyHeaderFlowLayout (0.2.11)
   - DropDown (2)
+  - GRDB.swift (1.1)
   - KJExpandableTableTree (1.1.1)
   - MIBadgeButton-Swift (0.5)
   - RGBottomSheet (1.0)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SkyFloatingLabelTextField (3.1.0)
   - SnapKit (3.2.0)
   - Spring (1.0.3)
@@ -18,9 +22,11 @@ DEPENDENCIES:
   - CLabsImageSlider (~> 0.1.2)
   - CSStickyHeaderFlowLayout
   - DropDown
+  - GRDB.swift
   - KJExpandableTableTree
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - RGBottomSheet (~> 1.0)
+  - SDWebImage (~> 3.8)
   - SkyFloatingLabelTextField (~> 3.0)
   - SnapKit (~> 3.2.0)
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
@@ -50,9 +56,11 @@ SPEC CHECKSUMS:
   CLabsImageSlider: 49c296c17e2fb15f1abe8b5dd6157927912abb7c
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
+  GRDB.swift: 58dd10ae08200ce68434e025ca454b8b79fc3c0d
   KJExpandableTableTree: e4724aa845551ad6d29850c1abcf71fb404f37e7
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   RGBottomSheet: 0eabb98a661d8d2f54782fc676861aea82b98436
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
@@ -62,6 +70,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
 
-PODFILE CHECKSUM: 3565066b90c57d4bf5e01bd2287c427e978666b9
+PODFILE CHECKSUM: 72d0026f22dd3ceb807355dab3e16f2584436ddf
 
 COCOAPODS: 1.2.0

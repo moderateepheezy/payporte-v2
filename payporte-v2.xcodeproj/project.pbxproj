@@ -11,12 +11,29 @@
 		20F8740DE19ECC6451EBF97B /* Pods_payporte_v2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282FAC0E0479CCDA8BE9FB3D /* Pods_payporte_v2UITests.framework */; };
 		941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941B16011F1CC2DF00B4360E /* ProductDetailsVC.swift */; };
 		941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941B16031F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift */; };
+		942586941F2107250074210F /* OKSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586931F2107250074210F /* OKSystem.swift */; };
+		942586981F2108680074210F /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 942586951F2108680074210F /* libcurl.a */; };
+		942586991F2108680074210F /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 942586961F2108680074210F /* libiconv.2.4.0.dylib */; };
+		9425869A1F2108680074210F /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 942586971F2108680074210F /* libz.1.1.3.dylib */; };
+		942586C31F2176D50074210F /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C21F2176D40074210F /* IntroVC.swift */; };
+		942586C51F2177B00074210F /* Payporte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C41F2177B00074210F /* Payporte.swift */; };
+		942586C81F2182B30074210F /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C71F2182B30074210F /* Banner.swift */; };
+		9430F8ED1F1F9CA500A2FC2D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */; };
+		9430F8F31F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8F01F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib */; };
+		9430F9031F1FA54C00A2FC2D /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F9021F1FA54C00A2FC2D /* libiconv.tbd */; };
 		9433E7951F0E715600FD1A6D /* ProductListingVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9433E7941F0E715600FD1A6D /* ProductListingVC+Extension.swift */; };
 		9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9433E7971F0E7A5800FD1A6D /* FilterSortViews.swift */; };
 		9433E79A1F0EC6A800FD1A6D /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9433E7991F0EC6A800FD1A6D /* ProductListCell.swift */; };
 		944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885A61F0B933400FEC55D /* Profile+Extension.swift */; };
 		944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885A91F0BB29800FEC55D /* ProductListingVC.swift */; };
 		944885AC1F0BB33B00FEC55D /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885AB1F0BB33B00FEC55D /* GMStepper.swift */; };
+		947794191F1F6F7E006F9053 /* libcurlcpp_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */; };
+		9477941A1F1F6F7E006F9053 /* libsqlite3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794131F1F6F7E006F9053 /* libsqlite3.a */; };
+		9477941B1F1F6F7E006F9053 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794141F1F6F7E006F9053 /* libdjinni_objc.a */; };
+		9477941C1F1F6F7E006F9053 /* liboaktree_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794151F1F6F7E006F9053 /* liboaktree_objc.a */; };
+		9477941D1F1F6F7E006F9053 /* libapplication_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794161F1F6F7E006F9053 /* libapplication_objc.a */; };
+		9477941E1F1F6F7E006F9053 /* libyajl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794171F1F6F7E006F9053 /* libyajl.a */; };
+		9477941F1F1F6F7E006F9053 /* librestful_mapper_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794181F1F6F7E006F9053 /* librestful_mapper_objc.a */; };
 		949295861F05209E00A403CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295851F05209E00A403CE /* AppDelegate.swift */; };
 		9492958B1F05209E00A403CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 949295891F05209E00A403CE /* Main.storyboard */; };
 		9492958D1F05209E00A403CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9492958C1F05209E00A403CE /* Assets.xcassets */; };
@@ -39,13 +56,6 @@
 		949295D81F058F8B00A403CE /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295D71F058F8B00A403CE /* InsetLabel.swift */; };
 		9497AF1E1F1D0B3D00F51620 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF1D1F1D0B3D00F51620 /* BottomSheetView.swift */; };
 		9497AF201F1D11BC00F51620 /* ButtomSheetSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF1F1F1D11BC00F51620 /* ButtomSheetSubView.swift */; };
-		9497AF261F1E32FA00F51620 /* CheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF251F1E32F900F51620 /* CheckoutVC.swift */; };
-		9497AF281F1E330800F51620 /* CheckoutVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF271F1E330800F51620 /* CheckoutVC+Extension.swift */; };
-		9497AF2A1F1E33E000F51620 /* FancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF291F1E33E000F51620 /* FancyView.swift */; };
-		9497AF2C1F1E36A400F51620 /* ShippingAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF2B1F1E36A300F51620 /* ShippingAddressVC.swift */; };
-		9497AF2E1F1E36AC00F51620 /* ShippingAddressVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF2D1F1E36AB00F51620 /* ShippingAddressVC+Extension.swift */; };
-		9497AF301F1E377D00F51620 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF2F1F1E377C00F51620 /* AddressCell.swift */; };
-		9497AF321F1E379800F51620 /* NewAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497AF311F1E379800F51620 /* NewAddressVC.swift */; };
 		949A31031F09B8DF00567A17 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31021F09B8DF00567A17 /* DrawerController.swift */; };
 		949A31411F0A8E3E00567A17 /* Tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 949A31401F0A8E3E00567A17 /* Tree.json */; };
 		949A31481F0AA74400567A17 /* Childs2ndStageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31421F0AA74400567A17 /* Childs2ndStageTableViewCell.swift */; };
@@ -54,6 +64,10 @@
 		949A314B1F0AA74400567A17 /* Childs3rdStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949A31451F0AA74400567A17 /* Childs3rdStageTableViewCell.xib */; };
 		949A314C1F0AA74400567A17 /* ParentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A31461F0AA74400567A17 /* ParentsTableViewCell.swift */; };
 		949A314D1F0AA74400567A17 /* ParentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949A31471F0AA74400567A17 /* ParentsTableViewCell.xib */; };
+		94A4D63A1F1F74EC0052E89E /* OKEventLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4D6391F1F74EC0052E89E /* OKEventLoop.swift */; };
+		94A4D63E1F1F75580052E89E /* payporte.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4D63D1F1F75580052E89E /* payporte.m */; };
+		94A4D6401F1F776F0052E89E /* OKThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4D63F1F1F776F0052E89E /* OKThreadLauncher.swift */; };
+		94CF57A41F22555100D8653C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF57A31F22555100D8653C /* Category.swift */; };
 		94D70C5B1F095687006E375A /* CartVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D70C5A1F095687006E375A /* CartVC+Extension.swift */; };
 		94D70C5D1F09680B006E375A /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D70C5C1F09680B006E375A /* CartCell.swift */; };
 		94D70C5F1F096D82006E375A /* CustomStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D70C5E1F096D82006E375A /* CustomStepperView.swift */; };
@@ -96,12 +110,32 @@
 		88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_payporte_v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941B16011F1CC2DF00B4360E /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		941B16031F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductDetailsVC+Extension.swift"; sourceTree = "<group>"; };
+		942586931F2107250074210F /* OKSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OKSystem.swift; sourceTree = "<group>"; };
+		942586951F2108680074210F /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
+		942586961F2108680074210F /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		942586971F2108680074210F /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.1.3.dylib; sourceTree = "<group>"; };
+		942586A21F21417E0074210F /* SwiftProtocolsSQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtocolsSQLite.framework; path = "../../../../../Downloads/swift-protocols-sqlite-master/build/Debug-iphoneos/SwiftProtocolsSQLite.framework"; sourceTree = "<group>"; };
+		942586C21F2176D40074210F /* IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
+		942586C41F2177B00074210F /* Payporte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payporte.swift; sourceTree = "<group>"; };
+		942586C71F2182B30074210F /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		9430F8EE1F1F9DEA00A2FC2D /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = ../../core/deps/prebuilt/iOS/libz.1.1.3.dylib; sourceTree = "<group>"; };
+		9430F8EF1F1F9DEB00A2FC2D /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../core/deps/prebuilt/iOS/libcurl.a; sourceTree = "<group>"; };
+		9430F8F01F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = ../../core/deps/prebuilt/iOS/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		9430F9021F1FA54C00A2FC2D /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9433E7941F0E715600FD1A6D /* ProductListingVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProductListingVC+Extension.swift"; sourceTree = "<group>"; };
 		9433E7971F0E7A5800FD1A6D /* FilterSortViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSortViews.swift; sourceTree = "<group>"; };
 		9433E7991F0EC6A800FD1A6D /* ProductListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListCell.swift; sourceTree = "<group>"; };
 		944885A61F0B933400FEC55D /* Profile+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Extension.swift"; sourceTree = "<group>"; };
 		944885A91F0BB29800FEC55D /* ProductListingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingVC.swift; sourceTree = "<group>"; };
 		944885AB1F0BB33B00FEC55D /* GMStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMStepper.swift; sourceTree = "<group>"; };
+		947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlcpp_objc.a; path = "../../core/deps/build/Debug-iphoneos/libcurlcpp_objc.a"; sourceTree = "<group>"; };
+		947794131F1F6F7E006F9053 /* libsqlite3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsqlite3.a; path = "../../core/deps/build/Debug-iphoneos/libsqlite3.a"; sourceTree = "<group>"; };
+		947794141F1F6F7E006F9053 /* libdjinni_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdjinni_objc.a; path = "../../core/support-lib/build/Debug-iphoneos/libdjinni_objc.a"; sourceTree = "<group>"; };
+		947794151F1F6F7E006F9053 /* liboaktree_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liboaktree_objc.a; path = "../../core/oaktree/build/Debug-iphoneos/liboaktree_objc.a"; sourceTree = "<group>"; };
+		947794161F1F6F7E006F9053 /* libapplication_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libapplication_objc.a; path = "../../application/build/Debug-iphoneos/libapplication_objc.a"; sourceTree = "<group>"; };
+		947794171F1F6F7E006F9053 /* libyajl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libyajl.a; path = "../../core/deps/build/Debug-iphoneos/libyajl.a"; sourceTree = "<group>"; };
+		947794181F1F6F7E006F9053 /* librestful_mapper_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librestful_mapper_objc.a; path = "../../core/deps/build/Debug-iphoneos/librestful_mapper_objc.a"; sourceTree = "<group>"; };
 		949295821F05209E00A403CE /* payporte-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "payporte-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		949295851F05209E00A403CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9492958A1F05209E00A403CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,13 +164,6 @@
 		949295D71F058F8B00A403CE /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		9497AF1D1F1D0B3D00F51620 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		9497AF1F1F1D11BC00F51620 /* ButtomSheetSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomSheetSubView.swift; sourceTree = "<group>"; };
-		9497AF251F1E32F900F51620 /* CheckoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheckoutVC.swift; path = ../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/CheckoutVC.swift; sourceTree = "<group>"; };
-		9497AF271F1E330800F51620 /* CheckoutVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CheckoutVC+Extension.swift"; path = "../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/CheckoutVC+Extension.swift"; sourceTree = "<group>"; };
-		9497AF291F1E33E000F51620 /* FancyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FancyView.swift; path = ../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/FancyView.swift; sourceTree = "<group>"; };
-		9497AF2B1F1E36A300F51620 /* ShippingAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShippingAddressVC.swift; path = ../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/ShippingAddressVC.swift; sourceTree = "<group>"; };
-		9497AF2D1F1E36AB00F51620 /* ShippingAddressVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ShippingAddressVC+Extension.swift"; path = "../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/ShippingAddressVC+Extension.swift"; sourceTree = "<group>"; };
-		9497AF2F1F1E377C00F51620 /* AddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressCell.swift; path = ../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/AddressCell.swift; sourceTree = "<group>"; };
-		9497AF311F1E379800F51620 /* NewAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAddressVC.swift; path = ../../../../Documents/DjinniProjects/mobile/ios/PayPorte/PayPorte/NewAddressVC.swift; sourceTree = "<group>"; };
 		949A31021F09B8DF00567A17 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
 		949A31401F0A8E3E00567A17 /* Tree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tree.json; sourceTree = "<group>"; };
 		949A31421F0AA74400567A17 /* Childs2ndStageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Childs2ndStageTableViewCell.swift; sourceTree = "<group>"; };
@@ -145,6 +172,11 @@
 		949A31451F0AA74400567A17 /* Childs3rdStageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Childs3rdStageTableViewCell.xib; sourceTree = "<group>"; };
 		949A31461F0AA74400567A17 /* ParentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentsTableViewCell.swift; sourceTree = "<group>"; };
 		949A31471F0AA74400567A17 /* ParentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParentsTableViewCell.xib; sourceTree = "<group>"; };
+		94A4D6391F1F74EC0052E89E /* OKEventLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OKEventLoop.swift; sourceTree = "<group>"; };
+		94A4D63C1F1F75580052E89E /* payporte-v2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "payporte-v2-Bridging-Header.h"; sourceTree = "<group>"; };
+		94A4D63D1F1F75580052E89E /* payporte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = payporte.m; sourceTree = "<group>"; };
+		94A4D63F1F1F776F0052E89E /* OKThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKThreadLauncher.swift; sourceTree = "<group>"; };
+		94CF57A31F22555100D8653C /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		94D70C5A1F095687006E375A /* CartVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CartVC+Extension.swift"; sourceTree = "<group>"; };
 		94D70C5C1F09680B006E375A /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		94D70C5E1F096D82006E375A /* CustomStepperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStepperView.swift; sourceTree = "<group>"; };
@@ -168,6 +200,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942586981F2108680074210F /* libcurl.a in Frameworks */,
+				942586991F2108680074210F /* libiconv.2.4.0.dylib in Frameworks */,
+				9425869A1F2108680074210F /* libz.1.1.3.dylib in Frameworks */,
+				9430F9031F1FA54C00A2FC2D /* libiconv.tbd in Frameworks */,
+				9430F8F31F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib in Frameworks */,
+				9430F8ED1F1F9CA500A2FC2D /* libstdc++.tbd in Frameworks */,
+				947794191F1F6F7E006F9053 /* libcurlcpp_objc.a in Frameworks */,
+				9477941A1F1F6F7E006F9053 /* libsqlite3.a in Frameworks */,
+				9477941B1F1F6F7E006F9053 /* libdjinni_objc.a in Frameworks */,
+				9477941C1F1F6F7E006F9053 /* liboaktree_objc.a in Frameworks */,
+				9477941D1F1F6F7E006F9053 /* libapplication_objc.a in Frameworks */,
+				9477941E1F1F6F7E006F9053 /* libyajl.a in Frameworks */,
+				9477941F1F1F6F7E006F9053 /* librestful_mapper_objc.a in Frameworks */,
 				ED75C164D432025FF35B07C6 /* Pods_payporte_v2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,11 +239,44 @@
 		6E55E9B33A1DEEC327BE0125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				942586A21F21417E0074210F /* SwiftProtocolsSQLite.framework */,
+				942586951F2108680074210F /* libcurl.a */,
+				942586961F2108680074210F /* libiconv.2.4.0.dylib */,
+				942586971F2108680074210F /* libz.1.1.3.dylib */,
+				9430F9021F1FA54C00A2FC2D /* libiconv.tbd */,
+				9430F8EF1F1F9DEB00A2FC2D /* libcurl.a */,
+				9430F8F01F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib */,
+				9430F8EE1F1F9DEA00A2FC2D /* libz.1.1.3.dylib */,
+				9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */,
+				947794161F1F6F7E006F9053 /* libapplication_objc.a */,
+				947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */,
+				947794141F1F6F7E006F9053 /* libdjinni_objc.a */,
+				947794151F1F6F7E006F9053 /* liboaktree_objc.a */,
+				947794181F1F6F7E006F9053 /* librestful_mapper_objc.a */,
+				947794131F1F6F7E006F9053 /* libsqlite3.a */,
+				947794171F1F6F7E006F9053 /* libyajl.a */,
 				F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */,
 				88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */,
 				282FAC0E0479CCDA8BE9FB3D /* Pods_payporte_v2UITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		942586C11F21767F0074210F /* IntroScreen */ = {
+			isa = PBXGroup;
+			children = (
+				942586C21F2176D40074210F /* IntroVC.swift */,
+			);
+			name = IntroScreen;
+			sourceTree = "<group>";
+		};
+		942586C61F2180D30074210F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				942586C71F2182B30074210F /* Banner.swift */,
+				94CF57A31F22555100D8653C /* Category.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		9433E7921F0E70EB00FD1A6D /* Controllers */ = {
@@ -265,6 +343,7 @@
 		949295841F05209E00A403CE /* payporte-v2 */ = {
 			isa = PBXGroup;
 			children = (
+				942586C61F2180D30074210F /* Model */,
 				944885A81F0BB23000FEC55D /* Product */,
 				949295C11F05279C00A403CE /* CustomViews */,
 				949295C01F05279600A403CE /* Helper */,
@@ -306,6 +385,7 @@
 		949295B41F05233300A403CE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				942586C11F21767F0074210F /* IntroScreen */,
 				94DAEC1E1F06A8AD005E4AE4 /* Home */,
 				94DAEC1F1F06A8BD005E4AE4 /* Store */,
 				94DAEC201F06A8CA005E4AE4 /* Cart */,
@@ -338,8 +418,14 @@
 		949295C01F05279600A403CE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				94A4D6391F1F74EC0052E89E /* OKEventLoop.swift */,
 				949295C21F0527AF00A403CE /* Extensions.swift */,
 				94ED9F7C1F0C05DD0037A7D5 /* Utilities.swift */,
+				94A4D63D1F1F75580052E89E /* payporte.m */,
+				94A4D63C1F1F75580052E89E /* payporte-v2-Bridging-Header.h */,
+				94A4D63F1F1F776F0052E89E /* OKThreadLauncher.swift */,
+				942586931F2107250074210F /* OKSystem.swift */,
+				942586C41F2177B00074210F /* Payporte.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -347,7 +433,6 @@
 		949295C11F05279C00A403CE /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				9497AF291F1E33E000F51620 /* FancyView.swift */,
 				94D70C5E1F096D82006E375A /* CustomStepperView.swift */,
 				949295CA1F0547B900A403CE /* ZCarousel.swift */,
 				949295CF1F05898000A403CE /* CardView.swift */,
@@ -363,8 +448,6 @@
 		949295CC1F054EAE00A403CE /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9497AF2D1F1E36AB00F51620 /* ShippingAddressVC+Extension.swift */,
-				9497AF271F1E330800F51620 /* CheckoutVC+Extension.swift */,
 				949295CD1F054EC000A403CE /* HomeVC+Extension.swift */,
 				94DAEC221F06AA1C005E4AE4 /* StoreVC+Extension.swift */,
 				94D70C5A1F095687006E375A /* CartVC+Extension.swift */,
@@ -376,7 +459,6 @@
 		949295D41F058E2900A403CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9497AF2F1F1E377C00F51620 /* AddressCell.swift */,
 				949A31421F0AA74400567A17 /* Childs2ndStageTableViewCell.swift */,
 				949A31431F0AA74400567A17 /* Childs2ndStageTableViewCell.xib */,
 				949A31441F0AA74400567A17 /* Childs3rdStageTableViewCell.swift */,
@@ -409,9 +491,6 @@
 		94DAEC201F06A8CA005E4AE4 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				9497AF311F1E379800F51620 /* NewAddressVC.swift */,
-				9497AF2B1F1E36A300F51620 /* ShippingAddressVC.swift */,
-				9497AF251F1E32F900F51620 /* CheckoutVC.swift */,
 				949295BB1F0524A500A403CE /* CartVC.swift */,
 			);
 			name = Cart;
@@ -516,6 +595,7 @@
 					949295811F05209E00A403CE = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = NS5XW2Q4P8;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					949295951F05209E00A403CE = {
@@ -738,29 +818,30 @@
 				94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */,
 				94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */,
 				944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */,
+				942586C31F2176D50074210F /* IntroVC.swift in Sources */,
 				94DAEC231F06AA1C005E4AE4 /* StoreVC+Extension.swift in Sources */,
 				949295BA1F05242300A403CE /* StoresVC.swift in Sources */,
 				949A314C1F0AA74400567A17 /* ParentsTableViewCell.swift in Sources */,
 				944885AC1F0BB33B00FEC55D /* GMStepper.swift in Sources */,
 				94D70C5B1F095687006E375A /* CartVC+Extension.swift in Sources */,
+				942586C81F2182B30074210F /* Banner.swift in Sources */,
 				949295BE1F05258800A403CE /* ProfileVC.swift in Sources */,
 				9497AF1E1F1D0B3D00F51620 /* BottomSheetView.swift in Sources */,
 				94D70C5F1F096D82006E375A /* CustomStepperView.swift in Sources */,
-				9497AF281F1E330800F51620 /* CheckoutVC+Extension.swift in Sources */,
 				94DAEC251F06ACF6005E4AE4 /* StoreCell.swift in Sources */,
-				9497AF2E1F1E36AC00F51620 /* ShippingAddressVC+Extension.swift in Sources */,
 				949295CE1F054EC000A403CE /* HomeVC+Extension.swift in Sources */,
-				9497AF2C1F1E36A400F51620 /* ShippingAddressVC.swift in Sources */,
-				9497AF2A1F1E33E000F51620 /* FancyView.swift in Sources */,
 				9497AF201F1D11BC00F51620 /* ButtomSheetSubView.swift in Sources */,
 				949A31481F0AA74400567A17 /* Childs2ndStageTableViewCell.swift in Sources */,
 				949295CB1F0547B900A403CE /* ZCarousel.swift in Sources */,
-				9497AF321F1E379800F51620 /* NewAddressVC.swift in Sources */,
+				94A4D63A1F1F74EC0052E89E /* OKEventLoop.swift in Sources */,
+				94A4D6401F1F776F0052E89E /* OKThreadLauncher.swift in Sources */,
 				949295D01F05898000A403CE /* CardView.swift in Sources */,
 				941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */,
 				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
+				942586941F2107250074210F /* OKSystem.swift in Sources */,
 				9433E7951F0E715600FD1A6D /* ProductListingVC+Extension.swift in Sources */,
 				949295B81F0523D200A403CE /* HomeVC.swift in Sources */,
+				94A4D63E1F1F75580052E89E /* payporte.m in Sources */,
 				949295861F05209E00A403CE /* AppDelegate.swift in Sources */,
 				94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */,
 				9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */,
@@ -768,13 +849,13 @@
 				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
 				941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */,
-				9497AF261F1E32FA00F51620 /* CheckoutVC.swift in Sources */,
 				949295D81F058F8B00A403CE /* InsetLabel.swift in Sources */,
 				9433E79A1F0EC6A800FD1A6D /* ProductListCell.swift in Sources */,
-				9497AF301F1E377D00F51620 /* AddressCell.swift in Sources */,
 				949295D61F058E3B00A403CE /* CategoryCell.swift in Sources */,
+				942586C51F2177B00074210F /* Payporte.swift in Sources */,
 				949A314A1F0AA74400567A17 /* Childs3rdStageTableViewCell.swift in Sources */,
 				949A31031F09B8DF00567A17 /* DrawerController.swift in Sources */,
+				94CF57A41F22555100D8653C /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,13 +1010,53 @@
 			baseConfigurationReference = DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = NS5XW2Q4P8;
 				INFOPLIST_FILE = "payporte-v2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../core/deps/prebuilt/iOS\"",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CLabsImageSlider\"",
+					"-framework",
+					"\"CSStickyHeaderFlowLayout\"",
+					"-framework",
+					"\"DropDown\"",
+					"-framework",
+					"\"KJExpandableTableTree\"",
+					"-framework",
+					"\"MIBadgeButton_Swift\"",
+					"-framework",
+					"\"RGBottomSheet\"",
+					"-framework",
+					"\"SkyFloatingLabelTextField\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"Spring\"",
+					"-framework",
+					"\"Stepperier\"",
+					"-framework",
+					"\"SwiftImageCarousel\"",
+					"-framework",
+					"\"SwiftSoup\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UICheckbox_Swift\"",
+					"-lz",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rom-flex.payporte-v2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "payporte-v2/payporte-v2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../core/generated-src/objc\" \"$(SRCROOT)/../../core/support-lib/objc\" \"$(SRCROOT)/../../core/deps/include\" \"$(SRCROOT)/../../application/src/cpp\" \"$(SRCROOT)/../../application/src/cpp/cerelac\" \"$(SRCROOT)/../../application/src/cpp/master-chef\" \"$(SRCROOT)/../../application/src/cpp/simi\"";
 			};
 			name = Debug;
 		};
@@ -944,13 +1065,52 @@
 			baseConfigurationReference = 367F3A903E1982010AD669AE /* Pods-payporte-v2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = NS5XW2Q4P8;
 				INFOPLIST_FILE = "payporte-v2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../core/deps/prebuilt/iOS\"",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CLabsImageSlider\"",
+					"-framework",
+					"\"CSStickyHeaderFlowLayout\"",
+					"-framework",
+					"\"DropDown\"",
+					"-framework",
+					"\"KJExpandableTableTree\"",
+					"-framework",
+					"\"MIBadgeButton_Swift\"",
+					"-framework",
+					"\"RGBottomSheet\"",
+					"-framework",
+					"\"SkyFloatingLabelTextField\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"Spring\"",
+					"-framework",
+					"\"Stepperier\"",
+					"-framework",
+					"\"SwiftImageCarousel\"",
+					"-framework",
+					"\"SwiftSoup\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UICheckbox_Swift\"",
+					"-lz",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rom-flex.payporte-v2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "payporte-v2/payporte-v2-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../core/generated-src/objc\" \"$(SRCROOT)/../../core/support-lib/objc\" \"$(SRCROOT)/../../core/deps/include\" \"$(SRCROOT)/../../application/src/cpp\" \"$(SRCROOT)/../../application/src/cpp/cerelac\" \"$(SRCROOT)/../../application/src/cpp/master-chef\" \"$(SRCROOT)/../../application/src/cpp/simi\"";
 			};
 			name = Release;
 		};

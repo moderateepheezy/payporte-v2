@@ -4,18 +4,32 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CBD1204E32AE49D55065F706E344B04D2F82CBEE" : 9223372036854775807,
     "BF99DE6BB5BB74624B53DF8C1D1CAC692569E22F" : 9223372036854775807,
-    "CBD1204E32AE49D55065F706E344B04D2F82CBEE" : 9223372036854775807
+    "9CBE6D9CC559EB2E4C214CC5066C9B30797B82B5" : 9223372036854775807,
+    "2E8B46F2A7748C8FE6341C3B784F68FF881A603A" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ECD1D354-48E8-409B-ABF0-32D697B111D3",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CBD1204E32AE49D55065F706E344B04D2F82CBEE" : "payporte-v2\/",
     "BF99DE6BB5BB74624B53DF8C1D1CAC692569E22F" : "",
-    "CBD1204E32AE49D55065F706E344B04D2F82CBEE" : "payporte-v2\/"
+    "9CBE6D9CC559EB2E4C214CC5066C9B30797B82B5" : "..",
+    "2E8B46F2A7748C8FE6341C3B784F68FF881A603A" : "..\/core\/deps\/yajl"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "payporte-v2",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "payporte-v2.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/lloyd\/yajl",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2E8B46F2A7748C8FE6341C3B784F68FF881A603A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/k-constantine\/siliconbearjni.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9CBE6D9CC559EB2E4C214CC5066C9B30797B82B5"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/rfnldevs\/payporte-ios.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

@@ -7,8 +7,25 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CategoryCell: UICollectionViewCell {
+    
+    
+    var category: Category? {
+        didSet{
+            guard let catImg = category?.category_image else {return}
+            guard let catName = category?.category_name else {return}
+            
+            itemNameLabel.text = catName
+            
+            let url  = URL(string: catImg)
+            
+            self.itemImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: .retryFailed) { (image, error, cache, url) in
+                
+            }
+        }
+    }
     
     let itemImageView: UIImageView = {
         let iv = UIImageView()
@@ -23,7 +40,7 @@ class CategoryCell: UICollectionViewCell {
         label.text = "WOMEN"
         label.textColor = .white
         label.numberOfLines = 0 
-        label.backgroundColor = UIColor(white: 0, alpha: 0.2)
+        label.backgroundColor = UIColor(white: 0, alpha: 0.6)
         label.textAlignment = .center
         return label
     }()

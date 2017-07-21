@@ -21,7 +21,7 @@ class StringData {
     }
 }
 
-class HomeVC: UIViewController, UISearchBarDelegate, imageSliderDelegate {
+class HomeVC: UIViewController, UISearchBarDelegate {
     
     private var mySearchBar: UISearchBar!
     
@@ -33,22 +33,7 @@ class HomeVC: UIViewController, UISearchBarDelegate, imageSliderDelegate {
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 10)
     
-    let urlImages =    ["https://s26.postimg.org/3n85yisu1/one_5_51_58_PM.png","https://s26.postimg.org/65tuz7ek9/two_5_41_53_PM.png","https://s26.postimg.org/7ywrnizqx/three_5_41_53_PM.png","https://s26.postimg.org/6l54s80hl/four.png","https://s26.postimg.org/ioagfsbjt/five.png"]
-    
-    var data = [StringData]()
-    
-    var banners: CLabsImageSlider = {
-       let zc = CLabsImageSlider()
-        return zc
-    }()
-    
-    var pageController: UIPageControl = {
-        let pc = UIPageControl()
-        pc.pageIndicatorTintColor = .lightGray
-        pc.currentPageIndicatorTintColor = primaryColor
-        return pc
-    }()
-    
+    var categories: [Category]?
     
     var cardView: CardView = {
        let card = CardView()
@@ -68,17 +53,22 @@ class HomeVC: UIViewController, UISearchBarDelegate, imageSliderDelegate {
     
     var collectionView: UICollectionView!
     
+    
+    func fetchCategories(){
+        Payporte.sharedInstance.fetchCategories { (categories) in
+            self.categories = categories
+        
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        data.append(StringData(img: "01B", name: "Bags"))
-        data.append(StringData(img: "02", name: "Sports & Outdoor"))
-        data.append(StringData(img: "03", name: "Kitchen Essentials"))
-        data.append(StringData(img: "04", name: "Mobile Phones & Tablets"))
-        data.append(StringData(img: "05", name: "Entertainment"))
-        data.append(StringData(img: "05", name: "Audio and Video"))
-        data.append(StringData(img: "07", name: "Women's Clothings"))
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.fetchCategories()
+        }
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "home").withRenderingMode(.alwaysOriginal)
@@ -112,13 +102,6 @@ class HomeVC: UIViewController, UISearchBarDelegate, imageSliderDelegate {
         titleView.addSubview(mySearchBar)
         navigationItem.titleView = titleView
         
-        banners.sliderDelegate = self
-        banners.contentMode = .scaleAspectFill
-        banners.clipsToBounds = true
-        
-        
-        
-        pageController.numberOfPages = urlImages.count
         
         let layout = CSStickyHeaderFlowLayout()
         layout.sectionInset = sectionInsets
@@ -145,20 +128,6 @@ class HomeVC: UIViewController, UISearchBarDelegate, imageSliderDelegate {
         
         addingViewsAddSubViews()
         
-    }
-    
-    func didMovedToIndex(index: Int) {
-        pageController.currentPage = index
-    }
-    
-    override func viewDidLayoutSubviews() {
-    banners.setUpView(imageSource: .Url(imageArray:urlImages,placeHolderImage:UIImage(named:"placeholder")),slideType:.Automatic(timeIntervalinSeconds: 5),isArrowBtnEnabled: false)
-    }
-    
-    func ZCarouselShowingIndex(scrollview: ZCarousel, index: Int) {
-        if scrollview == banners {
-            print("Showing Image at index \(index)")
-        }
     }
     
     
@@ -217,16 +186,15 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return data.count
+        return categories?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIndetifier, for: indexPath) as! CategoryCell
         
-        let dat = data[indexPath.item]
-        cell.itemImageView.image = UIImage(named: dat.img!)
-        cell.itemNameLabel.text = dat.name?.uppercased()
+        let category = categories?[indexPath.item]
+        cell.category = category
         
         return cell
         
@@ -234,9 +202,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let title = data[indexPath.item]
+        let title = categories?[indexPath.item]
         
-        goToProductDetails(title: title.name!)
+        guard let name = title?.category_name else {return}
+        goToProductDetails(title: name)
     }
     
     

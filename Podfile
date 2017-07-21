@@ -20,6 +20,8 @@ target 'payporte-v2' do
   pod 'CSStickyHeaderFlowLayout'
   pod 'DropDown'
   pod 'SwiftImageCarousel'
+  pod 'GRDB.swift'
+  pod 'SDWebImage', '~>3.8' 
   target 'payporte-v2Tests' do
     inherit! :search_paths
     # Pods for testing

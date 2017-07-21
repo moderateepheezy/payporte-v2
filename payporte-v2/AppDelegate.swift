@@ -26,19 +26,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
          UIApplication.shared.statusBarStyle = .default
         
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
+//        for family: String in UIFont.familyNames
+//        {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
         
-        
+//        Payporte.sharedInstance.configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.CATEGORYLIST, params: ["uiu" : "oio"], completed: { _ in
+//            
+//        })
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : Utilities.getColorWithHexString("#050505") ], for: .normal)
+        
         return true
     }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
