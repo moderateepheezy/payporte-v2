@@ -1,0 +1,158 @@
+//
+//  SubCategoryVC.swift
+//  payporte-v2
+//
+//  Created by SimpuMind on 7/24/17.
+//  Copyright © 2017 SimpuMind. All rights reserved.
+//
+
+import UIKit
+import JNDropDownMenu
+import NVActivityIndicatorView
+
+
+class SubCategoryVC: UIViewController, NVActivityIndicatorViewable {
+
+    var didSetupConstraints = false
+    
+    let cellId = "cellId"
+    
+    var categoryName: String?
+    
+    var category_id: String?
+    
+    var firstLevelcatgories: [Category]?
+    var secondLevelcatgories: [Category]?
+    
+    var menu: JNDropDownMenu!
+    
+    var activityIndicator: NVActivityIndicatorView!
+    
+    let tableView: UITableView = {
+       let tv = UITableView()
+        tv.backgroundColor = .white
+        tv.separatorColor = .white
+        return tv
+    }()
+    
+    
+    func fetchSubACategory(cat_id: String){
+        
+        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories) in
+            self.firstLevelcatgories = categories
+            let firstCat = categories[0]
+            self.fetchSubBCategory(cat_id: firstCat.category_id!)
+            self.menu = JNDropDownMenu(origin: CGPoint(x: 0, y: 64), height: 40, width: self.view.frame.size.width)
+            self.menu.datasource = self
+            self.menu.delegate = self
+            self.view.addSubview(self.menu)
+        }
+    }
+    
+    func fetchSubBCategory(cat_id: String){
+        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories) in
+            self.stopAnimating()
+            self.secondLevelcatgories = categories
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        let size = CGSize(width: 30, height: 30)
+        startAnimating(size, message: "Loading...", messageFont: UIFont(name: "Orkney-Light", size: 14)! , type: .ballPulseSync, color: primaryColor, padding: 30, displayTimeThreshold: 3, minimumDisplayTime: 3, backgroundColor: UIColor.clear, textColor: UIColor.black)
+        
+        guard let catName = categoryName else {return}
+        navigationItem.title = catName
+        
+        fetchSubACategory(cat_id: category_id!)
+    
+        
+        addSubViewsToView()
+    }
+    
+    
+    private func addSubViewsToView(){
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(40)
+            make.left.equalTo(view.snp.left).offset(10)
+            make.right.equalTo(view.snp.right).offset(-10)
+            make.bottom.equalTo(view.snp.bottom).offset(-10)
+        }
+        
+    }
+    
+    func goToProductDetails(category: Category){
+        let vc = ProductListingVC()
+        vc.categoryName = category.category_name
+        vc.category = category
+        vc.hidesBottomBarWhenPushed = false
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.backBarButtonItem = backItem
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension SubCategoryVC: UITableViewDataSource, UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return secondLevelcatgories?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.font = UIFont(name: "Orkney-Medium", size: 16)!
+        let category = secondLevelcatgories?[indexPath.item]
+        cell.textLabel?.text = category?.category_name
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = self.secondLevelcatgories?[indexPath.item]
+        goToProductDetails(category: category!)
+    }
+    
+}
+
+extension SubCategoryVC: JNDropDownMenuDelegate, JNDropDownMenuDataSource{
+    
+    func numberOfColumns(in menu: JNDropDownMenu) -> NSInteger {
+        return 1
+    }
+    
+    func numberOfRows(in column: NSInteger, for menu: JNDropDownMenu) -> Int {
+        return self.firstLevelcatgories?.count ?? 0
+    }
+    
+    func titleForRow(at indexPath: JNIndexPath, for menu: JNDropDownMenu) -> String {
+        let categories = firstLevelcatgories?[indexPath.row]
+        return (categories?.category_name)!
+    }
+    
+    func didSelectRow(at indexPath: JNIndexPath, for menu: JNDropDownMenu) {
+        
+        let category = self.firstLevelcatgories?[indexPath.row]
+        
+        let size = CGSize(width: 30, height: 30)
+        
+        startAnimating(size, message: "Loading...", messageFont: UIFont(name: "Orkney-Light", size: 14)! , type: .ballPulseSync, color: primaryColor, padding: 30, displayTimeThreshold: 3, minimumDisplayTime: 3, backgroundColor: UIColor.clear, textColor: UIColor.black)
+        
+        self.secondLevelcatgories?.removeAll()
+        self.tableView.reloadData()
+        
+        fetchSubBCategory(cat_id: (category?.category_id)!)
+    }
+}

@@ -3,8 +3,12 @@ PODS:
   - CSStickyHeaderFlowLayout (0.2.11)
   - DropDown (2)
   - GRDB.swift (1.1)
+  - JNDropDownMenu (0.1.6)
   - KJExpandableTableTree (1.1.1)
   - MIBadgeButton-Swift (0.5)
+  - NVActivityIndicatorView (3.7.0):
+    - NVActivityIndicatorView/Presenter (= 3.7.0)
+  - NVActivityIndicatorView/Presenter (3.7.0)
   - RGBottomSheet (1.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -23,8 +27,10 @@ DEPENDENCIES:
   - CSStickyHeaderFlowLayout
   - DropDown
   - GRDB.swift
+  - JNDropDownMenu
   - KJExpandableTableTree
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
+  - NVActivityIndicatorView
   - RGBottomSheet (~> 1.0)
   - SDWebImage (~> 3.8)
   - SkyFloatingLabelTextField (~> 3.0)
@@ -57,8 +63,10 @@ SPEC CHECKSUMS:
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   GRDB.swift: 58dd10ae08200ce68434e025ca454b8b79fc3c0d
+  JNDropDownMenu: 5f24544b002e01289818d1c56d56ae2de11cb931
   KJExpandableTableTree: e4724aa845551ad6d29850c1abcf71fb404f37e7
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
+  NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   RGBottomSheet: 0eabb98a661d8d2f54782fc676861aea82b98436
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
@@ -70,6 +78,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
 
-PODFILE CHECKSUM: 72d0026f22dd3ceb807355dab3e16f2584436ddf
+PODFILE CHECKSUM: c0653991ab637fc644169597af552c58865a5b86
 
 COCOAPODS: 1.2.0

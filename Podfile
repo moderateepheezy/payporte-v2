@@ -6,6 +6,8 @@ target 'payporte-v2' do
   use_frameworks!
 
   # Pods for payporte-v2
+  pod 'NVActivityIndicatorView'
+  pod 'JNDropDownMenu'
   pod 'RGBottomSheet', '~> 1.0'
   pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
   pod 'SwiftSoup'
@@ -21,7 +23,7 @@ target 'payporte-v2' do
   pod 'DropDown'
   pod 'SwiftImageCarousel'
   pod 'GRDB.swift'
-  pod 'SDWebImage', '~>3.8' 
+  pod 'SDWebImage', '~>3.8'
   target 'payporte-v2Tests' do
     inherit! :search_paths
     # Pods for testing

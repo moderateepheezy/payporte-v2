@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CEEAD8EAFA0A498ACCF305309087EA0F'
+               BlueprintIdentifier = '1192A8F8591F0F37DCFE03A8086813BF'
                BlueprintName = 'UICheckbox.Swift-UICheckbox'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'UICheckbox.bundle'>

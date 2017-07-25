@@ -34,14 +34,13 @@ class CategoryCell: UICollectionViewCell {
         return iv
     }()
     
-    let itemNameLabel: InsetLabel = {
-        let label = InsetLabel()
-        label.font = UIFont(name: "Orkney-Medium", size: 16)
+    let itemNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Orkney-Regular", size: 15)
         label.text = "WOMEN"
-        label.textColor = .white
-        label.numberOfLines = 0 
-        label.backgroundColor = UIColor(white: 0, alpha: 0.6)
-        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 2
+        label.textAlignment = .left
         return label
     }()
     
@@ -60,16 +59,16 @@ class CategoryCell: UICollectionViewCell {
         
         self.layer.cornerRadius = 2
         self.clipsToBounds = true
+        
         itemImageView.snp.makeConstraints { (make) in
             make.width.equalTo(self)
-            make.height.equalTo(self)
+            make.height.equalTo(150)
         }
         
         itemNameLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self)
-            make.centerY.equalTo(self)
-            make.height.equalTo(self)
+            make.top.equalTo(self.itemImageView.snp.bottom).offset(10)
             make.width.equalTo(self)
+            make.height.equalTo(30)
         }
     }
 }

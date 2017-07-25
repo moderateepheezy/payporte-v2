@@ -70,19 +70,21 @@ class CustomHeaderView: UIView, imageSliderDelegate, SwiftImageCarouselVCDelegat
         banners.clipsToBounds = true
         
         banners.snp.makeConstraints { (make) in
-            make.top.equalTo(self).offset(2)
-            make.width.equalTo(self.snp.width)
-            make.height.equalTo(230)
+            make.top.equalTo(self).offset(10)
+            make.right.equalTo(self.snp.right).offset(-10)
+            make.left.equalTo(self.snp.left).offset(10)
+            make.height.equalTo(150)
         }
         
         pageController.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self).offset(-20)
+            make.bottom.equalTo(self).offset(-10)
             make.centerX.equalTo(self)
             make.width.equalTo(150)
             make.height.equalTo(20)
         }
         
         DispatchQueue.main.async {
+            
             self.fetchBanners()
         }
     }

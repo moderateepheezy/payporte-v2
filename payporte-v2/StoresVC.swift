@@ -27,7 +27,7 @@ class StoresVC: UIViewController {
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
+        cv.backgroundColor = Utilities.getColorWithHexString("#f9f9f9")
         return cv
     }()
     
@@ -47,11 +47,11 @@ class StoresVC: UIViewController {
         let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         searchBarButton.tintColor = UIColor.black
         
-        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-        menuBarButton.tintColor = UIColor.black
+//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
+//        menuBarButton.tintColor = UIColor.black
         
         
-        self.navigationItem.leftBarButtonItems = [ menuBarButton]
+        //self.navigationItem.leftBarButtonItems = [ menuBarButton]
         
         
         self.navigationItem.rightBarButtonItems = [ searchBarButton]

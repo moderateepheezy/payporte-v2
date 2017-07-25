@@ -51,6 +51,13 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         return label
     }()
     
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Popular Categories"
+        label.font = UIFont(name: "Orkney-Medium", size: 14)
+        return label
+    }()
+    
     var collectionView: UICollectionView!
     
     
@@ -64,20 +71,20 @@ class HomeVC: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let when = DispatchTime.now() + 2
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.fetchCategories()
-        }
+        self.fetchCategories()
+//        let when = DispatchTime.now() + 2
+//        DispatchQueue.main.asyncAfter(deadline: when) {
+//            
+//        }
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "home").withRenderingMode(.alwaysOriginal)
         
-        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-        menuBarButton.tintColor = UIColor.black
+//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
+//        menuBarButton.tintColor = UIColor.black
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "home")
-        self.navigationItem.leftBarButtonItems = [ menuBarButton]
+        //self.navigationItem.leftBarButtonItems = [ menuBarButton]
 
         view.backgroundColor = .white
         mySearchBar = UISearchBar()
@@ -108,7 +115,8 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         layout.itemSize = returnCellSize()
         layout.disableStretching = true
         
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        let gframe = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 40)
+        collectionView = UICollectionView(frame: gframe, collectionViewLayout: layout)
         collectionView.delegate   = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
@@ -121,18 +129,26 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: cellIndetifier)
         
         collectionView.register(CollectionParallaxHeader.self, forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader, withReuseIdentifier: "parallaxHeader")
-        layout.parallaxHeaderReferenceSize = CGSize(width: self.view.frame.size.width, height: 200)
+        layout.parallaxHeaderReferenceSize = CGSize(width: self.view.frame.size.width, height: 150)
         
         collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader")
-        layout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 60)
+        layout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 150)
+        
         
         addingViewsAddSubViews()
-        
     }
     
     
     func addingViewsAddSubViews(){
         view.addSubview(collectionView)
+        view.addSubview(nameLabel)
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(10)
+            make.left.equalTo(view.snp.left).offset(10)
+            make.height.equalTo(15)
+            make.width.equalTo(view)
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -161,12 +177,13 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        return CGSize(width: widthPerItem, height: 130)
+        return CGSize(width: widthPerItem, height: 200)
     }
     
-    func goToProductDetails(title: String){
-        let vc = ProductListingVC()
+    func goToSubCategories(title: String, category_id: String){
+        let vc = SubCategoryVC()
         vc.categoryName = title
+        vc.category_id = category_id
         vc.hidesBottomBarWhenPushed = false
         let backItem = UIBarButtonItem()
         backItem.title = ""
@@ -202,10 +219,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let title = categories?[indexPath.item]
+        let cat = categories?[indexPath.item]
         
-        guard let name = title?.category_name else {return}
-        goToProductDetails(title: name)
+        guard let name = cat?.category_name else {return}
+        guard let cat_id = cat?.category_id else {return}
+        goToSubCategories(title: name, category_id: cat_id)
     }
     
     
@@ -233,17 +251,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.right
-    }
-    
-    
-    func menuClick(){
-        let vc = DrawerController()
-        vc.hidesBottomBarWhenPushed = false
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.backBarButtonItem = backItem
-        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

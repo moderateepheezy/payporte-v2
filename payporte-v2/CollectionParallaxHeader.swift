@@ -29,7 +29,6 @@ class CollectionParallaxHeader: UICollectionReusableView {
         self.clipsToBounds = true
         addSubview(headerView)
         headerView.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsets.zero)
             make.width.equalTo(self)
             make.height.equalTo(self)
         }

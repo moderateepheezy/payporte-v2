@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol JSONDecodable {
     init?(_ json: [String: Any])
@@ -19,6 +20,7 @@ public class Payporte: OAKLIBServiceBinder {
     
     init() {
         api = OAKLIBApi.getInstance(system, handler: handler, service: service)
+        OAKLIBSandwich.getInstance()?.getRecipe(api?.getChef())
     }
     
     private let handler = OKEventLoop()
@@ -29,9 +31,6 @@ public class Payporte: OAKLIBServiceBinder {
     
     public func configChef(module: OAKLIBMenu, package: OAKLIBPackage,
                             params: [String: String], completed: @escaping(_ success: Bool) -> ()){
-
-        api = OAKLIBApi.getInstance(system, handler: handler, service: service)
-        OAKLIBSandwich.getInstance()?.getRecipe(api?.getChef())
         api?.getChef()?.grab(module)?.serve(package, params: params,
                                             binder: RequestHandler(payporte: self, binder: self, completed: completed))
     }
@@ -50,9 +49,56 @@ public class Payporte: OAKLIBServiceBinder {
         })
     }
     
-    func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
+    func fetchSubCategories(category_id: String, completion: @escaping ([Category]) -> ()){
+        var params = [String: String]()
+        var data = [String: String]()
+        params["category_id"] = category_id
         
-        cursor?.moveToFirst();
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: params,
+            options: []) {
+            let theJSONText = String(data: theJSONData,
+                                     encoding: .ascii)
+            
+            data["data"] = theJSONText
+            data["category_id"] = category_id
+            
+            configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.CATEGORYLIST, params: data, completed: {_ in
+                
+                self.baseQueryTemplate(completion: completion)
+            })
+        }
+    }
+    
+    func fetchProductListing(category_id: String, completion: @escaping ([ProductList]) -> ()){
+        var param = [String: String]()
+        var data = [String: String]()
+        param["limit"] = "100"
+        param["width"] = "300"
+        param["height"] = "300"
+        param["category_id"] = category_id
+        
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: param,
+            options: []) {
+            let theJSONText = String(data: theJSONData,
+                                     encoding: .ascii)
+            
+            data["data"] = theJSONText
+            data["category_id"] = category_id
+            
+            configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTLIST, params: data, completed: {_ in
+                
+                self.baseQueryTemplate(completion: completion)
+            })
+        }
+        
+    }
+    
+    private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
+        if (!(cursor?.moveToFirst())!) {
+            return;
+        }
         
         var models  = [T]()
         
@@ -60,18 +106,21 @@ public class Payporte: OAKLIBServiceBinder {
         for i in 0 ..< count{
             cursor?.move(toPosition: i)
             guard let a = cursor?.toJson() else {return}
+            print(a)
             guard let dictionary = convertToDictionary(text: a) else {return}
             models.append(T(dictionary)!)
         }
         
         DispatchQueue.main.async {
-            print("Something")
+            print(models)
             completion(models)
         }
     }
     
+    
+    
     public func loadType() -> OAKLIBLoadType {
-        return OAKLIBLoadType.STRICT
+        return OAKLIBLoadType.LAZY
     }
     
     public func onError(_ message: String) {
@@ -80,7 +129,9 @@ public class Payporte: OAKLIBServiceBinder {
     
     public func onLoad(_ message: String, cache: Bool, cursor: OAKLIBSimpleCursor?) {
         self.cursor = cursor
-        cursor?.moveToFirst()
+        if (!(cursor?.moveToFirst())!) {
+            return;
+        }
         let x = cursor?.toJson()
         
         print(message)
@@ -90,13 +141,43 @@ public class Payporte: OAKLIBServiceBinder {
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
+        if let data = text.data(using: String.Encoding.utf8) {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             } catch {
                 print(error.localizedDescription)
             }
         }
+        return nil
+    }
+    
+    private func convertStringToJson(dic: String) -> String {
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+            // here "jsonData" is the dictionary encoded in JSON data
+            
+            let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+            // here "decoded" is of type `Any`, decoded from JSON data
+            
+            // you can now cast it with the right type
+            if let dictFromJSON = decoded as? [String: String] {
+                // use dictFromJSON
+                return dictFromJSON.debugDescription
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return ""
+    }
+    
+    func createJsonString(string: String) -> JSON{
+        if let dataFromString = string.data(using: String.Encoding.utf8, allowLossyConversion: false) {
+            let json = JSON(data: dataFromString)
+            return json
+        }
+        
         return nil
     }
     

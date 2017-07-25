@@ -69,13 +69,13 @@ class ProfileVC: UIViewController {
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "profile").withRenderingMode(.alwaysOriginal)
         
-        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-        menuBarButton.tintColor = UIColor.black
+//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
+//        menuBarButton.tintColor = UIColor.black
         
         self.navigationItem.title = "P R O F I L E"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
-        self.navigationItem.leftBarButtonItems = [menuBarButton]
+        //self.navigationItem.leftBarButtonItems = [menuBarButton]
         
         setupSubViews()
     }

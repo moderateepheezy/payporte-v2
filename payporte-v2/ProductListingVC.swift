@@ -20,6 +20,8 @@ class ProductListingVC: UIViewController {
     
     var categoryName: String?
     
+    var category: Category?
+    
     let cellIndetifier = "cellId"
     
     fileprivate var searchBar: UISearchBar!
@@ -30,7 +32,7 @@ class ProductListingVC: UIViewController {
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
     
-    var data = [StringData]()
+    var productLists = [ProductList]()
     
     let headerView: CardView = {
        let v = CardView()
@@ -66,29 +68,27 @@ class ProductListingVC: UIViewController {
         return cv
     }()
     
+    func getProductDetails(category_id: String){
+        Payporte.sharedInstance.fetchProductListing(category_id: category_id) { (productLists) in
+            print(productLists)
+            self.productLists = productLists
+            self.collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getProductDetails(category_id: (category?.category_id)!)
+        
         view.backgroundColor = Utilities.getColorWithHexString("#f9f9f9")
         view.setNeedsUpdateConstraints()
         addSubViews()
         
         dropDownSetup()
         
-        data.append(StringData(img: "i1", name: "Bettles"))
-        data.append( StringData(img: "i2", name: "Frends and Gabana"))
-        data.append( StringData(img: "i3", name: "Neither"))
-        data.append( StringData(img: "i4", name: "Frontiers"))
-        data.append( StringData(img: "i5", name: "Funny Look"))
-        data.append( StringData(img: "i6", name: "Sweet Man"))
-        data.append( StringData(img: "i7", name: "Gucci Knees"))
-        data.append( StringData(img: "i8", name: "Hush Puppy Types"))
-        data.append( StringData(img: "i9", name: "Breathing Egg"))
-        data.append( StringData(img: "i10", name: "Source Tree"))
-        
         guard let catName = categoryName else {return}
-        navigationItem.title = catName.uppercased()
+        navigationItem.title = catName
         
         sortButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         sortButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -116,8 +116,12 @@ class ProductListingVC: UIViewController {
     }
     
     func dropDownSetup(){
-        
-        sortDown.dataSource = ["Action 1", "Action 2", "Action 3"]
+        var items = [String]()
+        let sortDictionary = Utilities.configSort()
+        for sort in sortDictionary {
+            items.append(sort.title!)
+        }
+        sortDown.dataSource = items
         sortDown.anchorView = sortButton
         
         filterDown.dataSource = ["Action 1", "Action 2", "Action 3"]
@@ -186,16 +190,15 @@ extension ProductListingVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return data.count
+        return productLists.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIndetifier, for: indexPath) as! ProductListCell
         
-        let dat = data[indexPath.item]
-        cell.itemImageView.image = UIImage(named: dat.img!)
-        cell.itemNameLabel.text = dat.name?.uppercased()
+        let product = productLists[indexPath.item]
+        cell.product = product
         
         return cell
         

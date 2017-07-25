@@ -45,7 +45,7 @@ class GalleryItemVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        closeButton.setTitle("☓", for: .normal)
         closeButton.layer.cornerRadius = 20
         closeButton.clipsToBounds = true
     }

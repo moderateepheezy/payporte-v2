@@ -91,10 +91,10 @@ class CartVC: UIViewController {
         let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         searchBarButton.tintColor = UIColor.black
         
-        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-        menuBarButton.tintColor = UIColor.black
+//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
+//        menuBarButton.tintColor = UIColor.black
         
-        self.navigationItem.leftBarButtonItems = [ menuBarButton]
+       // self.navigationItem.leftBarButtonItems = [ menuBarButton]
         self.navigationItem.rightBarButtonItems = [ searchBarButton]
         
         self.navigationItem.title = "C A R T"

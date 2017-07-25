@@ -10,6 +10,22 @@ import UIKit
 
 class ProductListCell: UICollectionViewCell {
     
+    var product: ProductList? {
+        didSet{
+            guard let productName = product?.product_name else {return}
+            guard let productImage = product?.product_image else {return}
+            guard let productPrice = product?.product_price else {return}
+            guard let productVendor = product?.seller?.name else {return}
+            
+            itemNameLabel.text = productName
+            itemPriceLabel.text = "₦ \(productPrice)"
+            itemVendorLabel.text = productVendor
+            
+            let url = URL(string: productImage)
+            itemImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"))
+        }
+    }
+    
     let itemImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
