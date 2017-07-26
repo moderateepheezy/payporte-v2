@@ -18,6 +18,11 @@ public class Payporte: OAKLIBServiceBinder {
     private var api: OAKLIBApi?
     private var cursor: OAKLIBSimpleCursor?
     
+    var type: String?
+    
+    var coursorCount: Int?
+    var itemCounts: Int?
+    
     init() {
         api = OAKLIBApi.getInstance(system, handler: handler, service: service)
         OAKLIBSandwich.getInstance()?.getRecipe(api?.getChef())
@@ -70,12 +75,14 @@ public class Payporte: OAKLIBServiceBinder {
         }
     }
     
-    func fetchProductListing(category_id: String, completion: @escaping ([ProductList]) -> ()){
+    func fetchProductListing(offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+        type = "productList"
         var param = [String: String]()
         var data = [String: String]()
-        param["limit"] = "100"
+        param["limit"] = "8"
         param["width"] = "300"
         param["height"] = "300"
+        param["offset"] = "\(offset)"
         param["category_id"] = category_id
         
         if let theJSONData = try? JSONSerialization.data(
@@ -89,11 +96,12 @@ public class Payporte: OAKLIBServiceBinder {
             
             configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTLIST, params: data, completed: {_ in
                 
-                self.baseQueryTemplate(completion: completion)
+                self.baseQueryTemplate(itemCountCompletion: itemCountCompletion, cursorCompletion: cursorCompletion, completion: completion)
             })
         }
         
     }
+    
     
     private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
         if (!(cursor?.moveToFirst())!) {
@@ -117,9 +125,34 @@ public class Payporte: OAKLIBServiceBinder {
         }
     }
     
+    private func baseQueryTemplate<T: JSONDecodable>(itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> (), completion: @escaping ([T]) -> ()){
+        if (!(cursor?.moveToFirst())!) {
+            return;
+        }
+        var models  = [T]()
+        
+        guard let count = cursor?.getCount() else {return}
+        for i in 0 ..< count{
+            cursor?.move(toPosition: i)
+            guard let a = cursor?.toJson() else {return}
+            print(a)
+            guard let dictionary = convertToDictionary(text: a) else {return}
+            models.append(T(dictionary)!)
+        }
+        
+        DispatchQueue.main.async {
+            print(models)
+            completion(models)
+            itemCountCompletion(self.itemCounts!)
+            cursorCompletion(self.coursorCount!)
+        }
+    }
     
     
     public func loadType() -> OAKLIBLoadType {
+        if type == "productList"{
+            return OAKLIBLoadType.STRICT
+        }
         return OAKLIBLoadType.LAZY
     }
     
@@ -130,9 +163,12 @@ public class Payporte: OAKLIBServiceBinder {
     public func onLoad(_ message: String, cache: Bool, cursor: OAKLIBSimpleCursor?) {
         self.cursor = cursor
         if (!(cursor?.moveToFirst())!) {
-            return;
+            return
         }
         let x = cursor?.toJson()
+        
+        self.coursorCount = Int((cursor?.getCount())!)
+        self.itemCounts = Int(message)
         
         print(message)
         print(cache)

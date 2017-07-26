@@ -37,7 +37,6 @@ class Utilities{
     }
     
     public static func configSort() -> [Sort] {
-        var sortArray = [Sort]()
         let sortstring = "[\n" +
             "   {\n" +
             "      \"attribute\":\"price_sort\",\n" +

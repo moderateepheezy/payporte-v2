@@ -8,12 +8,21 @@
 
 import UIKit
 import DropDown
+import RGBottomSheet
 
-class ProductListingVC: UIViewController {
+protocol ProductListingDelegate {
+    
+    func selectedCell(index: Int)
+}
+
+let cellIndetifier = "cellId"
+
+class ProductListingVC: UIViewController, RGBottomSheetDelegate {
 
     private var mySearchBar: UISearchBar!
     
     var didSetupConstraints = false
+    var sheet: RGBottomSheet?
     
     let sortDown = DropDown()
     let filterDown = DropDown()
@@ -22,7 +31,8 @@ class ProductListingVC: UIViewController {
     
     var category: Category?
     
-    let cellIndetifier = "cellId"
+    var coursorCount: Int?
+    var itemCounts: Int?
     
     fileprivate var searchBar: UISearchBar!
     
@@ -32,7 +42,10 @@ class ProductListingVC: UIViewController {
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
     
+    var dataSource: ProductListDataSource!
+    
     var productLists = [ProductList]()
+    var filteredProductLists = [ProductList]()
     
     let headerView: CardView = {
        let v = CardView()
@@ -68,12 +81,48 @@ class ProductListingVC: UIViewController {
         return cv
     }()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ProductListingVC.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = primaryColor
+        
+        return refreshControl
+    }()
+    
+    lazy var pullUpRefreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ProductListingVC.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = primaryColor
+        
+        return refreshControl
+    }()
+    
     func getProductDetails(category_id: String){
-        Payporte.sharedInstance.fetchProductListing(category_id: category_id) { (productLists) in
-            print(productLists)
-            self.productLists = productLists
+        
+        
+        Payporte.sharedInstance.fetchProductListing(offset: 0, category_id: category_id, completion: { (productList) in
+            
+            print(productList)
+            self.productLists = productList
+            
+        }, itemCountCompletion: { (itemCounts) in
+            self.itemCounts = itemCounts
+        }) { (coursorCount) in
+            self.coursorCount = coursorCount
+            self.dataSource = ProductListDataSource(category_id: category_id, productLists: self.productLists, collectionView: self.collectionView, coursorCount: self.coursorCount!, itemCounts: self.itemCounts!)
             self.collectionView.reloadData()
+            
+            self.collectionView.dataSource = self.dataSource
+            self.collectionView.delegate = self
+            self.collectionView.register(ProductListCell.self, forCellWithReuseIdentifier: cellIndetifier)
+            
+            self.refreshControl.endRefreshing()
         }
+
     }
     
     override func viewDidLoad() {
@@ -100,11 +149,54 @@ class ProductListingVC: UIViewController {
         
         sortButton.addTarget(self, action: #selector(handleMoreSort), for: .touchUpInside)
         filterButton.addTarget(self, action: #selector(handleMoreFilter), for: .touchUpInside)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(ProductListCell.self, forCellWithReuseIdentifier: cellIndetifier)
 
+    }
+    
+    func configBtnSheet(content: [String], title: String){
+        
+        var bottomView: SortButtonSheetView {
+            var screenBound = UIScreen.main.bounds
+            screenBound.size.height = 200.0
+            let bottomView = SortButtonSheetView(frame: screenBound)
+            bottomView.backgroundColor = UIColor.white
+            bottomView.content = content
+            bottomView.titleLabel.text = title
+            bottomView.dataSource = dataSource
+            bottomView.bottomSheetDelegate = self
+            return bottomView
+        }
+        
+        if #available(iOS 10.0, *) {
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5), blurTintColor: UIColor.black, blurStyle: .regular, customOverlayView: nil, customBlurView: nil)
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        } else {
+            // Fallback on earlier versions
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5))
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        }
+    }
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        getProductDetails(category_id: (category?.category_id!)!)
+    }
+    
+    func closeButtomSheet() {
+        sheet?.hide()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     
@@ -113,13 +205,23 @@ class ProductListingVC: UIViewController {
         headerView.addSubview(filterButton)
         headerView.addSubview(sortButton)
         view.addSubview(collectionView)
+        collectionView.addSubview(self.refreshControl)
     }
     
     func dropDownSetup(){
         var items = [String]()
+        var alphaItem = [String]()
+        var priceItem = [String]()
         let sortDictionary = Utilities.configSort()
         for sort in sortDictionary {
             items.append(sort.title!)
+        }
+        for i in sortDictionary[1].filter!{
+            alphaItem.append(i.label!)
+        }
+        
+        for i in sortDictionary[0].filter!{
+            priceItem.append(i.label!)
         }
         sortDown.dataSource = items
         sortDown.anchorView = sortButton
@@ -128,7 +230,15 @@ class ProductListingVC: UIViewController {
         filterDown.anchorView = filterButton
         
         sortDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)")
+            if item == "Alphabetical Sort"{
+                
+                self.configBtnSheet(content: alphaItem, title: item)
+                self.sheet?.show()
+            }else if item == "Price Sort"{
+                self.configBtnSheet(content: priceItem, title: item)
+                self.sheet?.show()
+                //self.productLists.sort(by: {Int($0.0.product_price)})
+            }
         }
         
         filterDown.selectionAction = { [unowned self] (index: Int, item: String) in
@@ -181,27 +291,10 @@ class ProductListingVC: UIViewController {
     
 }
 
-extension ProductListingVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension ProductListingVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return productLists.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIndetifier, for: indexPath) as! ProductListCell
-        
-        let product = productLists[indexPath.item]
-        cell.product = product
-        
-        return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

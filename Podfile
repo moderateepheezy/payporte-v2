@@ -24,6 +24,7 @@ target 'payporte-v2' do
   pod 'SwiftImageCarousel'
   pod 'GRDB.swift'
   pod 'SDWebImage', '~>3.8'
+  pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
   target 'payporte-v2Tests' do
     inherit! :search_paths
     # Pods for testing

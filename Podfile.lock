@@ -21,6 +21,7 @@ PODS:
   - SwiftSoup (1.4.0)
   - SwiftyJSON (3.1.4)
   - UICheckbox.Swift (1.0.0)
+  - UIScrollView-InfiniteScroll (1.0.1)
 
 DEPENDENCIES:
   - CLabsImageSlider (~> 0.1.2)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - SwiftSoup
   - SwiftyJSON
   - UICheckbox.Swift
+  - UIScrollView-InfiniteScroll (~> 1.0.0)
 
 EXTERNAL SOURCES:
   MIBadgeButton-Swift:
@@ -77,7 +79,8 @@ SPEC CHECKSUMS:
   SwiftSoup: 832c4c9ff995e888b341c2e61ead048d723f9c71
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
+  UIScrollView-InfiniteScroll: a90df4ba4a7ca1926128ade34a850ddbdf74c564
 
-PODFILE CHECKSUM: c0653991ab637fc644169597af552c58865a5b86
+PODFILE CHECKSUM: 9cdd15b16ed332b705b2de49912fe31c0f7db4ea
 
 COCOAPODS: 1.2.0
