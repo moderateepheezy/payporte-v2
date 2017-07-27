@@ -11,7 +11,7 @@ import JNDropDownMenu
 import NVActivityIndicatorView
 
 
-class SubCategoryVC: UIViewController, NVActivityIndicatorViewable {
+class SubCategoryVC: UIViewController {
 
     var didSetupConstraints = false
     
@@ -35,6 +35,21 @@ class SubCategoryVC: UIViewController, NVActivityIndicatorViewable {
         return tv
     }()
     
+    let spinnerView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .white
+        view.alpha = 0
+        return view
+    }()
+    
+    let loadLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont(name: "Orkney-Regular", size: 12)
+        label.text = "Loading..."
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     func fetchSubACategory(cat_id: String){
         
@@ -51,26 +66,26 @@ class SubCategoryVC: UIViewController, NVActivityIndicatorViewable {
     
     func fetchSubBCategory(cat_id: String){
         Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories) in
-            self.stopAnimating()
+            self.spinnerView.alpha = 0
+            self.activityIndicator.stopAnimating()
             self.secondLevelcatgories = categories
             self.tableView.reloadData()
         }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addSubViewsToView()
         
-        let size = CGSize(width: 30, height: 30)
-        startAnimating(size, message: "Loading...", messageFont: UIFont(name: "Orkney-Light", size: 14)! , type: .ballPulseSync, color: primaryColor, padding: 30, displayTimeThreshold: 3, minimumDisplayTime: 3, backgroundColor: UIColor.clear, textColor: UIColor.black)
+        //let size = CGSize(width: 30, height: 30)
         
         guard let catName = categoryName else {return}
         navigationItem.title = catName
         
         fetchSubACategory(cat_id: category_id!)
     
-        
-        addSubViewsToView()
     }
     
     
@@ -81,6 +96,8 @@ class SubCategoryVC: UIViewController, NVActivityIndicatorViewable {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         view.addSubview(tableView)
+        view.addSubview(spinnerView)
+        spinnerView.addSubview(loadLabel)
         
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(40)
@@ -88,6 +105,28 @@ class SubCategoryVC: UIViewController, NVActivityIndicatorViewable {
             make.right.equalTo(view.snp.right).offset(-10)
             make.bottom.equalTo(view.snp.bottom).offset(-10)
         }
+        
+        spinnerView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+            make.height.equalTo(50)
+            make.width.equalTo(60)
+        }
+        
+        loadLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(spinnerView.snp.bottom).offset(-5)
+            make.left.equalTo(spinnerView.snp.left)
+            make.right.equalTo(spinnerView.snp.right)
+            make.height.equalTo(13)
+        }
+        
+        
+        let frame = CGRect(x: 15, y: 0, width: 35, height: 35)
+        activityIndicator = NVActivityIndicatorView(frame: frame, type: .ballPulseSync, color: primaryColor, padding: 10)
+        
+        spinnerView.alpha = 1
+        activityIndicator.startAnimating()
+        spinnerView.addSubview(activityIndicator)
         
     }
     
@@ -148,7 +187,8 @@ extension SubCategoryVC: JNDropDownMenuDelegate, JNDropDownMenuDataSource{
         
         let size = CGSize(width: 30, height: 30)
         
-        startAnimating(size, message: "Loading...", messageFont: UIFont(name: "Orkney-Light", size: 14)! , type: .ballPulseSync, color: primaryColor, padding: 30, displayTimeThreshold: 3, minimumDisplayTime: 3, backgroundColor: UIColor.clear, textColor: UIColor.black)
+        spinnerView.alpha = 1
+        activityIndicator.startAnimating()
         
         self.secondLevelcatgories?.removeAll()
         self.tableView.reloadData()

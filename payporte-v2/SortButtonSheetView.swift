@@ -9,13 +9,25 @@
 import UIKit
 import RGBottomSheet
 
+public class SomeData {
+    var value: String
+    var label: String
+    
+    init(value: String, label: String) {
+        self.value = value
+        self.label = label
+    }
+}
+
 public class SortButtonSheetView:  UIView {
     
-    var content: [String]?
+    var content = [SomeData]()
     
     var dataSource: ProductListDataSource?
     
     var bottomSheetDelegate: RGBottomSheetDelegate?
+    
+    var productListingDelegate: ProductListingDelegate?
     
     var bottomView: ButtomSheetSubView = {
         var screenBound = UIScreen.main.bounds
@@ -124,13 +136,13 @@ class SortButtonCell: UITableViewCell {
 extension SortButtonSheetView: UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return content?.count ?? 0
+        return content.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SortButtonCell
-        cell.titleLabel.text = content?[indexPath.item]
-        
+        let name = content[indexPath.item]
+        cell.titleLabel.text = name.label
         return cell
     }
     
@@ -139,10 +151,9 @@ extension SortButtonSheetView: UITableViewDataSource, UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.item == 1{
-            dataSource?.sortAlphabeticallyAccending()
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        let value = content[indexPath.item]
+        productListingDelegate?.sortProductList(key: value.value)
         bottomSheetDelegate?.closeButtomSheet()
     }
 }

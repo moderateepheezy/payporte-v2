@@ -99,9 +99,54 @@ public class Payporte: OAKLIBServiceBinder {
                 self.baseQueryTemplate(itemCountCompletion: itemCountCompletion, cursorCompletion: cursorCompletion, completion: completion)
             })
         }
-        
     }
     
+    func fetchSortProductListing(key: String, offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+        type = "productList"
+        var param = [String: String]()
+        var data = [String: String]()
+        param["limit"] = "8"
+        param["width"] = "300"
+        param["height"] = "300"
+        param["sort_option"] = key
+        param["offset"] = "\(offset)"
+        param["category_id"] = category_id
+        
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: param,
+            options: []) {
+            let theJSONText = String(data: theJSONData,
+                                     encoding: .ascii)
+            
+            data["data"] = theJSONText
+            data["category_id"] = category_id
+            
+            configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTLIST, params: data, completed: {_ in
+                
+                self.baseQueryTemplate(itemCountCompletion: itemCountCompletion, cursorCompletion: cursorCompletion, completion: completion)
+            })
+        }
+    }
+    
+    func fetchProductDetails(product_id: String, completion: @escaping (Product) -> ()){
+        
+        var param = [String: String]()
+        param["product_id"] = product_id
+        
+        configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTDETAIL, params: param, completed: {_ in
+            
+            if (!(self.cursor?.moveToFirst())!) {
+                return;
+            }
+            
+            guard let a = self.cursor?.toJson() else {return}
+            let json = self.createJsonString(string: a)
+            let product = Product(json: json)
+            DispatchQueue.main.async {
+                completion(product)
+            }
+        })
+    }
     
     private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
         if (!(cursor?.moveToFirst())!) {

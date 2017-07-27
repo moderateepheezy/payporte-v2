@@ -9,15 +9,16 @@
 import UIKit
 import DropDown
 import RGBottomSheet
+import NVActivityIndicatorView
 
 protocol ProductListingDelegate {
     
-    func selectedCell(index: Int)
+    func sortProductList(key: String)
 }
 
 let cellIndetifier = "cellId"
 
-class ProductListingVC: UIViewController, RGBottomSheetDelegate {
+class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate {
 
     private var mySearchBar: UISearchBar!
     
@@ -33,6 +34,8 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
     
     var coursorCount: Int?
     var itemCounts: Int?
+    var page = 0
+    var limit = 8
     
     fileprivate var searchBar: UISearchBar!
     
@@ -101,28 +104,57 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
         return refreshControl
     }()
     
+    
+    var activityIndicator: NVActivityIndicatorView!
+    
+    let spinnerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.alpha = 0
+        return view
+    }()
+    
+    let loadLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Orkney-Regular", size: 12)
+        label.text = "Loading..."
+        label.textAlignment = .center
+        return label
+    }()
+    
     func getProductDetails(category_id: String){
         
         
         Payporte.sharedInstance.fetchProductListing(offset: 0, category_id: category_id, completion: { (productList) in
             
-            print(productList)
+            self.spinnerView.alpha = 0
+            self.activityIndicator.stopAnimating()
             self.productLists = productList
+            self.collectionView.reloadData()
             
         }, itemCountCompletion: { (itemCounts) in
             self.itemCounts = itemCounts
         }) { (coursorCount) in
             self.coursorCount = coursorCount
-            self.dataSource = ProductListDataSource(category_id: category_id, productLists: self.productLists, collectionView: self.collectionView, coursorCount: self.coursorCount!, itemCounts: self.itemCounts!)
-            self.collectionView.reloadData()
             
-            self.collectionView.dataSource = self.dataSource
+            self.collectionView.dataSource = self
             self.collectionView.delegate = self
             self.collectionView.register(ProductListCell.self, forCellWithReuseIdentifier: cellIndetifier)
             
             self.refreshControl.endRefreshing()
         }
 
+        self.collectionView.addInfiniteScroll(handler: { (collectionView) in
+            self.collectionView.performBatchUpdates({
+                self.fetchData()
+            }, completion: { (completed) in
+                self.collectionView.finishInfiniteScroll()
+            })
+        })
+        
+        self.collectionView.setShouldShowInfiniteScrollHandler { (collectionView) -> Bool in
+            return self.page < self.itemCounts!
+        }
     }
     
     override func viewDidLoad() {
@@ -152,7 +184,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
 
     }
     
-    func configBtnSheet(content: [String], title: String){
+    func configBtnSheet(content: [SomeData], title: String){
         
         var bottomView: SortButtonSheetView {
             var screenBound = UIScreen.main.bounds
@@ -163,6 +195,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
             bottomView.titleLabel.text = title
             bottomView.dataSource = dataSource
             bottomView.bottomSheetDelegate = self
+            bottomView.productListingDelegate = self
             return bottomView
         }
         
@@ -183,6 +216,57 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
             )
         }
     }
+    
+    func fetchData(){
+        
+        let tempIndex = (coursorCount! / limit)
+        let index = (tempIndex < 1) ? 1 : tempIndex
+        let  offset = (coursorCount != 0) ? index * limit: 0
+        if coursorCount! >= offset {
+            page = offset
+            Payporte.sharedInstance.fetchProductListing(offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+                self.spinnerView.alpha = 0
+                self.activityIndicator.stopAnimating()
+                self.productLists = productList
+                self.collectionView.reloadData()
+                
+            }, itemCountCompletion: { (count) in
+                
+            }) { (count) in
+                self.coursorCount = count
+            }
+            
+        }
+    }
+    
+    func sortProductList(key: String){
+        page = 0
+        self.productLists.removeAll()
+        self.spinnerView.alpha = 1
+        self.activityIndicator.startAnimating()
+        self.collectionView.reloadData()
+        let tempIndex = (coursorCount! / limit)
+        let index = (tempIndex < 1) ? 1 : tempIndex
+        let  offset = (coursorCount != 0) ? index * limit: 0
+        if coursorCount! >= offset {
+            page = offset
+            
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+                
+                self.spinnerView.alpha = 0
+                self.activityIndicator.stopAnimating()
+                self.productLists = productList
+                self.collectionView.reloadData()
+                
+            }, itemCountCompletion: { (itemCount) in
+                
+            }, cursorCompletion: { (coursorCount) in
+                self.coursorCount = coursorCount
+            })
+            
+        }
+    }
+    
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         
@@ -205,23 +289,32 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
         headerView.addSubview(filterButton)
         headerView.addSubview(sortButton)
         view.addSubview(collectionView)
+        view.addSubview(spinnerView)
         collectionView.addSubview(self.refreshControl)
+        spinnerView.addSubview(loadLabel)
+        
+        let frame = CGRect(x: 15, y: 0, width: 35, height: 35)
+        activityIndicator = NVActivityIndicatorView(frame: frame, type: .ballPulseSync, color: primaryColor, padding: 10)
+        
+        spinnerView.alpha = 1
+        activityIndicator.startAnimating()
+        spinnerView.addSubview(activityIndicator)
     }
     
     func dropDownSetup(){
         var items = [String]()
-        var alphaItem = [String]()
-        var priceItem = [String]()
+        var alphaItem = [SomeData]()
+        var priceItem = [SomeData]()
         let sortDictionary = Utilities.configSort()
         for sort in sortDictionary {
             items.append(sort.title!)
         }
         for i in sortDictionary[1].filter!{
-            alphaItem.append(i.label!)
+            alphaItem.append(SomeData(value: i.value!, label: i.label!))
         }
         
         for i in sortDictionary[0].filter!{
-            priceItem.append(i.label!)
+            priceItem.append(SomeData(value: i.value!, label: i.label!))
         }
         sortDown.dataSource = items
         sortDown.anchorView = sortButton
@@ -237,7 +330,6 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
             }else if item == "Price Sort"{
                 self.configBtnSheet(content: priceItem, title: item)
                 self.sheet?.show()
-                //self.productLists.sort(by: {Int($0.0.product_price)})
             }
         }
         
@@ -291,18 +383,37 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate {
     
 }
 
-extension ProductListingVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension ProductListingVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return productLists.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIndetifier, for: indexPath) as! ProductListCell
+        
+        let product = productLists[indexPath.item]
+        cell.product = product
+        
+        return cell
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let productList = productLists[indexPath.item]
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
         let vc = ProductDetailsVC()
+        vc.productList = productList
         navigationController?.pushViewController(vc, animated: true)
     }
     

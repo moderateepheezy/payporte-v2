@@ -9,6 +9,7 @@
 import UIKit
 import SwiftImageCarousel
 import RGBottomSheet
+import NVActivityIndicatorView
 
 protocol RGBottomSheetDelegate {
     
@@ -22,6 +23,10 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
     fileprivate var searchBar: UISearchBar!
     
     var sheet: RGBottomSheet?
+    
+    var productList: ProductList?
+    
+    var product: Product?
     
     var searchActive : Bool = false
     
@@ -63,6 +68,7 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
         button.clipsToBounds = true
         button.setTitleColor(UIColor.white  , for: .normal)
         button.backgroundColor = primaryColor
+        button.isEnabled = false
         return button
     }()
     
@@ -74,7 +80,6 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$ 46,000"
         label.font = UIFont(name: "Orkney-Bold", size: 17)
         label.textAlignment = .center
         label.textColor = primaryColor
@@ -83,7 +88,6 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
     
     let vendorNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Payporte"
         label.font = UIFont(name: "Orkney-Bold", size: 12)
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -92,25 +96,54 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
     
     let productNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "T-Buckle"
         label.font = UIFont(name: "Orkney-Bold", size: 16)
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         return label
     }()
     
+    var activityIndicator: NVActivityIndicatorView!
+    
+    let spinnerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.alpha = 0
+        return view
+    }()
+    
+    let loadLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Orkney-Regular", size: 12)
+        label.text = "Loading..."
+        label.textAlignment = .center
+        return label
+    }()
+    
+    func fetchProductDetails(product_id: String){
+        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product) in
+            
+            self.readMoreButton.isEnabled = true
+            self.spinnerView.alpha = 0
+            self.activityIndicator.startAnimating()
+            self.product = product
+            guard let productImages = product.productImages else {return}
+            self.setupCarousel(array: productImages)
+            self.setupViewData(product: product)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let id = productList?.product_id else {return}
+        fetchProductDetails(product_id: id)
+        
         view.backgroundColor = .white
         view.setNeedsUpdateConstraints()
         addSubViews()
         
         searchBar = UISearchBar()
         searchBar.delegate = self
-        
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
         
         addToCartButton.addTarget(self, action: #selector(handleAddToCart), for: .touchUpInside)
         
@@ -119,27 +152,9 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
         
         self.navigationItem.rightBarButtonItems = [searchBarButton]
         
-        self.navigationItem.title = "T-Buckle"
+        self.navigationItem.title = productList?.product_name!
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
-        let storyboard = UIStoryboard (name: "Main", bundle: Bundle(for: SwiftImageCarouselVC.self))
-        let vc = storyboard.instantiateInitialViewController() as! SwiftImageCarouselVC
-        vc.contentImageURLs = [
-            "https://www.payporte.com/media/catalog/product/H/H/HHEADBLACKLEATHERBELT.jpg",
-            "https://www.payporte.com/media/catalog/product/i/m/image1_7407.jpg",
-            "https://www.payporte.com/media/catalog/product/1/7/1711_1.jpg",
-            "https://www.payporte.com/media/catalog/product/J/U/JUNE27TH6.jpg"
-        ]
-        
-        vc.noImage = #imageLiteral(resourceName: "placeholder")
-        vc.contentMode = .scaleAspectFill
-        vc.swiftImageCarouselVCDelegate = self
-        vc.escapeFirstPageControlDefaultFrame = true
-        vc.willMove(toParentViewController: self)
-        containerView.addSubview(vc.view)
-        vc.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
-        self.addChildViewController(vc)
-        vc.didMove(toParentViewController: self)
         
         let config = RGBottomSheetConfiguration(
             showBlur: true
@@ -149,6 +164,38 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
             configuration: config
         )
         
+        readMoreButton.addTarget(self, action: #selector(loadReadMoreVC(button:)), for: .touchUpInside)
+    }
+    
+    func loadReadMoreVC(button: UIButton){
+        let vc = ProductReadMoreVC()
+        vc.product = product
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func setupCarousel(array: [String]){
+        let storyboard = UIStoryboard (name: "Main", bundle: Bundle(for: SwiftImageCarouselVC.self))
+        let vc = storyboard.instantiateInitialViewController() as! SwiftImageCarouselVC
+        vc.contentImageURLs = array
+        
+        vc.noImage = #imageLiteral(resourceName: "placeholder")
+        vc.contentMode = .scaleAspectFit
+        vc.swiftImageCarouselVCDelegate = self
+        vc.escapeFirstPageControlDefaultFrame = true
+        vc.willMove(toParentViewController: self)
+        containerView.addSubview(vc.view)
+        vc.view.frame = CGRect(x: 0, y: 10, width: containerView.frame.width, height: containerView.frame.height - 10)
+        self.addChildViewController(vc)
+        vc.didMove(toParentViewController: self)
+    }
+    
+    func setupViewData(product: Product?){
+        guard let price = product?.productPrice else {return}
+        guard let productName = product?.productName else {return}
+        guard let sellerName = productList?.seller?.name else {return}
+        priceLabel.text = "₦ \(price)"
+        vendorNameLabel.text = sellerName
+        productNameLabel.text = productName
     }
     
     func closeButtomSheet() {
@@ -164,6 +211,15 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
         view.addSubview(priceLabel)
         view.addSubview(productNameLabel)
         view.addSubview(vendorNameLabel)
+        view.addSubview(spinnerView)
+        spinnerView.addSubview(loadLabel)
+        
+        let frame = CGRect(x: 15, y: 0, width: 35, height: 35)
+        activityIndicator = NVActivityIndicatorView(frame: frame, type: .ballPulseSync, color: primaryColor, padding: 10)
+        
+        spinnerView.alpha = 1
+        activityIndicator.startAnimating()
+        spinnerView.addSubview(activityIndicator)
     }
     
     func search(){

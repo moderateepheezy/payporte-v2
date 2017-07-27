@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 extension ProductListingVC {
     
@@ -42,6 +43,22 @@ extension ProductListingVC {
                 make.top.equalTo(headerView.snp.bottom).offset(10)
                 make.bottom.equalTo(view)
             })
+            
+            spinnerView.snp.makeConstraints { (make) in
+                make.center.equalTo(self.view.center)
+                make.height.equalTo(50)
+                make.width.equalTo(60)
+            }
+            
+            loadLabel.snp.makeConstraints { (make) in
+                make.bottom.equalTo(spinnerView.snp.bottom).offset(-5)
+                make.left.equalTo(spinnerView.snp.left)
+                make.right.equalTo(spinnerView.snp.right)
+                make.height.equalTo(13)
+            }
+            
+            
+            
             
             didSetupConstraints = true
         }

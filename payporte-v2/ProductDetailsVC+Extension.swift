@@ -15,7 +15,8 @@ extension ProductDetailsVC {
         if (!didSetupConstraints) {
             
             containerView.snp.makeConstraints({ (make) in
-                make.top.left.right.equalTo(view)
+                make.top.equalTo(view.snp.top)
+                make.left.right.equalTo(view)
                 make.height.equalTo((view.frame.height / 2) + 100)
             })
             
@@ -61,6 +62,19 @@ extension ProductDetailsVC {
                 make.right.equalTo(view.snp.right).offset(-20)
                 make.height.equalTo(20)
             })
+            
+            spinnerView.snp.makeConstraints { (make) in
+                make.center.equalTo(self.view.center)
+                make.height.equalTo(50)
+                make.width.equalTo(60)
+            }
+            
+            loadLabel.snp.makeConstraints { (make) in
+                make.bottom.equalTo(spinnerView.snp.bottom).offset(-5)
+                make.left.equalTo(spinnerView.snp.left)
+                make.right.equalTo(spinnerView.snp.right)
+                make.height.equalTo(13)
+            }
             
             didSetupConstraints = true
         }
