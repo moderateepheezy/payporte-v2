@@ -31,6 +31,11 @@ class StoresVC: UIViewController {
         return cv
     }()
     
+    lazy var countDownLauncher: CountDownLauncher = {
+        let launcher = CountDownLauncher()
+        return launcher
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -130,6 +135,10 @@ extension StoresVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      countDownLauncher.setupViews(type: "bekki")
     }
     
     func collectionView(_ collectionView: UICollectionView,

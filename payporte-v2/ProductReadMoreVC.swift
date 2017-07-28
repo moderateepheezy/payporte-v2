@@ -31,6 +31,7 @@ class ProductReadMoreVC: UIViewController {
        let label = UILabel()
         label.font = UIFont(name: "Orkney-Bold", size: 16)
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     

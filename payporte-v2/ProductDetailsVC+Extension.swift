@@ -56,8 +56,16 @@ extension ProductDetailsVC {
                 make.height.equalTo(20)
             })
             
+            
             priceLabel.snp.makeConstraints({ (make) in
-                make.bottom.equalTo(vendorNameLabel.snp.top).offset(-30)
+                make.bottom.equalTo(vendorNameLabel.snp.top).offset(-20)
+                make.left.equalTo(view.snp.left).offset(20)
+                make.right.equalTo(view.snp.right).offset(-20)
+                make.height.equalTo(20)
+            })
+            
+            slashPriceLabel.snp.makeConstraints({ (make) in
+                make.bottom.equalTo(priceLabel.snp.top).offset(-10)
                 make.left.equalTo(view.snp.left).offset(20)
                 make.right.equalTo(view.snp.right).offset(-20)
                 make.height.equalTo(20)

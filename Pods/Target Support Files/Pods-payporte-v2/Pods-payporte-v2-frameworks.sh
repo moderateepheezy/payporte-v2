@@ -91,6 +91,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CLabsImageSlider/CLabsImageSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CountdownLabel/CountdownLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DropDown/DropDown.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GRDB.swift/GRDB.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JNDropDownMenu/JNDropDownMenu.framework"
@@ -112,6 +113,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CLabsImageSlider/CLabsImageSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CountdownLabel/CountdownLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DropDown/DropDown.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GRDB.swift/GRDB.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JNDropDownMenu/JNDropDownMenu.framework"

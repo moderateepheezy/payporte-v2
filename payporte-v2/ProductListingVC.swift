@@ -425,7 +425,7 @@ extension ProductListingVC: UICollectionViewDataSource, UICollectionViewDelegate
         let availableWidth = collectionView.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        return CGSize(width: widthPerItem, height: widthPerItem + 40)
+        return CGSize(width: widthPerItem, height: widthPerItem + 50)
     }
     
     func collectionView(_ collectionView: UICollectionView,

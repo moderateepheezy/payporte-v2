@@ -1,5 +1,6 @@
 PODS:
   - CLabsImageSlider (0.1.2)
+  - CountdownLabel (2.0.1)
   - CSStickyHeaderFlowLayout (0.2.11)
   - DropDown (2)
   - GRDB.swift (1.1)
@@ -25,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - CLabsImageSlider (~> 0.1.2)
+  - CountdownLabel
   - CSStickyHeaderFlowLayout
   - DropDown
   - GRDB.swift
@@ -62,6 +64,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CLabsImageSlider: 49c296c17e2fb15f1abe8b5dd6157927912abb7c
+  CountdownLabel: 1297533b42ef5c1a441cd458136c35ad93210da1
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   GRDB.swift: 58dd10ae08200ce68434e025ca454b8b79fc3c0d
@@ -81,6 +84,6 @@ SPEC CHECKSUMS:
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
   UIScrollView-InfiniteScroll: a90df4ba4a7ca1926128ade34a850ddbdf74c564
 
-PODFILE CHECKSUM: 9cdd15b16ed332b705b2de49912fe31c0f7db4ea
+PODFILE CHECKSUM: 00fec40e33dcd36f7aafe71c2551c2ba2e0474de
 
 COCOAPODS: 1.2.0

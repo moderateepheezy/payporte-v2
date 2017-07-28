@@ -6,6 +6,7 @@ target 'payporte-v2' do
   use_frameworks!
 
   # Pods for payporte-v2
+  pod 'CountdownLabel'
   pod 'NVActivityIndicatorView'
   pod 'JNDropDownMenu'
   pod 'RGBottomSheet', '~> 1.0'

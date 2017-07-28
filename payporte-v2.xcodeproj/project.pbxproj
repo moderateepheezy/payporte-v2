@@ -37,6 +37,27 @@
 		9477941D1F1F6F7E006F9053 /* libapplication_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794161F1F6F7E006F9053 /* libapplication_objc.a */; };
 		9477941E1F1F6F7E006F9053 /* libyajl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794171F1F6F7E006F9053 /* libyajl.a */; };
 		9477941F1F1F6F7E006F9053 /* librestful_mapper_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794181F1F6F7E006F9053 /* librestful_mapper_objc.a */; };
+		948B5CAA1F2AA39600F9D020 /* StoreCountDownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CA91F2AA39600F9D020 /* StoreCountDownVC.swift */; };
+		948B5CAC1F2AA3ED00F9D020 /* CountDownLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CAB1F2AA3ED00F9D020 /* CountDownLauncher.swift */; };
+		948B5CC51F2ABFF300F9D020 /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CAF1F2ABFF300F9D020 /* CountdownLabel.swift */; };
+		948B5CC61F2ABFF300F9D020 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 948B5CB01F2ABFF300F9D020 /* Info.plist */; };
+		948B5CC71F2ABFF300F9D020 /* LTCharacterDiffResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB21F2ABFF300F9D020 /* LTCharacterDiffResult.swift */; };
+		948B5CC81F2ABFF300F9D020 /* LTCharacterLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB31F2ABFF300F9D020 /* LTCharacterLimbo.swift */; };
+		948B5CC91F2ABFF300F9D020 /* LTEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB41F2ABFF300F9D020 /* LTEasing.swift */; };
+		948B5CCA1F2ABFF300F9D020 /* LTEmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB51F2ABFF300F9D020 /* LTEmitterView.swift */; };
+		948B5CCB1F2ABFF300F9D020 /* LTMorphingEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB61F2ABFF300F9D020 /* LTMorphingEffect.swift */; };
+		948B5CCC1F2ABFF300F9D020 /* LTMorphingLabel+Anvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB71F2ABFF300F9D020 /* LTMorphingLabel+Anvil.swift */; };
+		948B5CCD1F2ABFF300F9D020 /* LTMorphingLabel+Burn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB81F2ABFF300F9D020 /* LTMorphingLabel+Burn.swift */; };
+		948B5CCE1F2ABFF300F9D020 /* LTMorphingLabel+Evaporate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CB91F2ABFF300F9D020 /* LTMorphingLabel+Evaporate.swift */; };
+		948B5CCF1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CBA1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift */; };
+		948B5CD01F2ABFF300F9D020 /* LTMorphingLabel+Pixelate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CBB1F2ABFF300F9D020 /* LTMorphingLabel+Pixelate.swift */; };
+		948B5CD11F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CBC1F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift */; };
+		948B5CD21F2ABFF300F9D020 /* LTMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CBE1F2ABFF300F9D020 /* LTMorphingLabel.swift */; };
+		948B5CD31F2ABFF300F9D020 /* LTStringDiffResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948B5CBF1F2ABFF300F9D020 /* LTStringDiffResult.swift */; };
+		948B5CD41F2ABFF300F9D020 /* Fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 948B5CC11F2ABFF300F9D020 /* Fire.png */; };
+		948B5CD51F2ABFF300F9D020 /* Fragment.png in Resources */ = {isa = PBXBuildFile; fileRef = 948B5CC21F2ABFF300F9D020 /* Fragment.png */; };
+		948B5CD61F2ABFF300F9D020 /* Smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 948B5CC31F2ABFF300F9D020 /* Smoke.png */; };
+		948B5CD71F2ABFF300F9D020 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 948B5CC41F2ABFF300F9D020 /* Sparkle.png */; };
 		949295861F05209E00A403CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295851F05209E00A403CE /* AppDelegate.swift */; };
 		9492958B1F05209E00A403CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 949295891F05209E00A403CE /* Main.storyboard */; };
 		9492958D1F05209E00A403CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9492958C1F05209E00A403CE /* Assets.xcassets */; };
@@ -153,6 +174,29 @@
 		947794161F1F6F7E006F9053 /* libapplication_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libapplication_objc.a; path = "../../application/build/Debug-iphoneos/libapplication_objc.a"; sourceTree = "<group>"; };
 		947794171F1F6F7E006F9053 /* libyajl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libyajl.a; path = "../../core/deps/build/Debug-iphoneos/libyajl.a"; sourceTree = "<group>"; };
 		947794181F1F6F7E006F9053 /* librestful_mapper_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librestful_mapper_objc.a; path = "../../core/deps/build/Debug-iphoneos/librestful_mapper_objc.a"; sourceTree = "<group>"; };
+		948B5CA91F2AA39600F9D020 /* StoreCountDownVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCountDownVC.swift; sourceTree = "<group>"; };
+		948B5CAB1F2AA3ED00F9D020 /* CountDownLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownLauncher.swift; sourceTree = "<group>"; };
+		948B5CAE1F2ABFF300F9D020 /* CountdownLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownLabel.h; sourceTree = "<group>"; };
+		948B5CAF1F2ABFF300F9D020 /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
+		948B5CB01F2ABFF300F9D020 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		948B5CB21F2ABFF300F9D020 /* LTCharacterDiffResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCharacterDiffResult.swift; sourceTree = "<group>"; };
+		948B5CB31F2ABFF300F9D020 /* LTCharacterLimbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCharacterLimbo.swift; sourceTree = "<group>"; };
+		948B5CB41F2ABFF300F9D020 /* LTEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEasing.swift; sourceTree = "<group>"; };
+		948B5CB51F2ABFF300F9D020 /* LTEmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEmitterView.swift; sourceTree = "<group>"; };
+		948B5CB61F2ABFF300F9D020 /* LTMorphingEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTMorphingEffect.swift; sourceTree = "<group>"; };
+		948B5CB71F2ABFF300F9D020 /* LTMorphingLabel+Anvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTMorphingLabel+Anvil.swift"; sourceTree = "<group>"; };
+		948B5CB81F2ABFF300F9D020 /* LTMorphingLabel+Burn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTMorphingLabel+Burn.swift"; sourceTree = "<group>"; };
+		948B5CB91F2ABFF300F9D020 /* LTMorphingLabel+Evaporate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTMorphingLabel+Evaporate.swift"; sourceTree = "<group>"; };
+		948B5CBA1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTMorphingLabel+Fall.swift"; sourceTree = "<group>"; };
+		948B5CBB1F2ABFF300F9D020 /* LTMorphingLabel+Pixelate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTMorphingLabel+Pixelate.swift"; sourceTree = "<group>"; };
+		948B5CBC1F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTMorphingLabel+Sparkle.swift"; sourceTree = "<group>"; };
+		948B5CBD1F2ABFF300F9D020 /* LTMorphingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMorphingLabel.h; sourceTree = "<group>"; };
+		948B5CBE1F2ABFF300F9D020 /* LTMorphingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTMorphingLabel.swift; sourceTree = "<group>"; };
+		948B5CBF1F2ABFF300F9D020 /* LTStringDiffResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTStringDiffResult.swift; sourceTree = "<group>"; };
+		948B5CC11F2ABFF300F9D020 /* Fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fire.png; sourceTree = "<group>"; };
+		948B5CC21F2ABFF300F9D020 /* Fragment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fragment.png; sourceTree = "<group>"; };
+		948B5CC31F2ABFF300F9D020 /* Smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Smoke.png; sourceTree = "<group>"; };
+		948B5CC41F2ABFF300F9D020 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		949295821F05209E00A403CE /* payporte-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "payporte-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		949295851F05209E00A403CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9492958A1F05209E00A403CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -361,6 +405,50 @@
 			name = Product;
 			sourceTree = "<group>";
 		};
+		948B5CAD1F2ABFF300F9D020 /* CountdownLabel */ = {
+			isa = PBXGroup;
+			children = (
+				948B5CAE1F2ABFF300F9D020 /* CountdownLabel.h */,
+				948B5CAF1F2ABFF300F9D020 /* CountdownLabel.swift */,
+				948B5CB01F2ABFF300F9D020 /* Info.plist */,
+				948B5CB11F2ABFF300F9D020 /* LTMorphingLabel */,
+			);
+			path = CountdownLabel;
+			sourceTree = "<group>";
+		};
+		948B5CB11F2ABFF300F9D020 /* LTMorphingLabel */ = {
+			isa = PBXGroup;
+			children = (
+				948B5CB21F2ABFF300F9D020 /* LTCharacterDiffResult.swift */,
+				948B5CB31F2ABFF300F9D020 /* LTCharacterLimbo.swift */,
+				948B5CB41F2ABFF300F9D020 /* LTEasing.swift */,
+				948B5CB51F2ABFF300F9D020 /* LTEmitterView.swift */,
+				948B5CB61F2ABFF300F9D020 /* LTMorphingEffect.swift */,
+				948B5CB71F2ABFF300F9D020 /* LTMorphingLabel+Anvil.swift */,
+				948B5CB81F2ABFF300F9D020 /* LTMorphingLabel+Burn.swift */,
+				948B5CB91F2ABFF300F9D020 /* LTMorphingLabel+Evaporate.swift */,
+				948B5CBA1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift */,
+				948B5CBB1F2ABFF300F9D020 /* LTMorphingLabel+Pixelate.swift */,
+				948B5CBC1F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift */,
+				948B5CBD1F2ABFF300F9D020 /* LTMorphingLabel.h */,
+				948B5CBE1F2ABFF300F9D020 /* LTMorphingLabel.swift */,
+				948B5CBF1F2ABFF300F9D020 /* LTStringDiffResult.swift */,
+				948B5CC01F2ABFF300F9D020 /* Particles */,
+			);
+			path = LTMorphingLabel;
+			sourceTree = "<group>";
+		};
+		948B5CC01F2ABFF300F9D020 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				948B5CC11F2ABFF300F9D020 /* Fire.png */,
+				948B5CC21F2ABFF300F9D020 /* Fragment.png */,
+				948B5CC31F2ABFF300F9D020 /* Smoke.png */,
+				948B5CC41F2ABFF300F9D020 /* Sparkle.png */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
 		949295791F05209E00A403CE = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +530,7 @@
 		949295BF1F05277700A403CE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				948B5CAD1F2ABFF300F9D020 /* CountdownLabel */,
 				94D70C601F0982FD006E375A /* Orkney-Bold.ttf */,
 				94D70C611F0982FD006E375A /* Orkney-Light.ttf */,
 				94D70C621F0982FD006E375A /* Orkney-Medium.ttf */,
@@ -513,6 +602,7 @@
 				94DAEC241F06ACF6005E4AE4 /* StoreCell.swift */,
 				94D70C5C1F09680B006E375A /* CartCell.swift */,
 				94CF59EB1F2645C300D8653C /* SubTitleCell.swift */,
+				948B5CAB1F2AA3ED00F9D020 /* CountDownLauncher.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -530,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				949295B91F05242300A403CE /* StoresVC.swift */,
+				948B5CA91F2AA39600F9D020 /* StoreCountDownVC.swift */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -712,6 +803,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D70C641F0983AF006E375A /* Orkney-Bold.ttf in Resources */,
+				948B5CD41F2ABFF300F9D020 /* Fire.png in Resources */,
+				948B5CD51F2ABFF300F9D020 /* Fragment.png in Resources */,
 				949A314D1F0AA74400567A17 /* ParentsTableViewCell.xib in Resources */,
 				94D70C651F0983AF006E375A /* Orkney-Light.ttf in Resources */,
 				94D70C661F0983AF006E375A /* Orkney-Medium.ttf in Resources */,
@@ -719,12 +812,15 @@
 				94D70C671F0983AF006E375A /* Orkney-Regular.ttf in Resources */,
 				949295901F05209E00A403CE /* LaunchScreen.storyboard in Resources */,
 				949A31491F0AA74400567A17 /* Childs2ndStageTableViewCell.xib in Resources */,
+				948B5CC61F2ABFF300F9D020 /* Info.plist in Resources */,
 				9492958D1F05209E00A403CE /* Assets.xcassets in Resources */,
 				949295C71F05280400A403CE /* AvenirNextLTPro-Light.otf in Resources */,
 				9492958B1F05209E00A403CE /* Main.storyboard in Resources */,
+				948B5CD71F2ABFF300F9D020 /* Sparkle.png in Resources */,
 				949A314B1F0AA74400567A17 /* Childs3rdStageTableViewCell.xib in Resources */,
 				949295C91F05280400A403CE /* AvenirNextLTPro-Regular.otf in Resources */,
 				949295C81F05280400A403CE /* AvenirNextLTPro-Medium.otf in Resources */,
+				948B5CD61F2ABFF300F9D020 /* Smoke.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,12 +986,16 @@
 				94F5ED281F06CD8E0061917A /* CollectionViewSectionHeader.swift in Sources */,
 				94F1E4C41F27C5E100F34F9D /* SortFilter.swift in Sources */,
 				94D70C5D1F09680B006E375A /* CartCell.swift in Sources */,
+				948B5CCA1F2ABFF300F9D020 /* LTEmitterView.swift in Sources */,
 				94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */,
+				948B5CC51F2ABFF300F9D020 /* CountdownLabel.swift in Sources */,
+				948B5CAA1F2AA39600F9D020 /* StoreCountDownVC.swift in Sources */,
 				94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */,
 				94CF59EE1F276E2D00D8653C /* ProductList.swift in Sources */,
 				944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */,
 				942586C31F2176D50074210F /* IntroVC.swift in Sources */,
 				94F1E4C91F28B90F00F34F9D /* ProductListDataSource.swift in Sources */,
+				948B5CCD1F2ABFF300F9D020 /* LTMorphingLabel+Burn.swift in Sources */,
 				94DAEC231F06AA1C005E4AE4 /* StoreVC+Extension.swift in Sources */,
 				949295BA1F05242300A403CE /* StoresVC.swift in Sources */,
 				949A314C1F0AA74400567A17 /* ParentsTableViewCell.swift in Sources */,
@@ -908,17 +1008,22 @@
 				941F64F01F2A025D00C4E55D /* ProductAttributes.swift in Sources */,
 				94CF59EC1F2645C300D8653C /* SubTitleCell.swift in Sources */,
 				9497AF1E1F1D0B3D00F51620 /* BottomSheetView.swift in Sources */,
+				948B5CC81F2ABFF300F9D020 /* LTCharacterLimbo.swift in Sources */,
 				94D70C5F1F096D82006E375A /* CustomStepperView.swift in Sources */,
 				94DAEC251F06ACF6005E4AE4 /* StoreCell.swift in Sources */,
+				948B5CD21F2ABFF300F9D020 /* LTMorphingLabel.swift in Sources */,
 				949295CE1F054EC000A403CE /* HomeVC+Extension.swift in Sources */,
 				9497AF201F1D11BC00F51620 /* ButtomSheetSubView.swift in Sources */,
+				948B5CCC1F2ABFF300F9D020 /* LTMorphingLabel+Anvil.swift in Sources */,
 				949A31481F0AA74400567A17 /* Childs2ndStageTableViewCell.swift in Sources */,
 				94F1E4C31F27C5E100F34F9D /* Sort.swift in Sources */,
 				949295CB1F0547B900A403CE /* ZCarousel.swift in Sources */,
 				941F64EE1F29FF8600C4E55D /* Product.swift in Sources */,
 				94A4D63A1F1F74EC0052E89E /* OKEventLoop.swift in Sources */,
+				948B5CCE1F2ABFF300F9D020 /* LTMorphingLabel+Evaporate.swift in Sources */,
 				94F1E4C61F27F31500F34F9D /* SortButtonSheetView.swift in Sources */,
 				94A4D6401F1F776F0052E89E /* OKThreadLauncher.swift in Sources */,
+				948B5CC91F2ABFF300F9D020 /* LTEasing.swift in Sources */,
 				949295D01F05898000A403CE /* CardView.swift in Sources */,
 				941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */,
 				94F1E4BC1F27C1D800F34F9D /* LayerFilter.swift in Sources */,
@@ -932,17 +1037,24 @@
 				94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */,
 				9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */,
 				944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */,
+				948B5CCB1F2ABFF300F9D020 /* LTMorphingEffect.swift in Sources */,
 				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
 				941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */,
+				948B5CC71F2ABFF300F9D020 /* LTCharacterDiffResult.swift in Sources */,
+				948B5CAC1F2AA3ED00F9D020 /* CountDownLauncher.swift in Sources */,
 				949295D81F058F8B00A403CE /* InsetLabel.swift in Sources */,
 				9433E79A1F0EC6A800FD1A6D /* ProductListCell.swift in Sources */,
+				948B5CD11F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift in Sources */,
+				948B5CCF1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift in Sources */,
 				949295D61F058E3B00A403CE /* CategoryCell.swift in Sources */,
 				942586C51F2177B00074210F /* Payporte.swift in Sources */,
 				941F64F21F2A0F4900C4E55D /* ProductReadMoreVC.swift in Sources */,
 				949A314A1F0AA74400567A17 /* Childs3rdStageTableViewCell.swift in Sources */,
 				94CF59EA1F2643FA00D8653C /* SubCategoryVC+Extension.swift in Sources */,
 				949A31031F09B8DF00567A17 /* DrawerController.swift in Sources */,
+				948B5CD01F2ABFF300F9D020 /* LTMorphingLabel+Pixelate.swift in Sources */,
+				948B5CD31F2ABFF300F9D020 /* LTStringDiffResult.swift in Sources */,
 				94CF57A41F22555100D8653C /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

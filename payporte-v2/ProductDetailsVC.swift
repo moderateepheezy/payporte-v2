@@ -78,6 +78,14 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
         return view
     }()
     
+    var slashPriceLabel: InsetLabel = {
+        let label = InsetLabel()
+        label.font = UIFont(name: "Orkney-Medium", size: 14)
+        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        label.textAlignment = .center
+        return label
+    }()
+    
     let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Orkney-Bold", size: 17)
@@ -190,9 +198,11 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
     }
     
     func setupViewData(product: Product?){
+        guard let slashPrice = product?.productRegularPrice else {return}
         guard let price = product?.productPrice else {return}
         guard let productName = product?.productName else {return}
         guard let sellerName = productList?.seller?.name else {return}
+        slashPriceLabel.strikeThrough(text: slashPrice, fontSize: 14)
         priceLabel.text = "₦ \(price)"
         vendorNameLabel.text = sellerName
         productNameLabel.text = productName
@@ -208,6 +218,7 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
         buttonView.addSubview(addToCartButton)
         buttonView.addSubview(readMoreButton)
         buttonView.addSubview(middleView)
+        view.addSubview(slashPriceLabel)
         view.addSubview(priceLabel)
         view.addSubview(productNameLabel)
         view.addSubview(vendorNameLabel)

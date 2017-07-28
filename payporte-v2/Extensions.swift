@@ -17,6 +17,22 @@ extension UIColor{
     }
 }
 
+extension UILabel{
+    
+    func strikeThrough(text: String, fontSize: CGFloat)  {
+        
+        let attrStr = NSMutableAttributedString(string: "₦ \(text)", attributes: [NSBaselineOffsetAttributeName : 0])
+        
+        // Now if you add the strike-through attribute to a range, it will work
+        attrStr.addAttributes([
+            NSFontAttributeName: UIFont(name: "Orkney-Medium", size: fontSize)!,
+            NSStrikethroughStyleAttributeName: 1
+            ], range: NSMakeRange(0, attrStr.length))
+        
+        self.attributedText = attrStr
+    }
+}
+
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
@@ -24,6 +40,7 @@ extension String {
         
         return boundingBox.height
     }
+    
     
     func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
