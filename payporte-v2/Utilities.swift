@@ -43,12 +43,12 @@ class Utilities{
             "      \"title\":\"Price Sort\",\n" +
             "      \"filter\":[\n" +
             "         {\n" +
-            "            \"value\":\"0\",\n" +
-            "            \"label\":\"High - Low\"\n" +
-            "         },\n" +
-            "         {\n" +
             "            \"value\":\"1\",\n" +
             "            \"label\":\"Low - High\"\n" +
+            "         },\n" +
+            "         {\n" +
+            "            \"value\":\"2\",\n" +
+            "            \"label\":\"High - Low\"\n" +
             "         }\n" +
             "      ]\n" +
             "   },\n" +
@@ -57,16 +57,17 @@ class Utilities{
             "      \"title\":\"Alphabetical Sort\",\n" +
             "      \"filter\":[\n" +
             "         {\n" +
-            "            \"value\":\"2\",\n" +
+            "            \"value\":\"3\",\n" +
             "            \"label\":\"Ascending\"\n" +
             "         },\n" +
             "         {\n" +
-            "            \"value\":\"3\",\n" +
+            "            \"value\":\"4\",\n" +
             "            \"label\":\"Descending\"\n" +
             "         }\n" +
             "      ]\n" +
             "   }\n" +
         "]"
+        
         let json = Payporte.sharedInstance.createJsonString(string: sortstring)
         if let jsonArray = json.array{
             return jsonArray.map{return Sort(json: $0)}

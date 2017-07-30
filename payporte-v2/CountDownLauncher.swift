@@ -176,7 +176,20 @@ class CountDownLauncher: NSObject {
                 
             }, completion: nil)
             
-            countdownLabel.setCountDownTime(minutes: 60*60*60*60)
+            let today = NSDate()
+            let calendar = NSCalendar.current
+            
+            let todayWeekday = calendar.component(.weekday , from: today as Date)
+            print(todayWeekday)
+            if todayWeekday != 2 {
+                
+            }
+            let addWeekdays = 2 - todayWeekday  // 7: Saturday number
+            let components = NSDateComponents()
+            components.weekday = addWeekdays
+            
+            let nextSaturday = calendar.date(byAdding: components as DateComponents, to: today as Date)
+            countdownLabel.setCountDownTime(minutes: (nextSaturday?.timeIntervalSinceNow)!)
             countdownLabel.animationType = .Sparkle
             countdownLabel.start()
             

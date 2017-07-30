@@ -107,6 +107,7 @@
 		94DAEC251F06ACF6005E4AE4 /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC241F06ACF6005E4AE4 /* StoreCell.swift */; };
 		94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC261F06C299005E4AE4 /* CollectionParallaxHeader.swift */; };
 		94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAEC281F06C376005E4AE4 /* CustomHeaderView.swift */; };
+		94DCC78F1F2D38CF002A7818 /* FilterButtomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DCC78E1F2D38CF002A7818 /* FilterButtomSheetView.swift */; };
 		94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ED9F7C1F0C05DD0037A7D5 /* Utilities.swift */; };
 		94F1E4BA1F27C1A200F34F9D /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1E4B91F27C1A200F34F9D /* Filter.swift */; };
 		94F1E4BC1F27C1D800F34F9D /* LayerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1E4BB1F27C1D800F34F9D /* LayerFilter.swift */; };
@@ -253,6 +254,7 @@
 		94DAEC241F06ACF6005E4AE4 /* StoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
 		94DAEC261F06C299005E4AE4 /* CollectionParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionParallaxHeader.swift; sourceTree = "<group>"; };
 		94DAEC281F06C376005E4AE4 /* CustomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		94DCC78E1F2D38CF002A7818 /* FilterButtomSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterButtomSheetView.swift; sourceTree = "<group>"; };
 		94ED9F7C1F0C05DD0037A7D5 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		94F1E4B91F27C1A200F34F9D /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		94F1E4BB1F27C1D800F34F9D /* LayerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerFilter.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				9497AF1D1F1D0B3D00F51620 /* BottomSheetView.swift */,
 				9497AF1F1F1D11BC00F51620 /* ButtomSheetSubView.swift */,
 				94F1E4C51F27F31500F34F9D /* SortButtonSheetView.swift */,
+				94DCC78E1F2D38CF002A7818 /* FilterButtomSheetView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1022,6 +1025,7 @@
 				94A4D63A1F1F74EC0052E89E /* OKEventLoop.swift in Sources */,
 				948B5CCE1F2ABFF300F9D020 /* LTMorphingLabel+Evaporate.swift in Sources */,
 				94F1E4C61F27F31500F34F9D /* SortButtonSheetView.swift in Sources */,
+				94DCC78F1F2D38CF002A7818 /* FilterButtomSheetView.swift in Sources */,
 				94A4D6401F1F776F0052E89E /* OKThreadLauncher.swift in Sources */,
 				948B5CC91F2ABFF300F9D020 /* LTEasing.swift in Sources */,
 				949295D01F05898000A403CE /* CardView.swift in Sources */,

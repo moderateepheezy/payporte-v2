@@ -161,7 +161,10 @@ public final class DropDown: UIView {
 	Changing the separator color automatically reloads the drop down.
 	*/
 	public dynamic var separatorColor = DPDConstant.UI.SeparatorColor {
-		willSet { tableView.separatorColor = newValue }
+		willSet {
+            tableView.separatorColor = newValue
+            tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
 		didSet { reloadAllComponents() }
 	}
 

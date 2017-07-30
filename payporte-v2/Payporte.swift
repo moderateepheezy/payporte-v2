@@ -75,32 +75,6 @@ public class Payporte: OAKLIBServiceBinder {
         }
     }
     
-    func fetchProductListing(offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
-        type = "productList"
-        var param = [String: String]()
-        var data = [String: String]()
-        param["limit"] = "8"
-        param["width"] = "300"
-        param["height"] = "300"
-        param["offset"] = "\(offset)"
-        param["category_id"] = category_id
-        
-        if let theJSONData = try? JSONSerialization.data(
-            withJSONObject: param,
-            options: []) {
-            let theJSONText = String(data: theJSONData,
-                                     encoding: .ascii)
-            
-            data["data"] = theJSONText
-            data["category_id"] = category_id
-            
-            configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTLIST, params: data, completed: {_ in
-                
-                self.baseQueryTemplate(itemCountCompletion: itemCountCompletion, cursorCompletion: cursorCompletion, completion: completion)
-            })
-        }
-    }
-    
     func fetchSortProductListing(key: String, offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
         type = "productList"
         var param = [String: String]()
@@ -119,6 +93,7 @@ public class Payporte: OAKLIBServiceBinder {
                                      encoding: .ascii)
             
             data["data"] = theJSONText
+            data["sort_option"] = key
             data["category_id"] = category_id
             
             configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTLIST, params: data, completed: {_ in
@@ -127,6 +102,36 @@ public class Payporte: OAKLIBServiceBinder {
             })
         }
     }
+    
+    func fetchFilterProductListing(key: String, value: String, offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+        type = "productList"
+        var param = [String: String]()
+        var data = [String: String]()
+        param["limit"] = "8"
+        param["width"] = "300"
+        param["height"] = "300"
+        param["sort_option"] = key
+        param["offset"] = "\(offset)"
+        param["filter"] = "{\"\(key)\": \"\(value)\"}"
+        param["category_id"] = category_id
+        
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: param,
+            options: []) {
+            let theJSONText = String(data: theJSONData,
+                                     encoding: .ascii)
+            
+            data["data"] = theJSONText
+            data["sort_option"] = key
+            data["category_id"] = category_id
+            
+            configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.PRODUCTLIST, params: data, completed: {_ in
+                
+                self.baseQueryTemplate(itemCountCompletion: itemCountCompletion, cursorCompletion: cursorCompletion, completion: completion)
+            })
+        }
+    }
+    
     
     func fetchProductDetails(product_id: String, completion: @escaping (Product) -> ()){
         
@@ -159,13 +164,11 @@ public class Payporte: OAKLIBServiceBinder {
         for i in 0 ..< count{
             cursor?.move(toPosition: i)
             guard let a = cursor?.toJson() else {return}
-            print(a)
             guard let dictionary = convertToDictionary(text: a) else {return}
             models.append(T(dictionary)!)
         }
         
         DispatchQueue.main.async {
-            print(models)
             completion(models)
         }
     }
@@ -180,13 +183,11 @@ public class Payporte: OAKLIBServiceBinder {
         for i in 0 ..< count{
             cursor?.move(toPosition: i)
             guard let a = cursor?.toJson() else {return}
-            print(a)
             guard let dictionary = convertToDictionary(text: a) else {return}
             models.append(T(dictionary)!)
         }
         
         DispatchQueue.main.async {
-            print(models)
             completion(models)
             itemCountCompletion(self.itemCounts!)
             cursorCompletion(self.coursorCount!)
@@ -214,10 +215,6 @@ public class Payporte: OAKLIBServiceBinder {
         
         self.coursorCount = Int((cursor?.getCount())!)
         self.itemCounts = Int(message)
-        
-        print(message)
-        print(cache)
-        print(cursor.debugDescription)
         
     }
     

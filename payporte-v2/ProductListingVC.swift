@@ -14,9 +14,11 @@ import NVActivityIndicatorView
 protocol ProductListingDelegate {
     
     func sortProductList(key: String)
+    func filterProductList(key: String, value: String)
 }
 
 let cellIndetifier = "cellId"
+var key = "0"
 
 class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate {
 
@@ -53,7 +55,8 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
     let headerView: CardView = {
        let v = CardView()
         v.backgroundColor = .white
-        v.shadowColor = UIColor(white: 0.90, alpha: 0.90)
+        v.shadowColor = UIColor(white: 0.4, alpha: 0.40)
+        v.shadowOpacity = 0.1
         return v
     }()
     
@@ -64,16 +67,18 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         button.setImage(#imageLiteral(resourceName: "ic_caret_up"), for: .normal)
         button.setTitleColor(UIColor(red: 90, green: 90, blue: 90), for: .normal)
         button.backgroundColor = .white
+        button.alpha = 0
         return button
     }()
     
     let filterButton: UIButton = {
         let button = UIButton()
         button.setTitle("FILTER", for: .normal)
-        button.backgroundColor = .white
         button.setImage(#imageLiteral(resourceName: "ic_caret_up"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
         button.setTitleColor(UIColor(red: 90, green: 90, blue: 90), for: .normal)
+        button.backgroundColor = .white
+        button.alpha = 0
         return button
     }()
     
@@ -125,12 +130,14 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
     func getProductDetails(category_id: String){
         
         
-        Payporte.sharedInstance.fetchProductListing(offset: 0, category_id: category_id, completion: { (productList) in
+        Payporte.sharedInstance.fetchSortProductListing(key: "0", offset: 0, category_id: category_id, completion: { (productList) in
             
             self.spinnerView.alpha = 0
             self.activityIndicator.stopAnimating()
             self.productLists = productList
             self.collectionView.reloadData()
+            self.showSort()
+            self.showFilter()
             
         }, itemCountCompletion: { (itemCounts) in
             self.itemCounts = itemCounts
@@ -166,25 +173,12 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         view.setNeedsUpdateConstraints()
         addSubViews()
         
-        dropDownSetup()
-        
         guard let catName = categoryName else {return}
         navigationItem.title = catName
-        
-        sortButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        sortButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        sortButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        
-        filterButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        filterButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        filterButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        
-        sortButton.addTarget(self, action: #selector(handleMoreSort), for: .touchUpInside)
-        filterButton.addTarget(self, action: #selector(handleMoreFilter), for: .touchUpInside)
 
     }
     
-    func configBtnSheet(content: [SomeData], title: String){
+    func configSortBtnSheet(content: [SomeData], title: String){
         
         var bottomView: SortButtonSheetView {
             var screenBound = UIScreen.main.bounds
@@ -217,6 +211,40 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         }
     }
     
+    func configFilterBtnSheet(content: [Filter], title: String){
+        
+        var bottomView: FilterButtomSheetView {
+            var screenBound = UIScreen.main.bounds
+            screenBound.size.height = 200.0
+            let bottomView = FilterButtomSheetView(frame: screenBound)
+            bottomView.backgroundColor = UIColor.white
+            bottomView.content = content
+            bottomView.titleLabel.text = title
+            bottomView.dataSource = dataSource
+            bottomView.bottomSheetDelegate = self
+            bottomView.productListingDelegate = self
+            return bottomView
+        }
+        
+        if #available(iOS 10.0, *) {
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5), blurTintColor: UIColor.black, blurStyle: .regular, customOverlayView: nil, customBlurView: nil)
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        } else {
+            // Fallback on earlier versions
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5))
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        }
+    }
+
+    
     func fetchData(){
         
         let tempIndex = (coursorCount! / limit)
@@ -224,14 +252,15 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         let  offset = (coursorCount != 0) ? index * limit: 0
         if coursorCount! >= offset {
             page = offset
-            Payporte.sharedInstance.fetchProductListing(offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+            print(key)
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
                 self.collectionView.reloadData()
                 
-            }, itemCountCompletion: { (count) in
-                
+            }, itemCountCompletion: { (itemCount) in
+                self.itemCounts = itemCount
             }) { (count) in
                 self.coursorCount = count
             }
@@ -240,6 +269,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
     }
     
     func sortProductList(key: String){
+        print(key)
         page = 0
         self.productLists.removeAll()
         self.spinnerView.alpha = 1
@@ -250,6 +280,48 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         let  offset = (coursorCount != 0) ? index * limit: 0
         if coursorCount! >= offset {
             page = offset
+            
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+                
+                self.spinnerView.alpha = 0
+                self.activityIndicator.stopAnimating()
+                self.productLists = productList
+                self.collectionView.reloadData()
+                
+            }, itemCountCompletion: { (itemCount) in
+                
+            }, cursorCompletion: { (coursorCount) in
+                self.coursorCount = coursorCount
+            })
+            
+        }
+    }
+    
+    func filterProductList(key: String, value: String){
+        print(key)
+        page = 0
+        self.productLists.removeAll()
+        self.spinnerView.alpha = 1
+        self.activityIndicator.startAnimating()
+        self.collectionView.reloadData()
+        let tempIndex = (coursorCount! / limit)
+        let index = (tempIndex < 1) ? 1 : tempIndex
+        let  offset = (coursorCount != 0) ? index * limit: 0
+        if coursorCount! >= offset {
+            page = offset
+            
+            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: (category?.category_id)!, completion: { (productList) in
+                
+                self.spinnerView.alpha = 0
+                self.activityIndicator.stopAnimating()
+                self.productLists = productList
+                self.collectionView.reloadData()
+                
+            }, itemCountCompletion: { (itemCount) in
+                
+            }, cursorCompletion: { (coursorCount) in
+                self.coursorCount = coursorCount
+            })
             
             Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
                 
@@ -301,7 +373,39 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         spinnerView.addSubview(activityIndicator)
     }
     
-    func dropDownSetup(){
+    func showSort(){
+        
+        sortButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        sortButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        sortButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        
+        sortButton.addTarget(self, action: #selector(handleMoreSort), for: .touchUpInside)
+        
+        sortButton.alpha = 1
+        if productLists[0].layerednavigation == nil{
+            sortButton.snp.makeConstraints({ (make) in
+                make.width.left.right.equalTo(headerView)
+                make.top.equalTo(headerView.snp.top)
+                make.bottom.equalTo(headerView.snp.bottom)
+            })
+        }else{
+            filterButton.alpha = 1
+            sortButton.snp.makeConstraints({ (make) in
+                
+                make.top.equalTo(headerView.snp.top)
+                make.bottom.equalTo(headerView.snp.bottom)
+                make.width.equalTo(view.frame.width / 2)
+                make.left.equalTo(headerView.snp.left)
+            })
+            
+            filterButton.snp.makeConstraints({ (make) in
+                make.top.equalTo(headerView.snp.top)
+                make.bottom.equalTo(headerView.snp.bottom)
+                make.width.equalTo(view.frame.width / 2)
+                make.right.equalTo(headerView.snp.right)
+            })
+        }
+        
         var items = [String]()
         var alphaItem = [SomeData]()
         var priceItem = [SomeData]()
@@ -319,52 +423,74 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         sortDown.dataSource = items
         sortDown.anchorView = sortButton
         
-        filterDown.dataSource = ["Action 1", "Action 2", "Action 3"]
-        filterDown.anchorView = filterButton
-        
         sortDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if item == "Alphabetical Sort"{
                 
-                self.configBtnSheet(content: alphaItem, title: item)
+                self.configSortBtnSheet(content: alphaItem, title: item)
                 self.sheet?.show()
             }else if item == "Price Sort"{
-                self.configBtnSheet(content: priceItem, title: item)
+                self.configSortBtnSheet(content: priceItem, title: item)
                 self.sheet?.show()
             }
         }
         
-        filterDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)")
-        }
         
         sortDown.width = view.frame.width
-        filterDown.width = view.frame.width
+        sortDown.backgroundColor = .white
+        sortDown.shadowColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        sortDown.separatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         sortDown.bottomOffset = CGPoint(x: 0, y:((sortDown.anchorView?.plainView.bounds.height)! + 64))
-        filterDown.bottomOffset = CGPoint(x: 0, y:((filterDown.anchorView?.plainView.bounds.height)! + 64))
-        
-        sortDown.backgroundColor = .white
-        filterDown.backgroundColor = .white
-        
-        
-        filterDown.cancelAction = { [unowned self] in
-            print("Drop down will show")
-            self.filterButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
-        }
-        
-        filterDown.willShowAction = { [unowned self] in
-            print("Drop down will show")
-            self.filterButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        }
         
         sortDown.cancelAction = { [unowned self] in
-            print("Drop down will show")
             self.sortButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
         }
         
         sortDown.willShowAction = { [unowned self] in
-            print("Drop down will show")
             self.sortButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        }
+    }
+    
+    func showFilter(){
+        
+        filterButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        filterButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        filterButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        
+        filterButton.addTarget(self, action: #selector(handleMoreFilter), for: .touchUpInside)
+        
+        var items = [String]()
+        var layerArrays = [[Filter]]()
+        let layerNavigation = self.productLists[0].layerednavigation
+        guard let layerFilters = layerNavigation?.layerFilter else{return}
+        for i in layerFilters{
+            items.append(i.title!)
+            layerArrays.append(i.filter!)
+        }
+        
+        filterDown.width = view.frame.width
+        filterDown.backgroundColor = .white
+        filterDown.shadowColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        filterDown.separatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
+        
+        filterDown.dataSource = items
+        filterDown.anchorView = filterButton
+        
+        filterDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.configFilterBtnSheet(content: layerArrays[index], title: item)
+            self.sheet?.show()
+        }
+        
+        filterDown.bottomOffset = CGPoint(x: 0, y:((filterDown.anchorView?.plainView.bounds.height)!))
+    
+        
+        filterDown.cancelAction = { [unowned self] in
+            self.filterButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
+        }
+        
+        filterDown.willShowAction = { [unowned self] in
+            self.filterButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         }
     }
 

@@ -60,6 +60,7 @@ class SubCategoryVC: UIViewController {
             self.menu = JNDropDownMenu(origin: CGPoint(x: 0, y: 64), height: 40, width: self.view.frame.size.width)
             self.menu.datasource = self
             self.menu.delegate = self
+        
             self.view.addSubview(self.menu)
         }
     }
@@ -181,12 +182,12 @@ extension SubCategoryVC: JNDropDownMenuDelegate, JNDropDownMenuDataSource{
         return (categories?.category_name)!
     }
     
+    
     func didSelectRow(at indexPath: JNIndexPath, for menu: JNDropDownMenu) {
         
         let category = self.firstLevelcatgories?[indexPath.row]
         
         let size = CGSize(width: 30, height: 30)
-        
         spinnerView.alpha = 1
         activityIndicator.startAnimating()
         

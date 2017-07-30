@@ -1,27 +1,16 @@
 //
-//  SortButtonSheetView.swift
+//  FilterButtomSheetView.swift
 //  payporte-v2
 //
-//  Created by SimpuMind on 7/25/17.
+//  Created by SimpuMind on 7/29/17.
 //  Copyright © 2017 SimpuMind. All rights reserved.
 //
 
 import UIKit
-import RGBottomSheet
 
-public class SomeData {
-    var value: String
-    var label: String
+public class FilterButtomSheetView:  UIView {
     
-    init(value: String, label: String) {
-        self.value = value
-        self.label = label
-    }
-}
-
-public class SortButtonSheetView:  UIView {
-    
-    var content = [SomeData]()
+    var content = [Filter]()
     
     var dataSource: ProductListDataSource?
     
@@ -45,7 +34,7 @@ public class SortButtonSheetView:  UIView {
     }()
     
     let titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textAlignment = .center
         label.backgroundColor = #colorLiteral(red: 0.9478505711, green: 0.9478505711, blue: 0.9478505711, alpha: 1)
         label.font = UIFont(name: "Orkney-Bold", size: 14)
@@ -56,7 +45,7 @@ public class SortButtonSheetView:  UIView {
         super.init(frame: frame)
         setupViews()
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -77,7 +66,7 @@ public class SortButtonSheetView:  UIView {
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.left.right.bottom.equalTo(self)
         }
-        tableView.register(SortButtonCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(FilterButtonCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 55
     }
     
@@ -85,7 +74,7 @@ public class SortButtonSheetView:  UIView {
     
 }
 
-class SortButtonCell: UITableViewCell {
+class FilterButtonCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -133,14 +122,14 @@ class SortButtonCell: UITableViewCell {
     }
 }
 
-extension SortButtonSheetView: UITableViewDataSource, UITableViewDelegate {
+extension FilterButtomSheetView: UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SortButtonCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FilterButtonCell
         let name = content[indexPath.item]
         cell.titleLabel.text = name.label
         return cell
@@ -153,9 +142,10 @@ extension SortButtonSheetView: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let value = content[indexPath.item]
-        key = value.value
-        productListingDelegate?.sortProductList(key: value.value)
+        //key = value.value
+        productListingDelegate?.filterProductList(key: value.label!, value: value.value!)
         bottomSheetDelegate?.closeButtomSheet()
     }
 }
+
 

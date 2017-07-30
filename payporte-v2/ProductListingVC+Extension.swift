@@ -22,21 +22,6 @@ extension ProductListingVC {
                 make.height.equalTo(64)
             })
             
-            sortButton.snp.makeConstraints({ (make) in
-                
-                make.top.equalTo(headerView.snp.top)
-                make.bottom.equalTo(headerView.snp.bottom)
-                make.width.equalTo(view.frame.width / 2)
-                make.left.equalTo(headerView.snp.left)
-            })
-            
-            filterButton.snp.makeConstraints({ (make) in
-                make.top.equalTo(headerView.snp.top)
-                make.bottom.equalTo(headerView.snp.bottom)
-                make.width.equalTo(view.frame.width / 2)
-                make.right.equalTo(headerView.snp.right)
-            })
-            
             collectionView.snp.makeConstraints({ (make) in
                 make.left.equalTo(view)
                 make.right.equalTo(view)
