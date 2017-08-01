@@ -57,6 +57,12 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
         return button
     }()
     
+    let buttonContainer: UIView = {
+        let v = UIView()
+        v.backgroundColor = .white
+        return v
+    }()
+    
     func fetchProductDetails(product_id: String){
         Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product) in
             self.addSubViews()
@@ -112,14 +118,21 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
         layout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 150)
         
         view.addSubview(collectionView)
+        view.addSubview(buttonContainer)
+        buttonContainer.addSubview(addToCartButton)
         
-        view.addSubview(addToCartButton)
+        buttonContainer.snp.makeConstraints({ (make) in
+            make.bottom.equalTo(view.snp.bottom)
+            make.right.equalTo(view.snp.right)
+            make.left.equalTo(view.snp.left)
+            make.height.equalTo(50)
+        })
         
         addToCartButton.snp.makeConstraints({ (make) in
-            make.bottom.equalTo(view.snp.bottom).offset(-10)
-            make.right.equalTo(view.snp.right).offset(-10)
-            make.left.equalTo(view.snp.left).offset(10)
-            make.height.equalTo(45)
+            make.top.equalTo(buttonContainer.snp.top).offset(5)
+            make.right.equalTo(buttonContainer.snp.right).offset(-10)
+            make.left.equalTo(buttonContainer.snp.left).offset(10)
+            make.bottom.equalTo(buttonContainer.snp.bottom).offset(-5)
         })
     }
     
@@ -264,11 +277,11 @@ extension ProductBuyDetailsVC: UICollectionViewDelegate, UICollectionViewDataSou
         if indexPath.item == options.count{
             let vc = ProductReadMoreVC()
             present(vc, animated: true, completion: nil)
+        }else{
+            let opts = options[indexPath.item]
+            guard let title = opts[0].optionTitle else {return}
+            configureButtomSheet(options: opts, title: title)
         }
-        
-        let opts = options[indexPath.item]
-        guard let title = opts[0].optionTitle else {return}
-        configureButtomSheet(options: opts, title: title)
     }
     
     
