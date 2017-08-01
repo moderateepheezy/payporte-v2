@@ -11,7 +11,18 @@ import RGBottomSheet
 
 public class BottomSheetView: UIView {
     
-    let content = ["COLOR", "EXTENDED WARRANTY", "SIZE"]
+    var options: [Options]?{
+        didSet{
+            guard let opts = options else {return}
+            for i in opts{
+                guard let type = i.optionValue else {return}
+                content.append(type)
+            }
+        }
+    }
+    
+    
+    var content = [String]()
     
     var sheet: RGBottomSheet?
     
@@ -25,11 +36,17 @@ public class BottomSheetView: UIView {
         return bottomView
     }()
     
-    let tableView: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = .white
-        tv.separatorInset = UIEdgeInsets.zero
-        return tv
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.backgroundColor = #colorLiteral(red: 0.9478505711, green: 0.9478505711, blue: 0.9478505711, alpha: 1)
+        label.font = UIFont(name: "Orkney-Bold", size: 14)
+        return label
+    }()
+    
+    let picker: UIPickerView = {
+       let p = UIPickerView()
+        return p
     }()
     
     override init(frame: CGRect) {
@@ -42,116 +59,47 @@ public class BottomSheetView: UIView {
     }
     
     func setupViews(){
-        addSubview(tableView)
-        
-        let config = RGBottomSheetConfiguration(
-            showBlur: true
-        )
-        sheet = RGBottomSheet(
-            withContentView: bottomView,
-            configuration: config
-        )
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-            tableView.snp.makeConstraints { (make) in
-                make.top.left.right.bottom.equalTo(self)
-            }
-            tableView.register(BottomSheetCell.self, forCellReuseIdentifier: "cell")
-            tableView.rowHeight = 55
-    }
-    
-    
-    
-}
-
-class BottomSheetCell: UITableViewCell {
-    
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "COLOR"
-        label.font = UIFont(name: "Orkney-Bold", size: 14)
-        label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        return label
-    }()
-    
-    let subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "COLOR"
-        label.font = UIFont(name: "Orkney-Bold", size: 13)
-        label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0.4078193307, green: 0.4078193307, blue: 0.4078193307, alpha: 1)
-        return label
-    }()
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(subTitleLabel)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        setupViews()
-    }
-    
-    fileprivate func setupViews(){
+        addSubview(picker)
+        addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self).offset(10)
-            make.left.right.equalTo(self)
-            make.width.equalTo(400)
-            make.height.equalTo(15)
+            make.width.equalTo(self)
+            make.height.equalTo(55)
+            make.top.equalTo(self)
         }
-        
-        subTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp.bottom).inset(-10)
-            make.width.equalTo(400)
-            make.left.right.equalTo(self)
-            make.height.equalTo(15)
-        }
+
+        picker.delegate = self
+        picker.dataSource = self
+            picker.snp.makeConstraints { (make) in
+                make.top.equalTo(titleLabel.snp.bottom).offset(10)
+                make.left.right.bottom.equalTo(self)
+            }
     }
     
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }
 
-extension BottomSheetView: UITableViewDataSource, UITableViewDelegate {
+
+extension BottomSheetView: UIPickerViewDelegate, UIPickerViewDataSource{
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return content.count
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BottomSheetCell
-        cell.titleLabel.text = content[indexPath.item]
-        cell.subTitleLabel.text = "No Option Selected"
-        
-        return cell
-    }
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sheet?.configuration.showBlur = false
-        sheet?.configuration.showOverlay = true
-        sheet?.show()
-        bottomSheetDelegate?.closeButtomSheet()
+    public func pickerView(_ pickerView: UIPickerView,
+                           numberOfRowsInComponent component: Int) -> Int {
+        return content.count
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView,
+                           titleForRow row: Int,
+                           forComponent component: Int) -> String? {
+        return content[row]
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Do something with the row
+       // bottomSheetDelegate?.closeButtomSheet()
     }
 }

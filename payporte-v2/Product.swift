@@ -13,6 +13,7 @@ public final class Product: NSCoding {
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
+        static let seller = "seller"
         static let productRegularPrice = "product_regular_price"
         static let iD = "_ID"
         static let productName = "product_name"
@@ -29,12 +30,13 @@ public final class Product: NSCoding {
     }
     
     // MARK: Properties
+    public var seller: PSeller?
     public var productRegularPrice: String?
     public var iD: String?
     public var productName: String?
     public var productPrice: String?
     public var productAttributes: [ProductAttributes]?
-    public var options: [Any]?
+    public var options: [Options]?
     public var maxQty: String?
     public var stockStatus: String?
     public var productId: String?
@@ -56,12 +58,13 @@ public final class Product: NSCoding {
     ///
     /// - parameter json: JSON object from SwiftyJSON.
     public required init(json: JSON) {
+        seller = PSeller(json: json[SerializationKeys.seller])
         productRegularPrice = json[SerializationKeys.productRegularPrice].string
         iD = json[SerializationKeys.iD].string
         productName = json[SerializationKeys.productName].string
         productPrice = json[SerializationKeys.productPrice].string
         if let items = json[SerializationKeys.productAttributes].array { productAttributes = items.map { ProductAttributes(json: $0) } }
-        if let items = json[SerializationKeys.options].array { options = items.map { $0.object} }
+        if let items = json[SerializationKeys.options].array { options = items.map { Options(json: $0) } }
         maxQty = json[SerializationKeys.maxQty].string
         stockStatus = json[SerializationKeys.stockStatus].string
         productId = json[SerializationKeys.productId].string
@@ -76,12 +79,13 @@ public final class Product: NSCoding {
     /// - returns: A Key value pair containing all valid values in the object.
     public func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
+        if let value = seller { dictionary[SerializationKeys.seller] = value.dictionaryRepresentation() }
         if let value = productRegularPrice { dictionary[SerializationKeys.productRegularPrice] = value }
         if let value = iD { dictionary[SerializationKeys.iD] = value }
         if let value = productName { dictionary[SerializationKeys.productName] = value }
         if let value = productPrice { dictionary[SerializationKeys.productPrice] = value }
         if let value = productAttributes { dictionary[SerializationKeys.productAttributes] = value.map { $0.dictionaryRepresentation() } }
-        if let value = options { dictionary[SerializationKeys.options] = value }
+        if let value = options { dictionary[SerializationKeys.options] = value.map { $0.dictionaryRepresentation() } }
         if let value = maxQty { dictionary[SerializationKeys.maxQty] = value }
         if let value = stockStatus { dictionary[SerializationKeys.stockStatus] = value }
         if let value = productId { dictionary[SerializationKeys.productId] = value }
@@ -94,12 +98,13 @@ public final class Product: NSCoding {
     
     // MARK: NSCoding Protocol
     required public init(coder aDecoder: NSCoder) {
+        self.seller = aDecoder.decodeObject(forKey: SerializationKeys.seller) as? PSeller
         self.productRegularPrice = aDecoder.decodeObject(forKey: SerializationKeys.productRegularPrice) as? String
         self.iD = aDecoder.decodeObject(forKey: SerializationKeys.iD) as? String
         self.productName = aDecoder.decodeObject(forKey: SerializationKeys.productName) as? String
         self.productPrice = aDecoder.decodeObject(forKey: SerializationKeys.productPrice) as? String
         self.productAttributes = aDecoder.decodeObject(forKey: SerializationKeys.productAttributes) as? [ProductAttributes]
-        self.options = aDecoder.decodeObject(forKey: SerializationKeys.options) as? [Any]
+        self.options = aDecoder.decodeObject(forKey: SerializationKeys.options) as? [Options]
         self.maxQty = aDecoder.decodeObject(forKey: SerializationKeys.maxQty) as? String
         self.stockStatus = aDecoder.decodeObject(forKey: SerializationKeys.stockStatus) as? String
         self.productId = aDecoder.decodeObject(forKey: SerializationKeys.productId) as? String
@@ -110,6 +115,7 @@ public final class Product: NSCoding {
     }
     
     public func encode(with aCoder: NSCoder) {
+        aCoder.encode(seller, forKey: SerializationKeys.seller)
         aCoder.encode(productRegularPrice, forKey: SerializationKeys.productRegularPrice)
         aCoder.encode(iD, forKey: SerializationKeys.iD)
         aCoder.encode(productName, forKey: SerializationKeys.productName)

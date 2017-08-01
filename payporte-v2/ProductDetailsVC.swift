@@ -175,6 +175,11 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
         readMoreButton.addTarget(self, action: #selector(loadReadMoreVC(button:)), for: .touchUpInside)
     }
     
+    func setupBotttomSheet(){
+        guard let options = product?.options else {return}
+        print(options.group { $0.optionTypeId ?? "" })
+    }
+    
     func loadReadMoreVC(button: UIButton){
         let vc = ProductReadMoreVC()
         vc.product = product

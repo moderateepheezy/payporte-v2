@@ -30,6 +30,10 @@
 		944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885A61F0B933400FEC55D /* Profile+Extension.swift */; };
 		944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885A91F0BB29800FEC55D /* ProductListingVC.swift */; };
 		944885AC1F0BB33B00FEC55D /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944885AB1F0BB33B00FEC55D /* GMStepper.swift */; };
+		947036D51F2EAD360093F71B /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036D41F2EAD360093F71B /* Options.swift */; };
+		947036D71F2EAD8E0093F71B /* PSeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036D61F2EAD8E0093F71B /* PSeller.swift */; };
+		947036D91F2F38CF0093F71B /* ProductBuyDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */; };
+		947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */; };
 		947794191F1F6F7E006F9053 /* libcurlcpp_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */; };
 		9477941A1F1F6F7E006F9053 /* libsqlite3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794131F1F6F7E006F9053 /* libsqlite3.a */; };
 		9477941B1F1F6F7E006F9053 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794141F1F6F7E006F9053 /* libdjinni_objc.a */; };
@@ -168,6 +172,10 @@
 		944885A61F0B933400FEC55D /* Profile+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Extension.swift"; sourceTree = "<group>"; };
 		944885A91F0BB29800FEC55D /* ProductListingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingVC.swift; sourceTree = "<group>"; };
 		944885AB1F0BB33B00FEC55D /* GMStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMStepper.swift; sourceTree = "<group>"; };
+		947036D41F2EAD360093F71B /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		947036D61F2EAD8E0093F71B /* PSeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSeller.swift; sourceTree = "<group>"; };
+		947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductBuyDetailsVC.swift; sourceTree = "<group>"; };
+		947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsParallaxHeader.swift; sourceTree = "<group>"; };
 		947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlcpp_objc.a; path = "../../core/deps/build/Debug-iphoneos/libcurlcpp_objc.a"; sourceTree = "<group>"; };
 		947794131F1F6F7E006F9053 /* libsqlite3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsqlite3.a; path = "../../core/deps/build/Debug-iphoneos/libsqlite3.a"; sourceTree = "<group>"; };
 		947794141F1F6F7E006F9053 /* libdjinni_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdjinni_objc.a; path = "../../core/support-lib/build/Debug-iphoneos/libdjinni_objc.a"; sourceTree = "<group>"; };
@@ -341,6 +349,8 @@
 			children = (
 				941F64ED1F29FF8600C4E55D /* Product.swift */,
 				941F64EF1F2A025D00C4E55D /* ProductAttributes.swift */,
+				947036D41F2EAD360093F71B /* Options.swift */,
+				947036D61F2EAD8E0093F71B /* PSeller.swift */,
 			);
 			name = "product-details";
 			sourceTree = "<group>";
@@ -371,6 +381,7 @@
 				944885A91F0BB29800FEC55D /* ProductListingVC.swift */,
 				941B16011F1CC2DF00B4360E /* ProductDetailsVC.swift */,
 				941F64F11F2A0F4900C4E55D /* ProductReadMoreVC.swift */,
+				947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -393,6 +404,7 @@
 				9497AF1F1F1D11BC00F51620 /* ButtomSheetSubView.swift */,
 				94F1E4C51F27F31500F34F9D /* SortButtonSheetView.swift */,
 				94DCC78E1F2D38CF002A7818 /* FilterButtomSheetView.swift */,
+				947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1029,6 +1041,7 @@
 				94A4D6401F1F776F0052E89E /* OKThreadLauncher.swift in Sources */,
 				948B5CC91F2ABFF300F9D020 /* LTEasing.swift in Sources */,
 				949295D01F05898000A403CE /* CardView.swift in Sources */,
+				947036D51F2EAD360093F71B /* Options.swift in Sources */,
 				941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */,
 				94F1E4BC1F27C1D800F34F9D /* LayerFilter.swift in Sources */,
 				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
@@ -1039,10 +1052,12 @@
 				94A4D63E1F1F75580052E89E /* payporte.m in Sources */,
 				949295861F05209E00A403CE /* AppDelegate.swift in Sources */,
 				94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */,
+				947036D91F2F38CF0093F71B /* ProductBuyDetailsVC.swift in Sources */,
 				9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */,
 				944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */,
 				948B5CCB1F2ABFF300F9D020 /* LTMorphingEffect.swift in Sources */,
 				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,
+				947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
 				941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */,
 				948B5CC71F2ABFF300F9D020 /* LTCharacterDiffResult.swift in Sources */,
@@ -1052,6 +1067,7 @@
 				948B5CD11F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift in Sources */,
 				948B5CCF1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift in Sources */,
 				949295D61F058E3B00A403CE /* CategoryCell.swift in Sources */,
+				947036D71F2EAD8E0093F71B /* PSeller.swift in Sources */,
 				942586C51F2177B00074210F /* Payporte.swift in Sources */,
 				941F64F21F2A0F4900C4E55D /* ProductReadMoreVC.swift in Sources */,
 				949A314A1F0AA74400567A17 /* Childs3rdStageTableViewCell.swift in Sources */,

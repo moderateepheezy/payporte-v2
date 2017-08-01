@@ -30,7 +30,7 @@ class HomeVC: UIViewController, UISearchBarDelegate {
     let cellIndetifier = "cellId"
     
     fileprivate let itemsPerRow: CGFloat = 2
-    
+    let itemCount = 5
     fileprivate let sectionInsets = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 10)
     
     var categories: [Category]?
@@ -58,6 +58,12 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         return label
     }()
     
+    let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     var collectionView: UICollectionView!
     
     
@@ -69,8 +75,18 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = nil
         self.fetchCategories()
 //        let when = DispatchTime.now() + 2
 //        DispatchQueue.main.asyncAfter(deadline: when) {
@@ -113,6 +129,7 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         let layout = CSStickyHeaderFlowLayout()
         layout.sectionInset = sectionInsets
         layout.itemSize = returnCellSize()
+        layout
         layout.disableStretching = true
         
         let gframe = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 40)
@@ -132,11 +149,12 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         layout.parallaxHeaderReferenceSize = CGSize(width: self.view.frame.size.width, height: 150)
         
         collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader")
-        layout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 150)
+        layout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 160)
         
         
         addingViewsAddSubViews()
     }
+    
     
     
     func addingViewsAddSubViews(){

@@ -212,6 +212,7 @@ public class Payporte: OAKLIBServiceBinder {
             return
         }
         let x = cursor?.toJson()
+        //print(x)
         
         self.coursorCount = Int((cursor?.getCount())!)
         self.itemCounts = Int(message)

@@ -533,13 +533,15 @@ extension ProductListingVC: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        collectionView.deselectItem(at: indexPath, animated: true)
         let productList = productLists[indexPath.item]
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
-        let vc = ProductDetailsVC()
+        let vc = ProductBuyDetailsVC()
         vc.productList = productList
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -566,5 +568,16 @@ extension ProductListingVC: UICollectionViewDataSource, UICollectionViewDelegate
         return sectionInsets.right
     }
     
+}
+
+class CustomNavigationController: UINavigationController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
 }
 

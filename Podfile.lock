@@ -10,6 +10,7 @@ PODS:
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
+  - ParallaxHeader (1.0.6)
   - RGBottomSheet (1.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - KJExpandableTableTree
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - NVActivityIndicatorView
+  - ParallaxHeader
   - RGBottomSheet (~> 1.0)
   - SDWebImage (~> 3.8)
   - SkyFloatingLabelTextField (~> 3.0)
@@ -72,6 +74,7 @@ SPEC CHECKSUMS:
   KJExpandableTableTree: e4724aa845551ad6d29850c1abcf71fb404f37e7
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
+  ParallaxHeader: 18ef35dfee4e565e2ef8b8d21c16d856ab1f424a
   RGBottomSheet: 0eabb98a661d8d2f54782fc676861aea82b98436
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
@@ -84,6 +87,6 @@ SPEC CHECKSUMS:
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
   UIScrollView-InfiniteScroll: a90df4ba4a7ca1926128ade34a850ddbdf74c564
 
-PODFILE CHECKSUM: 00fec40e33dcd36f7aafe71c2551c2ba2e0474de
+PODFILE CHECKSUM: d34012e32497ee6991bf5014ab00f1bed5b10f54
 
 COCOAPODS: 1.2.0
