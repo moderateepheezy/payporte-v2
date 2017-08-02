@@ -179,19 +179,35 @@ class CountDownLauncher: NSObject {
             let today = NSDate()
             let calendar = NSCalendar.current
             
-            let todayWeekday = calendar.component(.weekday , from: today as Date)
+            let todayWeekday = calendar.component(.year, from: today as Date)
+            let components = NSDateComponents()
             print(todayWeekday)
             if todayWeekday != 2 {
                 
             }
-            let addWeekdays = 2 - todayWeekday  // 7: Saturday number
-            let components = NSDateComponents()
-            components.weekday = addWeekdays
             
-            let nextSaturday = calendar.date(byAdding: components as DateComponents, to: today as Date)
-            countdownLabel.setCountDownTime(minutes: (nextSaturday?.timeIntervalSinceNow)!)
+            let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+            
+            var startOfDayComponents = gregorianCalendar.components([.year, .month, .day, .hour, .minute, .second], from: Date())
+            startOfDayComponents.hour = 0
+            startOfDayComponents.minute = 0
+            startOfDayComponents.second = 0
+            let todayAtStartOfDay = gregorianCalendar.date(from: startOfDayComponents)!
+            
+            //Sunday == 1, Saturday == 7
+            let mondayIndex = 2
+            let todaysWeekday = gregorianCalendar.component(NSCalendar.Unit.weekday, from: todayAtStartOfDay)
+            let daysUntilNextMonday = (mondayIndex + 7 - todaysWeekday) % 7
+            
+            let dayAddComponent = NSDateComponents()
+            dayAddComponent.day = daysUntilNextMonday
+            let nextMonday = gregorianCalendar.date(byAdding: dayAddComponent as DateComponents, to: todayAtStartOfDay, options: .wrapComponents)
+            
+            
+            countdownLabel.setCountDownDate(fromDate: Date() as NSDate, targetDate: nextMonday! as NSDate)
             countdownLabel.animationType = .Sparkle
             countdownLabel.start()
+            countdownLabel.dateFormatter
             
             dismissButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         }

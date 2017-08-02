@@ -153,6 +153,39 @@ public class Payporte: OAKLIBServiceBinder {
         })
     }
     
+    public func addProductToCart(product: Product, option: Options, completion: @escaping (Bool) -> ()){
+        let product_id = product.productId!
+        guard let product_qty = someData["Quantity"] else {return}
+        guard let option_selected = someData[option.optionTitle!] else {return}
+        
+        var param = [String: String]()
+        var data = [String: Any]()
+        var prod = [String: Any]()
+        var priceDic = [String: Any]()
+        prod["option_id"] = option.optionId
+        prod["option_value"] = option.optionValue
+        prod["option_price"] = option.optionPrice
+        prod["option_title"] = option.optionTitle
+        prod["position"] = option.position
+        prod["option_type_id"] = option.optionTypeId
+        prod["option_type"] = option.optionType
+        prod["is_required"] = option.isRequired
+        prod["dependence_option_ids"] = option.dependenceOptionIds
+        priceDic[option_selected] = prod
+
+        data = ["options": priceDic, "product_id": product_id , "product_qty": product_qty ]
+        
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: data,
+            options: .prettyPrinted) {
+            let theJSONText = String(data: theJSONData,
+                                     encoding: .ascii)
+            param["data"] = theJSONText
+            
+            configChef(module: .CHECKOUTMODULE, package: .PRODUCTADDTOCART, params: param, completed: completion)
+        }
+    }
+    
     private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
         if (!(cursor?.moveToFirst())!) {
             return;
@@ -207,6 +240,7 @@ public class Payporte: OAKLIBServiceBinder {
     }
     
     public func onLoad(_ message: String, cache: Bool, cursor: OAKLIBSimpleCursor?) {
+        print(message)
         self.cursor = cursor
         if (!(cursor?.moveToFirst())!) {
             return
@@ -228,6 +262,20 @@ public class Payporte: OAKLIBServiceBinder {
             }
         }
         return nil
+    }
+    
+    private func convertDicToString(dictionary: [String: Any]) -> String{
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: dictionary,
+            options: []) {
+            if let theJSONText = String(data: theJSONData,
+                                        encoding: .ascii){
+            print("JSON string = \(theJSONText)")
+                return theJSONText
+            }
+            return ""
+        }
+        return ""
     }
     
     private func convertStringToJson(dic: String) -> String {

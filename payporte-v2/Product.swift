@@ -45,6 +45,8 @@ public final class Product: NSCoding {
     public var productShortDescription: String?
     public var productUrl: String?
     
+    public var optionsString: String?
+    
     // MARK: SwiftyJSON Initializers
     /// Initiates the instance based on the object.
     ///
@@ -64,6 +66,7 @@ public final class Product: NSCoding {
         productName = json[SerializationKeys.productName].string
         productPrice = json[SerializationKeys.productPrice].string
         if let items = json[SerializationKeys.productAttributes].array { productAttributes = items.map { ProductAttributes(json: $0) } }
+        optionsString = json["options"].description
         if let items = json[SerializationKeys.options].array { options = items.map { Options(json: $0) } }
         maxQty = json[SerializationKeys.maxQty].string
         stockStatus = json[SerializationKeys.stockStatus].string

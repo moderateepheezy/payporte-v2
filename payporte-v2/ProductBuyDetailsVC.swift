@@ -13,17 +13,13 @@ import ParallaxHeader
 import SwiftImageCarousel
 import RGBottomSheet
 
-class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottomSheetDelegate {
+class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
 
     var productList: ProductList?
     
     var product: Product?
-    
-    var collectionView: UICollectionView!
-    
+
     fileprivate let itemsPerRow: CGFloat = 2
-    
-    var sheet: RGBottomSheet?
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 10)
     
@@ -31,6 +27,11 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
     
     var options = [[Options]]()
     
+    let tableView: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = .white
+        return tv
+    }()
     
     let spinnerView: UIView = {
         let view = UIView()
@@ -45,22 +46,6 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
         label.text = "Loading..."
         label.textAlignment = .center
         return label
-    }()
-    
-    var addToCartButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("ADD TO CART", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
-        button.clipsToBounds = true
-        button.backgroundColor = primaryColor
-        button.setTitleColor(UIColor.white  , for: .normal)
-        return button
-    }()
-    
-    let buttonContainer: UIView = {
-        let v = UIView()
-        v.backgroundColor = .white
-        return v
     }()
     
     func fetchProductDetails(product_id: String){
@@ -93,80 +78,32 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = sectionInsets
         
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 420))
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 385))
         self.setupCarousel(array: productImages, containerView: containerView)
-        let gframe = CGRect(x: 0, y: 25, width: view.frame.width, height: view.frame.height)
-        collectionView = UICollectionView(frame: gframe, collectionViewLayout: layout)
-        collectionView.delegate   = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .white
-        collectionView.alwaysBounceVertical = true
-        collectionView.parallaxHeader.view = containerView
-        collectionView.parallaxHeader.height = 420
-        collectionView.parallaxHeader.minimumHeight = 0
-        collectionView.parallaxHeader.mode = .centerFill
-        collectionView.register(OptionsCell.self, forCellWithReuseIdentifier: cellIndetifier)
-        collectionView.register(ProductDescriptionCell.self, forCellWithReuseIdentifier: "cellFor")
         
-        if #available(iOS 10.0, *) {
-            self.collectionView?.isPrefetchingEnabled = false
-        } else {
-            //Fallback on earlier versions
+        tableView.delegate   = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .white
+        tableView.alwaysBounceVertical = true
+        tableView.parallaxHeader.view = containerView
+        tableView.parallaxHeader.height = 385
+        tableView.parallaxHeader.minimumHeight = 10
+        tableView.parallaxHeader.mode = .centerFill
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.register(OptionsCell.self, forCellReuseIdentifier: cellIndetifier)
+        tableView.register(ProductDescriptionCell.self, forCellReuseIdentifier: "cellFor")
+        tableView.register(PriceNameViewCell.self, forCellReuseIdentifier: "cellForPrice")
+        tableView.register(AddToCartButtonCell.self, forCellReuseIdentifier: "cellForAddToCart")
+        
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(45)
+            make.right.left.equalTo(view)
+            make.bottom.equalTo(view)
         }
-        
-        collectionView.register(DetailsViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader")
-        layout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 150)
-        
-        view.addSubview(collectionView)
-        view.addSubview(buttonContainer)
-        buttonContainer.addSubview(addToCartButton)
-        
-        buttonContainer.snp.makeConstraints({ (make) in
-            make.bottom.equalTo(view.snp.bottom)
-            make.right.equalTo(view.snp.right)
-            make.left.equalTo(view.snp.left)
-            make.height.equalTo(50)
-        })
-        
-        addToCartButton.snp.makeConstraints({ (make) in
-            make.top.equalTo(buttonContainer.snp.top).offset(5)
-            make.right.equalTo(buttonContainer.snp.right).offset(-10)
-            make.left.equalTo(buttonContainer.snp.left).offset(10)
-            make.bottom.equalTo(buttonContainer.snp.bottom).offset(-5)
-        })
     }
     
-    func configureButtomSheet(options: [Options], title: String){
-        var bottomView: BottomSheetView {
-            var screenBound = UIScreen.main.bounds
-            screenBound.size.height = 200.0
-            let bottomView = BottomSheetView(frame: screenBound)
-            bottomView.backgroundColor = UIColor.white
-            bottomView.bottomSheetDelegate = self
-            bottomView.options = options
-            bottomView.titleLabel.text = title
-            return bottomView
-        }
-        
-        if #available(iOS 10.0, *) {
-            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5), blurTintColor: UIColor.black, blurStyle: .regular, customOverlayView: nil, customBlurView: nil)
-            
-            sheet = RGBottomSheet(
-                withContentView: bottomView,
-                configuration: config
-            )
-        } else {
-            // Fallback on earlier versions
-            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5))
-            
-            sheet = RGBottomSheet(
-                withContentView: bottomView,
-                configuration: config
-            )
-        }
-        
-        sheet?.show()
-    }
     
     func setupCarousel(array: [String], containerView: UIView){
         let storyboard = UIStoryboard (name: "Main", bundle: Bundle(for: SwiftImageCarouselVC.self))
@@ -205,10 +142,6 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
         spinnerView.addSubview(activityIndicator)
     }
     
-    func closeButtomSheet() {
-        sheet?.hide()
-    }
-    
     func returnCellSize() -> CGSize {
         let paddingSpace = sectionInsets.right * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
@@ -226,178 +159,277 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBot
 
 }
 
-extension ProductBuyDetailsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ProductBuyDetailsVC: UITableViewDelegate, UITableViewDataSource{
     
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return options.count + 3
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return options.count + 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.item == options.count{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellFor", for: indexPath) as! ProductDescriptionCell
+        if indexPath.item == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellForPrice", for: indexPath) as! PriceNameViewCell
+            
+            cell.product = product
+            
+            return cell
+        }else if indexPath.item == options.count + 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellForAddToCart", for: indexPath) as! AddToCartButtonCell
+            let opt = options[0]
+            cell.option = opt[0]
+            cell.product = product
+            return cell
+        }else if indexPath.item == options.count + 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellFor", for: indexPath) as! ProductDescriptionCell
             
             return cell
         }
+        let cell = tableView
+            .dequeueReusableCell(withIdentifier: cellIndetifier, for: indexPath) as! OptionsCell
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIndetifier, for: indexPath) as! OptionsCell
+        let opt = options[0]
+        cell.options = opt
         
-        let option = options[indexPath.item]
-        cell.option = option[0]
         return cell
-        
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.item  < options.count {
-            return returnCellSize()
-        }else{
-            let paddingSpace = sectionInsets.left * (2 + 1)
-            let availableWidth = collectionView.frame.width - paddingSpace
-            let widthPerItem = availableWidth / itemsPerRow
-            return CGSize(width: collectionView.frame.width, height: widthPerItem)
-        }
-    }
-    
-    func getLabelHeight(text: String, font: UIFont) -> CGRect{
-        
-        return  NSString(string: text).boundingRect(with: CGSize(width: view.frame.width, height: 1000) , options: NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin) , attributes: [NSFontAttributeName: font], context: nil)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
-        if indexPath.item == options.count{
+        if indexPath.item == 0{
+            
+        }else if indexPath.item == options.count + 1{
+            
+        }else if indexPath.item == options.count + 2{
             let vc = ProductReadMoreVC()
             present(vc, animated: true, completion: nil)
-        }else{
-            let opts = options[indexPath.item]
-            guard let title = opts[0].optionTitle else {return}
-            configureButtomSheet(options: opts, title: title)
+        }
+        if indexPath.item == options.count + 2{
+            let vc = ProductReadMoreVC()
+            present(vc, animated: true, completion: nil)
+        }else if indexPath.item == options.count + 1{
+            
         }
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-         if kind ==  UICollectionElementKindSectionHeader{
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as! DetailsViewSectionHeader
-            view.product = product
-            view.productDetailsVc = self
-            view.backgroundColor = UIColor.white
-            return view
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.item == 0{
+            return 75
         }
-        
-        return UICollectionReusableView()
+        return 55
     }
-    
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.right
-    }
-    
 }
 
-public class OptionsCell: UICollectionViewCell{
+public class OptionsCell: UITableViewCell, RGBottomSheetDelegate{
     
-    var option: Options?{
+    var options: [Options]?{
         didSet{
-            guard let title = option?.optionTitle else {return}
-            titleLabel.text = title
+            guard let title = options?[0].optionTitle else {return}
+            selectSizeButton.setTitle(title, for: .normal)
         }
     }
     
-    let titleLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont(name: "Orkney-Regular", size: 14)
-        label.textColor = .black
-        label.textAlignment = .left
-        return label
+    var sheet: RGBottomSheet?
+    
+    var selectSizeButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = UIFont(name: "Orkney-Medium", size: 16)
+        button.setImage(#imageLiteral(resourceName: "ic_caret_down"), for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.contentHorizontalAlignment = .left
+        return button
     }()
     
-    let selectedTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Orkney-Regular", size: 14)
-        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        label.text = "12"
-        label.textAlignment = .right
-        return label
+    let selectQtyButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Quantity", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Orkney-Medium", size: 16)
+        button.setImage(#imageLiteral(resourceName: "ic_caret_down"), for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.contentHorizontalAlignment = .left
+        return button
     }()
     
-    let dropIcon: UIImageView = {
-        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "ic_cart_add")
-        iv.contentMode = .scaleAspectFit
-        return iv
+    let middleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0, alpha: 0.2)
+        return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.contentView.addSubview(selectQtyButton)
+        self.contentView.addSubview(selectSizeButton)
+        self.contentView.addSubview(middleView)
     }
     
     required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews(){
-        addSubview(titleLabel)
-        addSubview(selectedTitleLabel)
-        addSubview(dropIcon)
+    override public func layoutSubviews() {
+        super.layoutSubviews()
         
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 1
-        self.clipsToBounds = true
+        setupViews()
         
-        dropIcon.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top).offset(10)
-            make.right.equalTo(self.snp.right).offset(-5)
-            make.width.height.equalTo(25)
-        }
-        
-        titleLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(150)
-            make.left.equalTo(self.snp.left).offset(5)
-            make.height.equalTo(self.snp.height)
-        }
-        selectedTitleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(titleLabel.snp.right).offset(5)
-            make.right.equalTo(dropIcon.snp.left).offset(-5)
-            make.height.equalTo(self)
-        }
     }
+    
+    func setupViews(){
+        
+        selectSizeButton.addTarget(self, action: #selector(handleBottomSheet), for: .touchUpInside)
+        selectQtyButton.addTarget(self, action: #selector(handleQtyBottomSheet), for: .touchUpInside)
+        
+        selectQtyButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        selectQtyButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        selectQtyButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        selectQtyButton.imageView?.snp.makeConstraints({ (make) in
+            
+            make.leading.equalTo(selectQtyButton.snp.leading).offset(5)
+            make.centerY.equalTo(selectQtyButton.snp.centerY)
+            
+        })
+        
+        selectQtyButton.titleLabel?.snp.makeConstraints({ (make) in
+            
+            make.trailing.equalTo(selectQtyButton.snp.trailing)
+            make.centerY.equalTo(selectQtyButton.snp.centerY)
+            
+        })
+        
+        selectSizeButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        selectSizeButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        selectSizeButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        selectSizeButton.imageView?.snp.makeConstraints({ (make) in
+            
+            make.leading.equalTo(selectSizeButton.snp.leading).offset(10)
+            make.centerY.equalTo(selectSizeButton.snp.centerY)
+            
+        })
+        
+        selectSizeButton.titleLabel?.snp.makeConstraints({ (make) in
+            
+            make.trailing.equalTo(selectSizeButton.snp.trailing)
+            make.centerY.equalTo(selectSizeButton.snp.centerY)
+            
+        })
+        
+        middleView.snp.makeConstraints({ (make) in
+            make.centerX.equalTo(self)
+            make.centerY.equalTo(self)
+            make.width.equalTo(1)
+            make.height.equalTo(25)
+        })
+        
+        selectQtyButton.snp.makeConstraints { (make) in
+            make.left.equalTo(self.snp.left).offset(20)
+            make.height.equalTo(self.snp.height)
+            make.right.equalTo(middleView.snp.left).offset(-2)
+        }
+        selectSizeButton.snp.makeConstraints { (make) in
+            make.right.equalTo(self.snp.right).offset(-20)
+            make.height.equalTo(self.snp.height)
+            make.left.equalTo(middleView.snp.right).offset(10)
+        }
+        
+    }
+    
+    func handleBottomSheet(button: UIButton){
+        guard let options = options else {return}
+        var array = [String]()
+        for i in 0 ..< options.count - 1{
+            array.append(options[i].optionValue!)
+        }
+        configureButtomSheet(options: array, title: options[0].optionTitle!, button: button)
+    }
+    
+    func handleQtyBottomSheet(button: UIButton){
+    var array = [String]()
+        for i in  1 ..< 21{
+            array.append("\(i)")
+        }
+        configureButtomSheet(options: array, title: "Quantity", button: button)
+    }
+    
+    func configureButtomSheet(options: [String], title: String, button: UIButton){
+        var bottomView: BottomSheetView {
+            var screenBound = UIScreen.main.bounds
+            screenBound.size.height = 200.0
+            let bottomView = BottomSheetView(frame: screenBound)
+            bottomView.backgroundColor = UIColor.white
+            bottomView.bottomSheetDelegate = self
+            bottomView.options = options
+            bottomView.button = button
+            bottomView.titleLabel.text = title
+            return bottomView
+        }
+        
+        if #available(iOS 10.0, *) {
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5), blurTintColor: UIColor.black, blurStyle: .regular, customOverlayView: nil, customBlurView: nil)
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        } else {
+            // Fallback on earlier versions
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5))
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        }
+        
+        sheet?.show()
+    }
+    
+    func closeButtomSheet() {
+        sheet?.hide()
+    }
+
 }
 
-class DetailsViewSectionHeader: UICollectionReusableView{
+class PriceNameViewCell: UITableViewCell{
     
     var product: Product?{
         didSet{
-            guard let slashPrice = product?.productRegularPrice else {return}
+            //guard let slashPrice = product?.productRegularPrice else {return}
             guard let price = product?.productPrice else {return}
             guard let productName = product?.productName else {return}
-            guard let sellerName = product?.seller?.name else {return}
+            //guard let sellerName = product?.seller?.name else {return}
             guard let shortDesc = product?.productShortDescription else {return}
-            
-            slashPriceLabel.strikeThrough(text: slashPrice, fontSize: 14)
+            guard let stock = product?.stockStatus else {return}
+            if stock == "false"{
+                
+                let yourAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 24)!] as [String : Any]
+                let yourOtherAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 14)!] as [String : Any]
+                
+                let partOne = NSMutableAttributedString(string: "• ", attributes: yourAttributes)
+                let partTwo = NSMutableAttributedString(string: "Out of stock", attributes: yourOtherAttributes)
+                
+                let combination = NSMutableAttributedString()
+                combination.append(partOne)
+                combination.append(partTwo)
+                inStockLabel.attributedText = combination
+            }else{
+                let yourAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 0.574704592, green: 1, blue: 0.2995168362, alpha: 1), NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 24)!] as [String : Any]
+                let yourOtherAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 14)!] as [String : Any]
+                
+                let partOne = NSMutableAttributedString(string: "• ", attributes: yourAttributes)
+                let partTwo = NSMutableAttributedString(string: "In stock", attributes: yourOtherAttributes)
+                
+                let combination = NSMutableAttributedString()
+                combination.append(partOne)
+                combination.append(partTwo)
+                inStockLabel.attributedText = combination
+            }
+            //slashPriceLabel.strikeThrough(text: slashPrice, fontSize: 14)
             priceLabel.text = "₦ \(price)"
-            vendorNameLabel.text = sellerName
+            //vendorNameLabel.text = sellerName
             productNameLabel.text = productName
-            setUpView(shortDesc: shortDesc)
+            setUpView(shortDesc: shortDesc, priceRect: price)
             
         }
     }
@@ -405,92 +437,104 @@ class DetailsViewSectionHeader: UICollectionReusableView{
     
     var slashPriceLabel: InsetLabel = {
         let label = InsetLabel()
-        label.font = UIFont(name: "Orkney-Regular", size: 15)
+        label.font = UIFont(name: "Orkney-Bold", size: 16)
         label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         return label
     }()
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Orkney-Regular", size: 18)
-        label.textColor = primaryColor
+        label.font = UIFont(name: "Orkney-Bold", size: 18)
+        label.textColor = #colorLiteral(red: 0.1089585977, green: 0.1089585977, blue: 0.1089585977, alpha: 1)
         return label
     }()
     
-    let vendorNameLabel: UILabel = {
+    let inStockLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Orkney-Regular", size: 12)
+        label.font = UIFont(name: "Orkney-Bold", size: 22)
+        label.textAlignment = .right
+        label.text = ""
+        return label
+    }()
+    
+//    let vendorNameLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: "Orkney-Regular", size: 12)
+//        label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+//        return label
+//    }()
+    
+    let productNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Orkney-Bold", size: 14)
         label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return label
     }()
     
-    let view: UIView = {
-        let v = UIView()
-        v.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        return v
-    }()
     
-    let productNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Orkney-Regular", size: 16)
-        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        return label
-    }()
-    
-    
-    required override public init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.contentView.addSubview(productNameLabel)
+        //self.contentView.addSubview(vendorNameLabel)
+        self.contentView.addSubview(priceLabel)
+        self.contentView.addSubview(slashPriceLabel)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpView(shortDesc: String){
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    func setUpView(shortDesc: String, priceRect: String){
         addSubview(productNameLabel)
-        addSubview(vendorNameLabel)
-        addSubview(view)
+        //addSubview(vendorNameLabel)
         addSubview(priceLabel)
         addSubview(slashPriceLabel)
+        addSubview(inStockLabel)
         
-        view.snp.makeConstraints { (make) in
-            make.top.equalTo(slashPriceLabel.snp.bottom).offset(10)
-            make.right.equalTo(self.snp.right).offset(-10)
-            make.left.equalTo(self.snp.left).offset(10)
-            make.height.equalTo(1)
-        }
+        let priceRect = getLabelHeight(text: priceRect, font: UIFont(name: "Orkney-Bold", size: 18)!)
         
-        //let shortDescRect = getLabelHeight(text: shortDesc, font: UIFont(name: "Orkney-Regular", size: 9)!)
-        
-        let productNameRect = getLabelHeight(text: productNameLabel.text!, font: UIFont(name: "Orkney-Bold", size: 15)!)
+        let productNameRect = getLabelHeight(text: productNameLabel.text!, font: UIFont(name: "Orkney-Bold", size: 14)!)
         
         //let height = self.frame.height - (productNameLabel.frame.height - vendorNameLabel.frame.height - priceLabel.frame.height - slashPriceLabel.frame.height)
         
-        productNameLabel.snp.makeConstraints { (make) in
+        priceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.snp.top).offset(20)
+            make.left.equalTo(self.snp.left).offset(20)
+            make.width.equalTo(priceRect.width + 30)
+            make.height.equalTo(18)
+        }
+        
+        inStockLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.snp.top).offset(20)
+            make.right.equalTo(self.snp.right).offset(-20)
+            make.width.equalTo(150)
+            make.height.equalTo(22)
+        }
+        
+        productNameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(priceLabel.snp.bottom).offset(5)
             make.left.equalTo(self.snp.left).offset(20)
             make.right.equalTo(self.snp.right).offset(-20)
             make.height.equalTo(productNameRect.height)
         }
         
-        vendorNameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(productNameLabel.snp.bottom).offset(10)
-            make.left.equalTo(self.snp.left).offset(20)
-            make.right.equalTo(self.snp.right).offset(-20)
-            make.height.equalTo(13)
-        }
-        
-        priceLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(vendorNameLabel.snp.bottom).offset(20)
-            make.left.equalTo(self.snp.left).offset(20)
-            make.right.equalTo(self.snp.right).offset(-20)
-            make.height.equalTo(18)
-        }
+//        vendorNameLabel.snp.makeConstraints { (make) in
+//            make.top.equalTo(productNameLabel.snp.bottom).offset(10)
+//            make.left.equalTo(self.snp.left).offset(20)
+//            make.right.equalTo(self.snp.right).offset(-20)
+//            make.height.equalTo(13)
+//        }
         
         slashPriceLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(priceLabel.snp.bottom).offset(10)
-            make.left.equalTo(self.snp.left).offset(10)
-            make.right.equalTo(self.snp.right).offset(-20)
+            make.top.equalTo(self.snp.top).offset(20)
+            make.left.equalTo(priceLabel.snp.right)
+            make.width.equalTo(priceRect.width + 50)
             make.height.equalTo(15)
         }
         
@@ -503,75 +547,112 @@ class DetailsViewSectionHeader: UICollectionReusableView{
     
 }
 
-public class ProductDescriptionCell: UICollectionViewCell{
+public class ProductDescriptionCell: UITableViewCell{
     
     let label: UILabel = {
        let b = UILabel()
         b.text = "Full Description"
-        b.font = UIFont(name: "Orkney-Regular", size: 14)
+        b.font = UIFont(name: "Orkney-Regular", size: 16)
         b.textColor = .black
         return b
-    }()
-    
-    let view: UIView = {
-        let v = UIView()
-        v.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        return v
-    }()
-    
-    let view2: UIView = {
-        let v = UIView()
-        v.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        return v
     }()
     
     let rightIcon: UILabel = {
         let label = UILabel()
         label.text = ">"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.contentView.addSubview(label)
+        self.contentView.addSubview(rightIcon)
     }
     
     required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews(){
-        addSubview(view)
-        addSubview(view2)
-        addSubview(label)
-        addSubview(rightIcon)
+    override public func layoutSubviews() {
+        super.layoutSubviews()
         
-        view.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top)
-            make.right.equalTo(self.snp.right).offset(-20)
-            make.left.equalTo(self.snp.left)
-            make.height.equalTo(1)
-        }
+        setupViews()
+        
+    }
+    
+    func setupViews(){
+        
         
         label.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.bottom).offset(1)
+            make.top.equalTo(self.snp.top)
             make.right.equalTo(self.snp.right).offset(-10)
-            make.left.equalTo(self.snp.left).offset(10)
-            make.height.equalTo(45)
+            make.left.equalTo(self.snp.left).offset(20)
+            make.height.equalTo(self.snp.height)
         }
         
         rightIcon.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.bottom).offset(10)
+            make.top.equalTo(self.snp.top).offset(13)
             make.right.equalTo(self.snp.right).offset(-10)
             make.height.width.equalTo(25)
         }
         
-        view2.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom)
-            make.right.equalTo(self.snp.right).offset(-20)
-            make.left.equalTo(self.snp.left)
-            make.height.equalTo(1)
+    }
+}
+
+public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
+    
+    var option: Options?
+    var product: Product?
+    
+    var addToCartButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("ADD TO CART", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
+        button.clipsToBounds = true
+        button.backgroundColor = primaryColor
+        button.setTitleColor(UIColor.white  , for: .normal)
+        return button
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.contentView.addSubview(addToCartButton)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setupViews()
+        
+        addToCartButton.addTarget(self, action: #selector(handleAddToCart(button:)), for: .touchUpInside)
+        
+    }
+    
+    func setupViews(){
+        addToCartButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self).offset(5)
+            make.left.equalTo(self).offset(20)
+            make.right.equalTo(self).offset(-20)
+            make.bottom.equalTo(self).offset(-5)
+        }
+    }
+    
+    func handleAddToCart(button: UIButton){
+        
+        print(someData)
+        //print(qtyText)
+        guard let option = option else {return}
+        Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
+            button.loadingIndicator(show: false)
+            button.isEnabled = true
+            someData.removeAll()
         }
     }
 }

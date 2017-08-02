@@ -35,6 +35,8 @@ public final class Options: NSCoding {
     public var optionPrice: String?
     public var optionTitle: String?
     
+    public var text = ""
+    
     // MARK: SwiftyJSON Initializers
     /// Initiates the instance based on the object.
     ///
@@ -48,6 +50,7 @@ public final class Options: NSCoding {
     ///
     /// - parameter json: JSON object from SwiftyJSON.
     public required init(json: JSON) {
+        text = json.description
         position = json[SerializationKeys.position].string
         optionType = json[SerializationKeys.optionType].string
         if let items = json[SerializationKeys.dependenceOptionIds].array { dependenceOptionIds = items.map { $0.stringValue } }
