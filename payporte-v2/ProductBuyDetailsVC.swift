@@ -103,6 +103,10 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
             make.bottom.equalTo(view)
         }
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        someData.removeAll()
+    }
     
     
     func setupCarousel(array: [String], containerView: UIView){
@@ -162,7 +166,7 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
 extension ProductBuyDetailsVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return options.count + 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -173,22 +177,29 @@ extension ProductBuyDetailsVC: UITableViewDelegate, UITableViewDataSource{
             cell.product = product
             
             return cell
-        }else if indexPath.item == options.count + 1{
+        }else if indexPath.item == 2{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellForAddToCart", for: indexPath) as! AddToCartButtonCell
-            let opt = options[0]
-            cell.option = opt[0]
+            
+            if options.count > 0{
+                let opt = options[0]
+                cell.option = opt[0]
+                cell.hasOption = true
+            }else{
+                cell.hasOption = false
+            }
             cell.product = product
             return cell
-        }else if indexPath.item == options.count + 2{
+        }else if indexPath.item == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellFor", for: indexPath) as! ProductDescriptionCell
             
             return cell
         }
         let cell = tableView
             .dequeueReusableCell(withIdentifier: cellIndetifier, for: indexPath) as! OptionsCell
-        
-        let opt = options[0]
-        cell.options = opt
+        if options.count > 0{
+            let opt = options[0]
+            cell.options = opt
+        }
         
         return cell
     }
@@ -196,19 +207,9 @@ extension ProductBuyDetailsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.item == 0{
-            
-        }else if indexPath.item == options.count + 1{
-            
-        }else if indexPath.item == options.count + 2{
+        if indexPath.item == 3{
             let vc = ProductReadMoreVC()
             present(vc, animated: true, completion: nil)
-        }
-        if indexPath.item == options.count + 2{
-            let vc = ProductReadMoreVC()
-            present(vc, animated: true, completion: nil)
-        }else if indexPath.item == options.count + 1{
-            
         }
     }
     
@@ -224,8 +225,15 @@ public class OptionsCell: UITableViewCell, RGBottomSheetDelegate{
     
     var options: [Options]?{
         didSet{
-            guard let title = options?[0].optionTitle else {return}
-            selectSizeButton.setTitle(title, for: .normal)
+            
+            if let title = options?[0].optionTitle {
+                selectSizeButton.alpha = 1
+                selectSizeButton.isEnabled = true
+                selectSizeButton.setTitle(title, for: .normal)
+            }else{
+                selectSizeButton.alpha = 0
+                selectSizeButton.isEnabled = false
+            }
         }
     }
     
@@ -605,6 +613,7 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
     
     var option: Options?
     var product: Product?
+    var hasOption: Bool?
     
     var addToCartButton: UIButton = {
         let button = UIButton()
@@ -648,12 +657,24 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
         
         print(someData)
         //print(qtyText)
-        guard let option = option else {return}
-        Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
-            button.loadingIndicator(show: false)
-            button.isEnabled = true
-            someData.removeAll()
+        if hasOption! &&  someData[(option?.optionTitle)!] != nil{
+                Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
+                    button.loadingIndicator(show: false)
+                    button.isEnabled = true
+                    someData.removeAll()
+                }
+        }else if !hasOption!{
+            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
+                button.loadingIndicator(show: false)
+                button.isEnabled = true
+                someData.removeAll()
+            }
+        }else if hasOption! &&  someData[(option?.optionTitle)!] == nil{
+            print("Please use option values for \((option?.optionTitle)!)")
+        }else if hasOption! &&  someData["Quantity"] == nil{
+            print("Please use option values for Quantity")
         }
+        
     }
 }
 

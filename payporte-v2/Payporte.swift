@@ -153,27 +153,33 @@ public class Payporte: OAKLIBServiceBinder {
         })
     }
     
-    public func addProductToCart(product: Product, option: Options, completion: @escaping (Bool) -> ()){
+    public func addProductToCart(product: Product, option: Options?, completion: @escaping (Bool) -> ()){
         let product_id = product.productId!
         guard let product_qty = someData["Quantity"] else {return}
-        guard let option_selected = someData[option.optionTitle!] else {return}
         
         var param = [String: String]()
         var data = [String: Any]()
         var prod = [String: Any]()
         var priceDic = [String: Any]()
-        prod["option_id"] = option.optionId
-        prod["option_value"] = option.optionValue
-        prod["option_price"] = option.optionPrice
-        prod["option_title"] = option.optionTitle
-        prod["position"] = option.position
-        prod["option_type_id"] = option.optionTypeId
-        prod["option_type"] = option.optionType
-        prod["is_required"] = option.isRequired
-        prod["dependence_option_ids"] = option.dependenceOptionIds
-        priceDic[option_selected] = prod
+        
+        if let option = option{
+            
+            guard let option_selected = someData[option.optionTitle!] else {return}
+            prod["option_id"] = option.optionId
+            prod["option_value"] = option.optionValue
+            prod["option_price"] = option.optionPrice
+            prod["option_title"] = option.optionTitle
+            prod["position"] = option.position
+            prod["option_type_id"] = option.optionTypeId
+            prod["option_type"] = option.optionType
+            prod["is_required"] = option.isRequired
+            prod["dependence_option_ids"] = option.dependenceOptionIds
+            priceDic[option_selected] = prod
+            data = ["options": priceDic, "product_id": product_id , "product_qty": product_qty ]
+        }else{
+            data = ["options": "[]", "product_id": product_id , "product_qty": product_qty ]
+        }
 
-        data = ["options": priceDic, "product_id": product_id , "product_qty": product_qty ]
         
         if let theJSONData = try? JSONSerialization.data(
             withJSONObject: data,

@@ -13,14 +13,8 @@ var someData = [String: String]()
 
 public class BottomSheetView: UIView {
     
-    var options: [String]?{
-        didSet{
-            guard let opts = options else {return}
-            content = opts
-        }
-    }
+    var options: [String]?
     
-    var content = [String]()
     
     var sheet: RGBottomSheet?
     
@@ -126,17 +120,20 @@ extension BottomSheetView: UIPickerViewDelegate, UIPickerViewDataSource{
     
     public func pickerView(_ pickerView: UIPickerView,
                            numberOfRowsInComponent component: Int) -> Int {
-        return content.count
+        return options?.count ?? 0
     }
     
     public func pickerView(_ pickerView: UIPickerView,
                            titleForRow row: Int,
                            forComponent component: Int) -> String? {
-        return content[row]
+        return options?[row]
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        button?.setTitle(content[row], for: .normal)
-        someData[titleLabel.text!] = "\(content[row])"
+            guard let opt = options else {return}
+        if opt.count > 0{
+            button?.setTitle(opt[row], for: .normal)
+            someData[titleLabel.text!] = "\(String(describing: opt[row]))"
+        }
     }
 }
