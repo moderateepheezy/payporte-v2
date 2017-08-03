@@ -20,12 +20,13 @@ public class Payporte: OAKLIBServiceBinder {
     
     var type: String?
     
-    var coursorCount: Int?
-    var itemCounts: Int?
+    var coursorCount: Int!
+    var itemCounts: Int!
     
     init() {
         api = OAKLIBApi.getInstance(system, handler: handler, service: service)
         OAKLIBSandwich.getInstance()?.getRecipe(api?.getChef())
+        
     }
     
     private let handler = OKEventLoop()
@@ -214,7 +215,7 @@ public class Payporte: OAKLIBServiceBinder {
     
     private func baseQueryTemplate<T: JSONDecodable>(itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> (), completion: @escaping ([T]) -> ()){
         if (!(cursor?.moveToFirst())!) {
-            return;
+            return
         }
         var models  = [T]()
         
@@ -228,16 +229,14 @@ public class Payporte: OAKLIBServiceBinder {
         
         DispatchQueue.main.async {
             completion(models)
-            itemCountCompletion(self.itemCounts!)
-            cursorCompletion(self.coursorCount!)
+            itemCountCompletion(self.itemCounts)
+            cursorCompletion(self.coursorCount)
         }
     }
     
     
     public func loadType() -> OAKLIBLoadType {
-        if type == "productList"{
-            return OAKLIBLoadType.STRICT
-        }
+        
         return OAKLIBLoadType.LAZY
     }
     
@@ -248,14 +247,23 @@ public class Payporte: OAKLIBServiceBinder {
     public func onLoad(_ message: String, cache: Bool, cursor: OAKLIBSimpleCursor?) {
         print(message)
         self.cursor = cursor
+        print(cursor?.getCount() ?? 0)
         if (!(cursor?.moveToFirst())!) {
             return
         }
         let x = cursor?.toJson()
         //print(x)
+        if message == "CACHED" && type == "productList"{
+            if message == "CACHED"{
+                self.itemCounts = Int.max
+            }else{
+                self.itemCounts = Int(message)!
+            }
+        }else{
+            print(message)
+        }
         
         self.coursorCount = Int((cursor?.getCount())!)
-        self.itemCounts = Int(message)
         
     }
     

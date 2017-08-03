@@ -323,18 +323,18 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
                 self.coursorCount = coursorCount
             })
             
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
-                
-                self.spinnerView.alpha = 0
-                self.activityIndicator.stopAnimating()
-                self.productLists = productList
-                self.collectionView.reloadData()
-                
-            }, itemCountCompletion: { (itemCount) in
-                
-            }, cursorCompletion: { (coursorCount) in
-                self.coursorCount = coursorCount
-            })
+//            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+//                
+//                self.spinnerView.alpha = 0
+//                self.activityIndicator.stopAnimating()
+//                self.productLists = productList
+//                self.collectionView.reloadData()
+//                
+//            }, itemCountCompletion: { (itemCount) in
+//                
+//            }, cursorCompletion: { (coursorCount) in
+//                self.coursorCount = coursorCount
+//            })
             
         }
     }

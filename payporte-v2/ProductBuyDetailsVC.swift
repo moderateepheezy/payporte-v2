@@ -403,7 +403,7 @@ class PriceNameViewCell: UITableViewCell{
     
     var product: Product?{
         didSet{
-            //guard let slashPrice = product?.productRegularPrice else {return}
+            guard let slashPrice = product?.productRegularPrice else {return}
             guard let price = product?.productPrice else {return}
             guard let productName = product?.productName else {return}
             //guard let sellerName = product?.seller?.name else {return}
@@ -433,7 +433,7 @@ class PriceNameViewCell: UITableViewCell{
                 combination.append(partTwo)
                 inStockLabel.attributedText = combination
             }
-            //slashPriceLabel.strikeThrough(text: slashPrice, fontSize: 14)
+            slashPriceLabel.strikeThrough(text: slashPrice, fontSize: 13)
             priceLabel.text = "₦ \(price)"
             //vendorNameLabel.text = sellerName
             productNameLabel.text = productName
@@ -443,9 +443,9 @@ class PriceNameViewCell: UITableViewCell{
     }
     var productDetailsVc: ProductBuyDetailsVC?
     
-    var slashPriceLabel: InsetLabel = {
-        let label = InsetLabel()
-        label.font = UIFont(name: "Orkney-Bold", size: 16)
+    var slashPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Orkney-Bold", size: 13)
         label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         return label
     }()
@@ -518,6 +518,13 @@ class PriceNameViewCell: UITableViewCell{
             make.height.equalTo(18)
         }
         
+        slashPriceLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.snp.top).offset(20)
+            make.left.equalTo(priceLabel.snp.right)
+            make.width.equalTo(priceRect.width + 50)
+            make.height.equalTo(18)
+        }
+        
         inStockLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.snp.top).offset(20)
             make.right.equalTo(self.snp.right).offset(-20)
@@ -538,13 +545,6 @@ class PriceNameViewCell: UITableViewCell{
 //            make.right.equalTo(self.snp.right).offset(-20)
 //            make.height.equalTo(13)
 //        }
-        
-        slashPriceLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top).offset(20)
-            make.left.equalTo(priceLabel.snp.right)
-            make.width.equalTo(priceRect.width + 50)
-            make.height.equalTo(15)
-        }
         
     }
     

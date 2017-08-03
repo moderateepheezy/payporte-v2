@@ -34,6 +34,7 @@
 		947036D71F2EAD8E0093F71B /* PSeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036D61F2EAD8E0093F71B /* PSeller.swift */; };
 		947036D91F2F38CF0093F71B /* ProductBuyDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */; };
 		947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */; };
+		9472E0571F333D2B00947F32 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472E0561F333D2A00947F32 /* ConfigModel.swift */; };
 		947794191F1F6F7E006F9053 /* libcurlcpp_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */; };
 		9477941A1F1F6F7E006F9053 /* libsqlite3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794131F1F6F7E006F9053 /* libsqlite3.a */; };
 		9477941B1F1F6F7E006F9053 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794141F1F6F7E006F9053 /* libdjinni_objc.a */; };
@@ -176,6 +177,7 @@
 		947036D61F2EAD8E0093F71B /* PSeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSeller.swift; sourceTree = "<group>"; };
 		947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductBuyDetailsVC.swift; sourceTree = "<group>"; };
 		947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsParallaxHeader.swift; sourceTree = "<group>"; };
+		9472E0561F333D2A00947F32 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
 		947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlcpp_objc.a; path = "../../core/deps/build/Debug-iphoneos/libcurlcpp_objc.a"; sourceTree = "<group>"; };
 		947794131F1F6F7E006F9053 /* libsqlite3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsqlite3.a; path = "../../core/deps/build/Debug-iphoneos/libsqlite3.a"; sourceTree = "<group>"; };
 		947794141F1F6F7E006F9053 /* libdjinni_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdjinni_objc.a; path = "../../core/support-lib/build/Debug-iphoneos/libdjinni_objc.a"; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				94A4D63F1F1F776F0052E89E /* OKThreadLauncher.swift */,
 				942586931F2107250074210F /* OKSystem.swift */,
 				942586C41F2177B00074210F /* Payporte.swift */,
+				9472E0561F333D2A00947F32 /* ConfigModel.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 				947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
 				941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */,
+				9472E0571F333D2B00947F32 /* ConfigModel.swift in Sources */,
 				948B5CC71F2ABFF300F9D020 /* LTCharacterDiffResult.swift in Sources */,
 				948B5CAC1F2AA3ED00F9D020 /* CountDownLauncher.swift in Sources */,
 				949295D81F058F8B00A403CE /* InsetLabel.swift in Sources */,
