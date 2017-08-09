@@ -11,7 +11,7 @@ import JNDropDownMenu
 import NVActivityIndicatorView
 
 
-class SubCategoryVC: UIViewController {
+class SubCategoryVC: MainVC {
 
     var didSetupConstraints = false
     
@@ -143,7 +143,7 @@ class SubCategoryVC: UIViewController {
     func goToProductDetails(category: Category){
         let vc = ProductListingVC()
         vc.categoryName = category.category_name
-        vc.category = category
+        vc.category_id = category.category_id
         vc.hidesBottomBarWhenPushed = false
         let backItem = UIBarButtonItem()
         backItem.title = ""

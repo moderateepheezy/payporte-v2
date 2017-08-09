@@ -8,21 +8,23 @@
 
 import UIKit
 
-class StoresVC: UIViewController {
+struct StringData{
+    var img: String?
+    var name: String?
+}
+
+class StoresVC: MainVC {
     
     var didSetupConstraints = false
     
     let cellIndetifier = "cellId"
     
-    fileprivate var searchBar: UISearchBar!
     
-    var searchActive : Bool = false
+    var data = [StringData]()
     
     fileprivate let itemsPerRow: CGFloat = 2
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
-    
-    var data = [StringData]()
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -39,27 +41,11 @@ class StoresVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
         view.setNeedsUpdateConstraints()
         
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "store_selected").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "store").withRenderingMode(.alwaysOriginal)
-        
-        searchBar = UISearchBar()
-        searchBar.delegate = self
-        
-        let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
-        searchBarButton.tintColor = UIColor.black
-        
-//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-//        menuBarButton.tintColor = UIColor.black
-        
-        
-        //self.navigationItem.leftBarButtonItems = [ menuBarButton]
-        
-        
-        self.navigationItem.rightBarButtonItems = [ searchBarButton]
         
         self.navigationItem.title = "S T O R E S"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
@@ -82,23 +68,13 @@ class StoresVC: UIViewController {
         collectionView.register(StoreCell.self, forCellWithReuseIdentifier: cellIndetifier)
     }
     
-    func search(){
-        self.navigationItem.titleView = self.searchBar;
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(configureNavigationBar))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        self.searchActive = true
-    }
-    
-    func configureNavigationBar(){
-        searchActive = false
-        self.navigationItem.titleView = nil
-        self.navigationItem.title = "S T O R E S"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
-        let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
-        searchBarButton.tintColor = UIColor.black
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = nil
         
-        
-        self.navigationItem.rightBarButtonItems = [ searchBarButton]
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func menuClick(){
@@ -164,29 +140,5 @@ extension StoresVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return sectionInsets.right
     }
     
-}
-
-extension StoresVC: UISearchBarDelegate {
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        
-    }
 }
 

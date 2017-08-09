@@ -23,4 +23,10 @@ public class Category: NSObject, JSONDecodable  {
         self.has_child = json["has_child"] as? String ?? ""
         self.category_image = json["category_image"] as? String ?? ""
     }
+    
+    init(_ID:String, category_name: String, category_id: String) {
+        self._ID = _ID
+        self.category_name = category_name
+        self.category_id = category_id
+    }
 }

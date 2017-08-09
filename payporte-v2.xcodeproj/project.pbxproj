@@ -21,6 +21,8 @@
 		942586C31F2176D50074210F /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C21F2176D40074210F /* IntroVC.swift */; };
 		942586C51F2177B00074210F /* Payporte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C41F2177B00074210F /* Payporte.swift */; };
 		942586C81F2182B30074210F /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C71F2182B30074210F /* Banner.swift */; };
+		942CE3C01F3B75BD00E1A0F3 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3BF1F3B75BC00E1A0F3 /* MainVC.swift */; };
+		942FC12E1F3B188000DAA806 /* SearchVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */; };
 		9430F8ED1F1F9CA500A2FC2D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */; };
 		9430F8F31F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8F01F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib */; };
 		9430F9031F1FA54C00A2FC2D /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F9021F1FA54C00A2FC2D /* libiconv.tbd */; };
@@ -35,6 +37,7 @@
 		947036D91F2F38CF0093F71B /* ProductBuyDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */; };
 		947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */; };
 		9472E0571F333D2B00947F32 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472E0561F333D2A00947F32 /* ConfigModel.swift */; };
+		9472E0A41F38A8D000947F32 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472E0A31F38A8D000947F32 /* SearchVC.swift */; };
 		947794191F1F6F7E006F9053 /* libcurlcpp_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */; };
 		9477941A1F1F6F7E006F9053 /* libsqlite3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794131F1F6F7E006F9053 /* libsqlite3.a */; };
 		9477941B1F1F6F7E006F9053 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947794141F1F6F7E006F9053 /* libdjinni_objc.a */; };
@@ -162,6 +165,8 @@
 		942586C21F2176D40074210F /* IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		942586C41F2177B00074210F /* Payporte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payporte.swift; sourceTree = "<group>"; };
 		942586C71F2182B30074210F /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		942CE3BF1F3B75BC00E1A0F3 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SearchVC+Extension.swift"; sourceTree = "<group>"; };
 		9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		9430F8EE1F1F9DEA00A2FC2D /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = ../../core/deps/prebuilt/iOS/libz.1.1.3.dylib; sourceTree = "<group>"; };
 		9430F8EF1F1F9DEB00A2FC2D /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../core/deps/prebuilt/iOS/libcurl.a; sourceTree = "<group>"; };
@@ -178,6 +183,7 @@
 		947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductBuyDetailsVC.swift; sourceTree = "<group>"; };
 		947036DC1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsParallaxHeader.swift; sourceTree = "<group>"; };
 		9472E0561F333D2A00947F32 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
+		9472E0A31F38A8D000947F32 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		947794121F1F6F7E006F9053 /* libcurlcpp_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlcpp_objc.a; path = "../../core/deps/build/Debug-iphoneos/libcurlcpp_objc.a"; sourceTree = "<group>"; };
 		947794131F1F6F7E006F9053 /* libsqlite3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsqlite3.a; path = "../../core/deps/build/Debug-iphoneos/libsqlite3.a"; sourceTree = "<group>"; };
 		947794141F1F6F7E006F9053 /* libdjinni_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdjinni_objc.a; path = "../../core/support-lib/build/Debug-iphoneos/libdjinni_objc.a"; sourceTree = "<group>"; };
@@ -526,6 +532,8 @@
 				949295D41F058E2900A403CE /* Views */,
 				949295CC1F054EAE00A403CE /* extensions */,
 				949295B41F05233300A403CE /* Controller */,
+				9472E0A31F38A8D000947F32 /* SearchVC.swift */,
+				942CE3BF1F3B75BC00E1A0F3 /* MainVC.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -540,6 +548,7 @@
 				94DAEC211F06A8D4005E4AE4 /* Profile */,
 				949295B51F05235A00A403CE /* MainTabViewController.swift */,
 				949A31021F09B8DF00567A17 /* DrawerController.swift */,
+				942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1050,13 +1059,16 @@
 				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
 				942586941F2107250074210F /* OKSystem.swift in Sources */,
 				9433E7951F0E715600FD1A6D /* ProductListingVC+Extension.swift in Sources */,
+				942CE3C01F3B75BD00E1A0F3 /* MainVC.swift in Sources */,
 				94CF59E81F26438800D8653C /* SubCategoryVC.swift in Sources */,
 				949295B81F0523D200A403CE /* HomeVC.swift in Sources */,
+				942FC12E1F3B188000DAA806 /* SearchVC+Extension.swift in Sources */,
 				94A4D63E1F1F75580052E89E /* payporte.m in Sources */,
 				949295861F05209E00A403CE /* AppDelegate.swift in Sources */,
 				94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */,
 				947036D91F2F38CF0093F71B /* ProductBuyDetailsVC.swift in Sources */,
 				9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */,
+				9472E0A41F38A8D000947F32 /* SearchVC.swift in Sources */,
 				944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */,
 				948B5CCB1F2ABFF300F9D020 /* LTMorphingEffect.swift in Sources */,
 				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,

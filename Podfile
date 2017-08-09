@@ -27,6 +27,8 @@ target 'payporte-v2' do
   pod 'GRDB.swift'
   pod 'SDWebImage', '~>3.8'
   pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
+  pod 'ModernSearchBar'
+  pod 'YNSearch'
   target 'payporte-v2Tests' do
     inherit! :search_paths
     # Pods for testing

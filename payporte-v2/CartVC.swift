@@ -8,11 +8,7 @@
 
 import UIKit
 
-class CartVC: UIViewController {
-    
-    fileprivate var searchBar: UISearchBar!
-    
-    var searchActive : Bool = false
+class CartVC: MainVC {
     
     let cellIdentifier = "cellIdentifier"
     
@@ -74,28 +70,16 @@ class CartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
         view.setNeedsUpdateConstraints()
         addSubViewsToView()
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "cart_select").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "cart").withRenderingMode(.alwaysOriginal)
         
-        searchBar = UISearchBar()
-        searchBar.delegate = self
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CartCell.self, forCellReuseIdentifier: cellIdentifier)
-        
-        let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
-        searchBarButton.tintColor = UIColor.black
-        
-//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-//        menuBarButton.tintColor = UIColor.black
-        
-       // self.navigationItem.leftBarButtonItems = [ menuBarButton]
-        self.navigationItem.rightBarButtonItems = [ searchBarButton]
+ 
         
         self.navigationItem.title = "C A R T"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
@@ -109,6 +93,15 @@ class CartVC: UIViewController {
             make.centerY.equalTo(checkoutButton.snp.centerY)
             
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = nil
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func menuClick(){
@@ -129,50 +122,7 @@ class CartVC: UIViewController {
         view.addSubview(tableView)
         cardView2.addSubview(checkoutButton)
     }
-    
-    func search(){
-        self.navigationItem.titleView = self.searchBar;
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(configureNavigationBar))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        self.searchActive = true
-    }
-    
-    func configureNavigationBar(){
-        searchActive = false
-        self.navigationItem.titleView = nil
-        self.navigationItem.title = "C A R T"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
-        let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
-        searchBarButton.tintColor = UIColor.black
-        
-        
-        self.navigationItem.rightBarButtonItems = [ searchBarButton]
-    }
 
-}
-
-extension CartVC: UISearchBarDelegate {
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        
-    }
 }
 
 extension CartVC: UITableViewDelegate, UITableViewDataSource {

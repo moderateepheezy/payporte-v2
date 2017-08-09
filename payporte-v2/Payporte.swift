@@ -193,6 +193,51 @@ public class Payporte: OAKLIBServiceBinder {
         }
     }
     
+    
+    func fetchSearch(suggestion: String, completion: @escaping ([ProductList]) -> ()){
+        
+        let param = ["keyword": suggestion]
+        
+        configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.LOCALSEARCHLIST, params: param, completed: {_ in
+            
+            self.baseQueryTemplate(completion: completion)
+            
+        })
+    }
+    
+    func fetchSearchProductLists(key: String, value: Int, search: String, offset: Int, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+        type = "productList"
+        var param = [String: String]()
+        var data = [String: String]()
+        param["limit"] = "8"
+        param["width"] = "300"
+        param["height"] = "300"
+        param["key_word"] = search
+        param["sort_option"] = key
+        param["offset"] = "\(offset)"
+        param["filter"] = "{\"\(key)\": \"\(value)\"}"
+        
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: param,
+            options: []) {
+            let theJSONText = String(data: theJSONData,
+                                     encoding: .ascii)
+            
+            data["data"] = theJSONText
+            data["key_word"] = key
+            data["sort_option"] = search
+            data["filter"] = "{\"\(key)\": \"\(value)\"}"
+            
+            configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.SEARCHLIST, params: data, completed: {_ in
+                
+                self.baseQueryTemplate(itemCountCompletion: itemCountCompletion, cursorCompletion: cursorCompletion, completion: completion)
+                
+            })
+        }
+
+    }
+
+    
     private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
         if (!(cursor?.moveToFirst())!) {
             return;
@@ -252,15 +297,11 @@ public class Payporte: OAKLIBServiceBinder {
             return
         }
         let x = cursor?.toJson()
-        //print(x)
-        if message == "CACHED" && type == "productList"{
-            if message == "CACHED"{
-                self.itemCounts = Int.max
-            }else{
-                self.itemCounts = Int(message)!
-            }
-        }else{
-            print(message)
+        print(x)
+        if message == "CACHED" && (type == "productList") {
+            self.itemCounts = Int.max
+        }else if message != "SUCCESS" && (type == "productList") {
+            self.itemCounts = Int(message)!
         }
         
         self.coursorCount = Int((cursor?.getCount())!)

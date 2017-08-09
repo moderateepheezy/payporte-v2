@@ -11,19 +11,8 @@ import SnapKit
 import CLabsImageSlider
 import CSStickyHeaderFlowLayout
 
-class StringData {
-    var img: String?
-    var name: String?
+class HomeVC: MainVC {
     
-    init(img: String, name: String) {
-        self.img = img
-        self.name = name
-    }
-}
-
-class HomeVC: UIViewController, UISearchBarDelegate {
-    
-    private var mySearchBar: UISearchBar!
     
     var didSetupConstraints = false
     
@@ -53,7 +42,6 @@ class HomeVC: UIViewController, UISearchBarDelegate {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Popular Categories"
         label.font = UIFont(name: "Orkney-Medium", size: 14)
         return label
     }()
@@ -80,56 +68,30 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = nil
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = nil
         self.fetchCategories()
-//        let when = DispatchTime.now() + 2
-//        DispatchQueue.main.asyncAfter(deadline: when) {
-//            
-//        }
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "home").withRenderingMode(.alwaysOriginal)
         
-//        let menuBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu"), style: .plain, target: self, action: #selector(menuClick))
-//        menuBarButton.tintColor = UIColor.black
-        
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "home")
-        //self.navigationItem.leftBarButtonItems = [ menuBarButton]
-
-        view.backgroundColor = .white
-        mySearchBar = UISearchBar()
-        mySearchBar.delegate = self
         
-        mySearchBar.searchBarStyle = UISearchBarStyle.minimal
-        
-        mySearchBar.placeholder = "Search for product"
-        
-        mySearchBar.tintColor = UIColor.black
-        
-        mySearchBar.showsSearchResultsButton = true
-        mySearchBar.endEditing(true)
-        
-        mySearchBar.setTextColor(color: UIColor.black)
-        
-        mySearchBar.tintColor = UIColor.black
-        
-        let frame = CGRect(x: 0, y: 0, width: view.frame.width - 80, height: 50)
-        let titleView = UIView(frame: frame)
-        mySearchBar.frame = frame
-        titleView.addSubview(mySearchBar)
-        navigationItem.titleView = titleView
-        
+        self.navigationItem.title = "P A Y P O R T E"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
         let layout = CSStickyHeaderFlowLayout()
         layout.sectionInset = sectionInsets
         layout.itemSize = returnCellSize()
-        layout
         layout.disableStretching = true
         
         let gframe = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 40)
@@ -167,27 +129,6 @@ class HomeVC: UIViewController, UISearchBarDelegate {
             make.height.equalTo(15)
             make.width.equalTo(view)
         }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Do some search stuff
-        mySearchBar.showsCancelButton = true
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        mySearchBar.setTextColor(color: UIColor.lightGray)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        mySearchBar.text = ""
-        mySearchBar.showsCancelButton = false
-        mySearchBar.endEditing(true)
-        mySearchBar.setTextColor(color: UIColor.black)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        mySearchBar.endEditing(true)
     }
     
     func returnCellSize() -> CGSize {

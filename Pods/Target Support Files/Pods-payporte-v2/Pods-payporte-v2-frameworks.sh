@@ -97,6 +97,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JNDropDownMenu/JNDropDownMenu.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KJExpandableTableTree/KJExpandableTableTree.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MIBadgeButton-Swift/MIBadgeButton_Swift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ModernSearchBar/ModernSearchBar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NVActivityIndicatorView/NVActivityIndicatorView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ParallaxHeader/ParallaxHeader.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RGBottomSheet/RGBottomSheet.framework"
@@ -110,6 +111,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UICheckbox.Swift/UICheckbox_Swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/YNSearch/YNSearch.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CLabsImageSlider/CLabsImageSlider.framework"
@@ -120,6 +122,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JNDropDownMenu/JNDropDownMenu.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KJExpandableTableTree/KJExpandableTableTree.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MIBadgeButton-Swift/MIBadgeButton_Swift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ModernSearchBar/ModernSearchBar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NVActivityIndicatorView/NVActivityIndicatorView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ParallaxHeader/ParallaxHeader.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RGBottomSheet/RGBottomSheet.framework"
@@ -133,6 +136,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UICheckbox.Swift/UICheckbox_Swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/YNSearch/YNSearch.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

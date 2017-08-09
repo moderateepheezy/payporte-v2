@@ -59,6 +59,7 @@ public class BottomSheetView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print(options)
         setupViews()
     }
     

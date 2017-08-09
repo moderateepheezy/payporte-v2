@@ -20,6 +20,11 @@ protocol ProductListingDelegate {
 let cellIndetifier = "cellId"
 var key = "0"
 
+public enum DisplayType {
+    case SEARCH
+    case SUBCAT
+}
+
 class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate {
 
     private var mySearchBar: UISearchBar!
@@ -32,7 +37,9 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
     
     var categoryName: String?
     
-    var category: Category?
+    var category_id: String?
+    
+    var displayType: DisplayType?
     
     var coursorCount: Int?
     var itemCounts: Int?
@@ -127,7 +134,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         return label
     }()
     
-    func getProductDetails(category_id: String){
+    func getProductLists(category_id: String){
         
         
         Payporte.sharedInstance.fetchSortProductListing(key: "0", offset: 0, category_id: category_id, completion: { (productList) in
@@ -167,7 +174,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getProductDetails(category_id: (category?.category_id)!)
+        getProductLists(category_id: category_id!)
         
         view.backgroundColor = Utilities.getColorWithHexString("#f9f9f9")
         view.setNeedsUpdateConstraints()
@@ -253,7 +260,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         if coursorCount! >= offset {
             page = offset
             print(key)
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: category_id!, completion: { (productList) in
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
@@ -281,7 +288,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category_id!), completion: { (productList) in
                 
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
@@ -310,7 +317,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: (category?.category_id)!, completion: { (productList) in
+            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: (category_id)!, completion: { (productList) in
                 
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
@@ -342,7 +349,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         
-        getProductDetails(category_id: (category?.category_id!)!)
+        getProductLists(category_id: category_id!)
     }
     
     func closeButtomSheet() {

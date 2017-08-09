@@ -7,6 +7,7 @@ PODS:
   - JNDropDownMenu (0.1.6)
   - KJExpandableTableTree (1.1.1)
   - MIBadgeButton-Swift (0.5)
+  - ModernSearchBar (1.4)
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
@@ -24,6 +25,7 @@ PODS:
   - SwiftyJSON (3.1.4)
   - UICheckbox.Swift (1.0.0)
   - UIScrollView-InfiniteScroll (1.0.1)
+  - YNSearch (2.3.0)
 
 DEPENDENCIES:
   - CLabsImageSlider (~> 0.1.2)
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - JNDropDownMenu
   - KJExpandableTableTree
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
+  - ModernSearchBar
   - NVActivityIndicatorView
   - ParallaxHeader
   - RGBottomSheet (~> 1.0)
@@ -47,6 +50,7 @@ DEPENDENCIES:
   - SwiftyJSON
   - UICheckbox.Swift
   - UIScrollView-InfiniteScroll (~> 1.0.0)
+  - YNSearch
 
 EXTERNAL SOURCES:
   MIBadgeButton-Swift:
@@ -73,6 +77,7 @@ SPEC CHECKSUMS:
   JNDropDownMenu: 5f24544b002e01289818d1c56d56ae2de11cb931
   KJExpandableTableTree: e4724aa845551ad6d29850c1abcf71fb404f37e7
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
+  ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   ParallaxHeader: 18ef35dfee4e565e2ef8b8d21c16d856ab1f424a
   RGBottomSheet: 0eabb98a661d8d2f54782fc676861aea82b98436
@@ -86,7 +91,8 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
   UIScrollView-InfiniteScroll: a90df4ba4a7ca1926128ade34a850ddbdf74c564
+  YNSearch: 972d404c60b909ce51c2ad71cfbc642ffc0b03cc
 
-PODFILE CHECKSUM: d34012e32497ee6991bf5014ab00f1bed5b10f54
+PODFILE CHECKSUM: a642de076b7a0e6752b36f31ecb771e0278841a2
 
 COCOAPODS: 1.2.0

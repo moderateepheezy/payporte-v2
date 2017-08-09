@@ -72,6 +72,7 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
         fetchProductDetails(product_id: id)
         
         view.backgroundColor = .white
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func setupViews(productImages: [String]){
@@ -346,7 +347,7 @@ public class OptionsCell: UITableViewCell, RGBottomSheetDelegate{
     func handleBottomSheet(button: UIButton){
         guard let options = options else {return}
         var array = [String]()
-        for i in 0 ..< options.count - 1{
+        for i in 0 ..< options.count{
             array.append(options[i].optionValue!)
         }
         configureButtomSheet(options: array, title: options[0].optionTitle!, button: button)
