@@ -36,6 +36,16 @@ class Utilities{
         
     }
     
+    public static func getBaseNotification(text: String, type: CRNotificationType){
+        if type == .error{
+            CRNotifications.showNotification(type: type, title: "Error", message: text, dismissDelay: 3)
+        }else if type == .success{
+            CRNotifications.showNotification(type: type, title: "Success", message: text, dismissDelay: 3)
+        }else{
+            CRNotifications.showNotification(type: type, title: "Do you know!", message: text, dismissDelay: 3)
+        }
+    }
+    
     public static func configSort() -> [Sort] {
         let sortstring = "[\n" +
             "   {\n" +

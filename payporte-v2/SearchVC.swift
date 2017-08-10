@@ -83,7 +83,7 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         button.setImage(#imageLiteral(resourceName: "ic_caret_up"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
         button.setTitleColor(UIColor(red: 90, green: 90, blue: 90), for: .normal)
-        button.backgroundColor = .white
+        button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         button.alpha = 0
         return button
     }()
@@ -178,8 +178,11 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         view.setNeedsUpdateConstraints()
         addSubViews()
         
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
         searchField.delegate = self
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        //searchField.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         searchField.addTarget(self, action: #selector(searchRecordsAsPerText(_ :)), for: .editingChanged)
         
         let backButton = UIButton(frame: CGRect(x: 0, y: 20, width: 50, height: 45))
@@ -188,7 +191,7 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         backButton.addTarget(self, action: #selector(dismissButton(button:)), for: .touchUpInside)
         self.view.addSubview(backButton)
         
-        let frame = CGRect(x: 35, y: 20, width: view.frame.width - 40, height: 50)
+        let frame = CGRect(x: 40, y: 20, width: view.frame.width - 40, height: 50)
         searchField.frame = frame
         view.addSubview(searchField)
         
@@ -431,7 +434,7 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         sortDown.shadowColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         sortDown.separatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        sortDown.bottomOffset = CGPoint(x: 0, y:((sortDown.anchorView?.plainView.bounds.height)! + 64))
+        sortDown.bottomOffset = CGPoint(x: headerView.frame.origin.x, y: headerView.frame.size.height + 5)
         
         sortDown.cancelAction = { [unowned self] in
             self.sortButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
@@ -473,7 +476,7 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
             self.sheet?.show()
         }
         
-        filterDown.bottomOffset = CGPoint(x: 0, y:((filterDown.anchorView?.plainView.bounds.height)!))
+        filterDown.bottomOffset = CGPoint(x: headerView.frame.origin.x, y: headerView.frame.size.height + 5)
         
         
         filterDown.cancelAction = { [unowned self] in

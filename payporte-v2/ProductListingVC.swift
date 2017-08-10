@@ -25,7 +25,7 @@ public enum DisplayType {
     case SUBCAT
 }
 
-class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate {
+class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
 
     private var mySearchBar: UISearchBar!
     
@@ -143,8 +143,8 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
             self.activityIndicator.stopAnimating()
             self.productLists = productList
             self.collectionView.reloadData()
-            self.showSort()
             self.showFilter()
+            self.showSort()
             
         }, itemCountCompletion: { (itemCounts) in
             self.itemCounts = itemCounts
@@ -428,7 +428,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
             priceItem.append(SomeData(value: i.value!, label: i.label!))
         }
         sortDown.dataSource = items
-        sortDown.anchorView = sortButton
+        sortDown.anchorView = headerView
         
         sortDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if item == "Alphabetical Sort"{
@@ -447,7 +447,7 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         sortDown.shadowColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         sortDown.separatorColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        sortDown.bottomOffset = CGPoint(x: 0, y:((sortDown.anchorView?.plainView.bounds.height)! + 64))
+        sortDown.bottomOffset = CGPoint(x: headerView.frame.origin.x, y: headerView.frame.size.height + 5)
         
         sortDown.cancelAction = { [unowned self] in
             self.sortButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
@@ -482,14 +482,14 @@ class ProductListingVC: UIViewController, RGBottomSheetDelegate, ProductListingD
         
         
         filterDown.dataSource = items
-        filterDown.anchorView = filterButton
+        filterDown.anchorView = headerView
         
         filterDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.configFilterBtnSheet(content: layerArrays[index], title: item)
             self.sheet?.show()
         }
         
-        filterDown.bottomOffset = CGPoint(x: 0, y:((filterDown.anchorView?.plainView.bounds.height)!))
+        filterDown.bottomOffset = CGPoint(x: headerView.frame.origin.x, y: headerView.frame.size.height + 5)
     
         
         filterDown.cancelAction = { [unowned self] in

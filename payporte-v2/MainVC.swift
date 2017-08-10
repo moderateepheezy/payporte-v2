@@ -23,7 +23,8 @@ class MainVC: UIViewController {
     
     func search(){
         let vc = SearchVC()
-        navigationController?.pushViewController(vc, animated: false)
+        vc.searchField.becomeFirstResponder()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

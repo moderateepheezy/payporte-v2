@@ -189,6 +189,7 @@ extension ProductBuyDetailsVC: UITableViewDelegate, UITableViewDataSource{
                 cell.hasOption = false
             }
             cell.product = product
+            cell.productBuydetails = self
             return cell
         }else if indexPath.item == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellFor", for: indexPath) as! ProductDescriptionCell
@@ -615,6 +616,7 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
     var option: Options?
     var product: Product?
     var hasOption: Bool?
+    var productBuydetails: ProductBuyDetailsVC?
     
     var addToCartButton: UIButton = {
         let button = UIButton()
@@ -660,20 +662,24 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
         //print(qtyText)
         if hasOption! &&  someData[(option?.optionTitle)!] != nil{
                 Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
+                    Utilities.getBaseNotification(text: "Item added to cart", type: .success)
                     button.loadingIndicator(show: false)
                     button.isEnabled = true
                     someData.removeAll()
+                    self.productBuydetails?.navigationController?.popViewController(animated: true)
                 }
         }else if !hasOption!{
             Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
+                Utilities.getBaseNotification(text: "Item added to cart", type: .success)
                 button.loadingIndicator(show: false)
                 button.isEnabled = true
                 someData.removeAll()
+                self.productBuydetails?.navigationController?.popViewController(animated: true)
             }
         }else if hasOption! &&  someData[(option?.optionTitle)!] == nil{
-            print("Please use option values for \((option?.optionTitle)!)")
+            Utilities.getBaseNotification(text: "The item needs a \((option?.optionTitle)!).", type: .error)
         }else if hasOption! &&  someData["Quantity"] == nil{
-            print("Please use option values for Quantity")
+            Utilities.getBaseNotification(text: "Please use option values for Quantity", type: .error)
         }
         
     }

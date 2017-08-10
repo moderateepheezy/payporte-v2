@@ -22,6 +22,10 @@
 		942586C51F2177B00074210F /* Payporte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C41F2177B00074210F /* Payporte.swift */; };
 		942586C81F2182B30074210F /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942586C71F2182B30074210F /* Banner.swift */; };
 		942CE3C01F3B75BD00E1A0F3 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3BF1F3B75BC00E1A0F3 /* MainVC.swift */; };
+		942CE3CF1F3C875A00E1A0F3 /* CRNotificationsMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 942CE3CA1F3C875A00E1A0F3 /* CRNotificationsMedia.xcassets */; };
+		942CE3D01F3C875A00E1A0F3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3CC1F3C875A00E1A0F3 /* Colors.swift */; };
+		942CE3D11F3C875A00E1A0F3 /* CRNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3CD1F3C875A00E1A0F3 /* CRNotification.swift */; };
+		942CE3D21F3C875A00E1A0F3 /* CRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3CE1F3C875A00E1A0F3 /* CRNotifications.swift */; };
 		942FC12E1F3B188000DAA806 /* SearchVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */; };
 		9430F8ED1F1F9CA500A2FC2D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */; };
 		9430F8F31F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8F01F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib */; };
@@ -166,6 +170,10 @@
 		942586C41F2177B00074210F /* Payporte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payporte.swift; sourceTree = "<group>"; };
 		942586C71F2182B30074210F /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		942CE3BF1F3B75BC00E1A0F3 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		942CE3CA1F3C875A00E1A0F3 /* CRNotificationsMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CRNotificationsMedia.xcassets; sourceTree = "<group>"; };
+		942CE3CC1F3C875A00E1A0F3 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		942CE3CD1F3C875A00E1A0F3 /* CRNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotification.swift; sourceTree = "<group>"; };
+		942CE3CE1F3C875A00E1A0F3 /* CRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotifications.swift; sourceTree = "<group>"; };
 		942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SearchVC+Extension.swift"; sourceTree = "<group>"; };
 		9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		9430F8EE1F1F9DEA00A2FC2D /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = ../../core/deps/prebuilt/iOS/libz.1.1.3.dylib; sourceTree = "<group>"; };
@@ -383,6 +391,33 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		942CE3C81F3C875A00E1A0F3 /* CRNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				942CE3C91F3C875A00E1A0F3 /* Assets */,
+				942CE3CB1F3C875A00E1A0F3 /* Classes */,
+			);
+			path = CRNotifications;
+			sourceTree = "<group>";
+		};
+		942CE3C91F3C875A00E1A0F3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				942CE3CA1F3C875A00E1A0F3 /* CRNotificationsMedia.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		942CE3CB1F3C875A00E1A0F3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				942CE3CC1F3C875A00E1A0F3 /* Colors.swift */,
+				942CE3CD1F3C875A00E1A0F3 /* CRNotification.swift */,
+				942CE3CE1F3C875A00E1A0F3 /* CRNotifications.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		9433E7921F0E70EB00FD1A6D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +591,7 @@
 		949295BF1F05277700A403CE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				942CE3C81F3C875A00E1A0F3 /* CRNotifications */,
 				948B5CAD1F2ABFF300F9D020 /* CountdownLabel */,
 				94D70C601F0982FD006E375A /* Orkney-Bold.ttf */,
 				94D70C611F0982FD006E375A /* Orkney-Light.ttf */,
@@ -845,6 +881,7 @@
 				9492958B1F05209E00A403CE /* Main.storyboard in Resources */,
 				948B5CD71F2ABFF300F9D020 /* Sparkle.png in Resources */,
 				949A314B1F0AA74400567A17 /* Childs3rdStageTableViewCell.xib in Resources */,
+				942CE3CF1F3C875A00E1A0F3 /* CRNotificationsMedia.xcassets in Resources */,
 				949295C91F05280400A403CE /* AvenirNextLTPro-Regular.otf in Resources */,
 				949295C81F05280400A403CE /* AvenirNextLTPro-Medium.otf in Resources */,
 				948B5CD61F2ABFF300F9D020 /* Smoke.png in Resources */,
@@ -1017,6 +1054,7 @@
 				94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */,
 				948B5CC51F2ABFF300F9D020 /* CountdownLabel.swift in Sources */,
 				948B5CAA1F2AA39600F9D020 /* StoreCountDownVC.swift in Sources */,
+				942CE3D11F3C875A00E1A0F3 /* CRNotification.swift in Sources */,
 				94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */,
 				94CF59EE1F276E2D00D8653C /* ProductList.swift in Sources */,
 				944885AA1F0BB29900FEC55D /* ProductListingVC.swift in Sources */,
@@ -1054,6 +1092,7 @@
 				948B5CC91F2ABFF300F9D020 /* LTEasing.swift in Sources */,
 				949295D01F05898000A403CE /* CardView.swift in Sources */,
 				947036D51F2EAD360093F71B /* Options.swift in Sources */,
+				942CE3D01F3C875A00E1A0F3 /* Colors.swift in Sources */,
 				941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */,
 				94F1E4BC1F27C1D800F34F9D /* LayerFilter.swift in Sources */,
 				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
@@ -1071,6 +1110,7 @@
 				9472E0A41F38A8D000947F32 /* SearchVC.swift in Sources */,
 				944885A71F0B933400FEC55D /* Profile+Extension.swift in Sources */,
 				948B5CCB1F2ABFF300F9D020 /* LTMorphingEffect.swift in Sources */,
+				942CE3D21F3C875A00E1A0F3 /* CRNotifications.swift in Sources */,
 				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,
 				947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
