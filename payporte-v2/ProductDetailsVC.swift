@@ -128,8 +128,11 @@ class ProductDetailsVC: UIViewController, SwiftImageCarouselVCDelegate, RGBottom
     }()
     
     func fetchProductDetails(product_id: String){
-        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product) in
-            
+        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product, error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.readMoreButton.isEnabled = true
             self.spinnerView.alpha = 0
             self.activityIndicator.startAnimating()

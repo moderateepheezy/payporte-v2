@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double YNSearchVersionNumber;
-FOUNDATION_EXPORT const unsigned char YNSearchVersionString[];
+FOUNDATION_EXPORT double AZEmptyStateVersionNumber;
+FOUNDATION_EXPORT const unsigned char AZEmptyStateVersionString[];
 

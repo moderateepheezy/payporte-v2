@@ -44,7 +44,11 @@ class CustomHeaderView: UIView, imageSliderDelegate, SwiftImageCarouselVCDelegat
     }
     
     func fetchBanners(){
-        Payporte.sharedInstance.fetchBanners { (bans: [Banner]) in
+        Payporte.sharedInstance.fetchBanners { (bans: [Banner], error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.baners.removeAll()
             for i in 0 ..< (bans.count - 1){
                 guard let img = bans[i].image_path else {return}

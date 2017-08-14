@@ -89,6 +89,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AZEmptyState/AZEmptyState.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CLabsImageSlider/CLabsImageSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CountdownLabel/CountdownLabel.framework"
@@ -111,9 +112,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UICheckbox.Swift/UICheckbox_Swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YNSearch/YNSearch.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AZEmptyState/AZEmptyState.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CLabsImageSlider/CLabsImageSlider.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CountdownLabel/CountdownLabel.framework"
@@ -136,7 +137,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UICheckbox.Swift/UICheckbox_Swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YNSearch/YNSearch.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

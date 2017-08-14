@@ -1,8 +1,8 @@
 //
 //  CheckoutVC.swift
-//  PayPorte
+//  payporte-v2
 //
-//  Created by SimpuMind on 5/17/17.
+//  Created by SimpuMind on 8/14/17.
 //  Copyright © 2017 SimpuMind. All rights reserved.
 //
 
@@ -26,27 +26,30 @@ class CheckoutVC: UIViewController {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Checkout"
-        label.font = UIFont(name: "AvenirNext-Regular", size: 18)
+        label.font = UIFont(name: "Orkney-Regular", size: 18)
         label.textAlignment = .center
         label.textColor = UIColor(white: 0, alpha: 0.65)
         return label
     }()
     
-    let totalPriceView: FancyView = {
-       let view = FancyView()
+    let totalPriceView: CardView = {
+        let view = CardView()
+        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
         view.backgroundColor = .white
         return view
     }()
     
-    let addressView: FancyView = {
-        let view = FancyView()
+    let addressView: CardView = {
+        let view = CardView()
+        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
         view.backgroundColor = .white
         return view
     }()
     
-    let paymentView: FancyView = {
-        let view = FancyView()
+    let paymentView: CardView = {
+        let view = CardView()
         view.backgroundColor = .white
+        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
         return view
     }()
     
@@ -62,7 +65,7 @@ class CheckoutVC: UIViewController {
     let cartLabel: UILabel = {
         let label = UILabel()
         label.text = "CART"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 14)
+        label.font = UIFont(name: "Orkney-Bold", size: 14)
         label.textAlignment = .center
         label.textColor = UIColor(white: 0, alpha: 0.65)
         return label
@@ -72,7 +75,7 @@ class CheckoutVC: UIViewController {
     let shipToLabel: UILabel = {
         let label = UILabel()
         label.text = "SHIP TO"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 14)
+        label.font = UIFont(name: "Orkney-Bold", size: 14)
         label.textColor = UIColor(white: 0, alpha: 0.65)
         label.textAlignment = .center
         return label
@@ -82,7 +85,7 @@ class CheckoutVC: UIViewController {
         let label = UILabel()
         label.text = "SHIPPING METHOD"
         label.textColor = UIColor(white: 0, alpha: 0.65)
-        label.font = UIFont(name: "AvenirNext-Bold", size: 14)
+        label.font = UIFont(name: "Orkney-Bold", size: 14)
         label.textAlignment = .center
         return label
     }()
@@ -92,7 +95,7 @@ class CheckoutVC: UIViewController {
         let label = UILabel()
         label.text = "NO SHIPPING METHOD SELECTED"
         label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        label.font = UIFont(name: "Orkney-Regular", size: 12)
         return label
     }()
     
@@ -100,7 +103,7 @@ class CheckoutVC: UIViewController {
         let label = UILabel()
         label.text = "JOHN ADDRESS, OFF GORILLA STREET LAGOS"
         label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        label.font = UIFont(name: "Orkney-Regular", size: 12)
         return label
     }()
     
@@ -108,7 +111,7 @@ class CheckoutVC: UIViewController {
         let label = UILabel()
         label.text = "JOHN (0705456789045)"
         label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "AvenirNext-Bold", size: 12)
+        label.font = UIFont(name: "Orkney-Bold", size: 12)
         return label
     }()
     
@@ -135,7 +138,7 @@ class CheckoutVC: UIViewController {
         let label = UILabel()
         label.text = "YOU HAVE 1 ITEM(S) IN YOUR CART"
         label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        label.font = UIFont(name: "Orkney-Regular", size: 12)
         return label
     }()
     
@@ -143,15 +146,15 @@ class CheckoutVC: UIViewController {
         let label = UILabel()
         label.text = "TOTAL N2,000.00"
         label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "AvenirNext-Bold", size: 12)
+        label.font = UIFont(name: "Orkney-Bold", size: 12)
         return label
     }()
     
     let couponTextField: UITextField = {
-       let textfield = UITextField()
+        let textfield = UITextField()
         textfield.placeholder = "ENTER COUPON CODE"
         textfield.textColor = UIColor(white: 0, alpha: 0.45)
-        textfield.font = UIFont(name: "AvenirNext-Regular", size: 10)
+        textfield.font = UIFont(name: "Orkney-Regular", size: 10)
         textfield.keyboardType = .numberPad
         return textfield
     }()
@@ -159,9 +162,9 @@ class CheckoutVC: UIViewController {
     let verifyCouponButton: UIButton = {
         let button = UIButton()
         button.setTitle("VERIFY", for: .normal)
-        button.setTitleColor(UIColor(white: 0, alpha: 0.4), for: .normal)
-        button.backgroundColor = UIColor(white: 0, alpha: 0.30)
-        button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 12)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = primaryColor
+        button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 12)
         return button
     }()
     
@@ -170,14 +173,14 @@ class CheckoutVC: UIViewController {
         button.setTitleColor(UIColor(white: 0, alpha: 0.65), for: .normal)
         button.setTitle("PLACE ORDER", for: .normal)
         button.setImage(#imageLiteral(resourceName: "white_right_arrow"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 14)
+        button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
         button.isUserInteractionEnabled = true
         button.clipsToBounds = true
         button.setTitleColor(UIColor.white, for: .normal)
         return button
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -211,7 +214,7 @@ class CheckoutVC: UIViewController {
         editAddressImageView.addTarget(self, action: #selector(handleChangeAddress), for: .touchUpInside)
         showItemButton.addTarget(self, action: #selector(handleShowItems), for: .touchUpInside)
         
-       
+        
         
         placeOrderButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         placeOrderButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -223,8 +226,6 @@ class CheckoutVC: UIViewController {
             
         })
         
-        placeOrderButton.applyGradientToButton(colours: colors)
-    
     }
     
     //MARK:- Handle Targets
@@ -242,8 +243,8 @@ class CheckoutVC: UIViewController {
     
     func handleChangeAddress() {
         
-        let vc = ShippingAddressVC()
-        present(vc, animated: true, completion: nil)
+        //let vc = ShippingAddressVC()
+        //present(vc, animated: true, completion: nil)
     }
-
+    
 }

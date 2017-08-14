@@ -12,7 +12,7 @@ class CartVC: MainVC {
     
     let cellIdentifier = "cellIdentifier"
     
-    let imgArray = ["t2", "01B", "t4", "t7", "t6"]
+    var cartArray = [Cart]()
     
     var cardview: CardView = {
        let cv = CardView()
@@ -32,7 +32,6 @@ class CartVC: MainVC {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "₦200,000"
         label.font = UIFont(name: "Orkney-Bold", size: 16)
         label.textColor = UIColor(white: 0, alpha: 0.85)
         label.textAlignment = .center
@@ -49,8 +48,7 @@ class CartVC: MainVC {
     let tableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .white
-        tv.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tv.separatorColor = UIColor(white: 0.45, alpha: 0.45)
+        tv.separatorStyle = .none
         return tv
     }()
     
@@ -65,11 +63,36 @@ class CartVC: MainVC {
         return button
     }()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = primaryColor
+        
+        return refreshControl
+    }()
+    
     var didSetupConstraints = false
+    
+    func fetchCartItems(){
+        Payporte.sharedInstance.fetchCartItems { (carts, message, error, itemCount, cursorCount) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
+            
+            self.priceLabel.text = "₦ \(message)"
+            self.cartArray = carts
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fetchCartItems()
         view.setNeedsUpdateConstraints()
         addSubViewsToView()
         
@@ -84,6 +107,7 @@ class CartVC: MainVC {
         self.navigationItem.title = "C A R T"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
+        checkoutButton.addTarget(self, action: #selector(handlePushToCartVc(button:)), for: .touchUpInside)
         checkoutButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         checkoutButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         checkoutButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -104,16 +128,6 @@ class CartVC: MainVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func menuClick(){
-        let vc = DrawerController()
-        vc.hidesBottomBarWhenPushed = false
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.backBarButtonItem = backItem
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func addSubViewsToView(){
         view.addSubview(cardview)
         cardview.addSubview(totalLabel)
@@ -121,6 +135,22 @@ class CartVC: MainVC {
         view.addSubview(cardView2)
         view.addSubview(tableView)
         cardView2.addSubview(checkoutButton)
+        tableView.addSubview(refreshControl)
+    }
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        fetchCartItems()
+    }
+    
+    func handlePushToCartVc(button: UIButton){
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.backBarButtonItem = backItem
+        let vc = CheckoutVC()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -132,22 +162,36 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return imgArray.count
+        return cartArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CartCell
+        cell.index = indexPath.item
+        cell.cartVc = self
+        let arr = cartArray[indexPath.item]
+        cell.cart = arr
         
-        let arr = imgArray[indexPath.item]
-        
-        cell.productImageView.image = UIImage(named: arr)
         cell.selectionStyle = .none
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let arr = cartArray[indexPath.item]
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.backBarButtonItem = backItem
+        let vc = ProductBuyDetailsVC()
+        vc.productList_id = arr.product_id
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

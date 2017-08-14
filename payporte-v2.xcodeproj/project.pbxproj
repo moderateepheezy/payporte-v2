@@ -26,6 +26,7 @@
 		942CE3D01F3C875A00E1A0F3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3CC1F3C875A00E1A0F3 /* Colors.swift */; };
 		942CE3D11F3C875A00E1A0F3 /* CRNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3CD1F3C875A00E1A0F3 /* CRNotification.swift */; };
 		942CE3D21F3C875A00E1A0F3 /* CRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3CE1F3C875A00E1A0F3 /* CRNotifications.swift */; };
+		942CE3E01F3DAF5D00E1A0F3 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CE3DF1F3DAF5D00E1A0F3 /* Cart.swift */; };
 		942FC12E1F3B188000DAA806 /* SearchVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */; };
 		9430F8ED1F1F9CA500A2FC2D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */; };
 		9430F8F31F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9430F8F01F1F9DEE00A2FC2D /* libiconv.2.4.0.dylib */; };
@@ -128,6 +129,9 @@
 		94F1E4C41F27C5E100F34F9D /* SortFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1E4C21F27C5E100F34F9D /* SortFilter.swift */; };
 		94F1E4C61F27F31500F34F9D /* SortButtonSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1E4C51F27F31500F34F9D /* SortButtonSheetView.swift */; };
 		94F1E4C91F28B90F00F34F9D /* ProductListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1E4C81F28B90F00F34F9D /* ProductListDataSource.swift */; };
+		94F4317D1F40887600D2D5DE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4317C1F40887600D2D5DE /* Reachability.swift */; };
+		94F4317F1F41D0AE00D2D5DE /* CheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */; };
+		94F431811F41D0DD00D2D5DE /* CheckoutVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */; };
 		94F5ED281F06CD8E0061917A /* CollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */; };
 		ED75C164D432025FF35B07C6 /* Pods_payporte_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */; };
 /* End PBXBuildFile section */
@@ -174,6 +178,7 @@
 		942CE3CC1F3C875A00E1A0F3 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		942CE3CD1F3C875A00E1A0F3 /* CRNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotification.swift; sourceTree = "<group>"; };
 		942CE3CE1F3C875A00E1A0F3 /* CRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotifications.swift; sourceTree = "<group>"; };
+		942CE3DF1F3DAF5D00E1A0F3 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		942FC12D1F3B187F00DAA806 /* SearchVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SearchVC+Extension.swift"; sourceTree = "<group>"; };
 		9430F8EC1F1F9CA500A2FC2D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		9430F8EE1F1F9DEA00A2FC2D /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = ../../core/deps/prebuilt/iOS/libz.1.1.3.dylib; sourceTree = "<group>"; };
@@ -287,6 +292,9 @@
 		94F1E4C21F27C5E100F34F9D /* SortFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortFilter.swift; sourceTree = "<group>"; };
 		94F1E4C51F27F31500F34F9D /* SortButtonSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortButtonSheetView.swift; sourceTree = "<group>"; };
 		94F1E4C81F28B90F00F34F9D /* ProductListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListDataSource.swift; sourceTree = "<group>"; };
+		94F4317C1F40887600D2D5DE /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutVC.swift; sourceTree = "<group>"; };
+		94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+Extension.swift"; sourceTree = "<group>"; };
 		94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionHeader.swift; sourceTree = "<group>"; };
 		AE40B7EDB1DFB95E681E68EC /* Pods-payporte-v2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -387,6 +395,7 @@
 				94F1E4BF1F27C5AA00F34F9D /* product-list */,
 				942586C71F2182B30074210F /* Banner.swift */,
 				94CF57A31F22555100D8653C /* Category.swift */,
+				942CE3DF1F3DAF5D00E1A0F3 /* Cart.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -621,6 +630,7 @@
 				942586931F2107250074210F /* OKSystem.swift */,
 				942586C41F2177B00074210F /* Payporte.swift */,
 				9472E0561F333D2A00947F32 /* ConfigModel.swift */,
+				94F4317C1F40887600D2D5DE /* Reachability.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -648,6 +658,7 @@
 				94D70C5A1F095687006E375A /* CartVC+Extension.swift */,
 				944885A61F0B933400FEC55D /* Profile+Extension.swift */,
 				94CF59E91F2643FA00D8653C /* SubCategoryVC+Extension.swift */,
+				94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -692,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				949295BB1F0524A500A403CE /* CartVC.swift */,
+				94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */,
 			);
 			name = Cart;
 			sourceTree = "<group>";
@@ -1095,6 +1107,7 @@
 				942CE3D01F3C875A00E1A0F3 /* Colors.swift in Sources */,
 				941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */,
 				94F1E4BC1F27C1D800F34F9D /* LayerFilter.swift in Sources */,
+				94F431811F41D0DD00D2D5DE /* CheckoutVC+Extension.swift in Sources */,
 				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
 				942586941F2107250074210F /* OKSystem.swift in Sources */,
 				9433E7951F0E715600FD1A6D /* ProductListingVC+Extension.swift in Sources */,
@@ -1105,6 +1118,7 @@
 				94A4D63E1F1F75580052E89E /* payporte.m in Sources */,
 				949295861F05209E00A403CE /* AppDelegate.swift in Sources */,
 				94DAEC271F06C299005E4AE4 /* CollectionParallaxHeader.swift in Sources */,
+				94F4317F1F41D0AE00D2D5DE /* CheckoutVC.swift in Sources */,
 				947036D91F2F38CF0093F71B /* ProductBuyDetailsVC.swift in Sources */,
 				9433E7981F0E7A5800FD1A6D /* FilterSortViews.swift in Sources */,
 				9472E0A41F38A8D000947F32 /* SearchVC.swift in Sources */,
@@ -1112,6 +1126,7 @@
 				948B5CCB1F2ABFF300F9D020 /* LTMorphingEffect.swift in Sources */,
 				942CE3D21F3C875A00E1A0F3 /* CRNotifications.swift in Sources */,
 				949295B61F05235B00A403CE /* MainTabViewController.swift in Sources */,
+				94F4317D1F40887600D2D5DE /* Reachability.swift in Sources */,
 				947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
 				941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */,
@@ -1122,6 +1137,7 @@
 				9433E79A1F0EC6A800FD1A6D /* ProductListCell.swift in Sources */,
 				948B5CD11F2ABFF300F9D020 /* LTMorphingLabel+Sparkle.swift in Sources */,
 				948B5CCF1F2ABFF300F9D020 /* LTMorphingLabel+Fall.swift in Sources */,
+				942CE3E01F3DAF5D00E1A0F3 /* Cart.swift in Sources */,
 				949295D61F058E3B00A403CE /* CategoryCell.swift in Sources */,
 				947036D71F2EAD8E0093F71B /* PSeller.swift in Sources */,
 				942586C51F2177B00074210F /* Payporte.swift in Sources */,

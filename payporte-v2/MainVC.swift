@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import AZEmptyState
 
 class MainVC: UIViewController {
 
+    var emptyStateView: AZEmptyStateView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,4 +30,27 @@ class MainVC: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    func setupEmptyState(){
+        emptyStateView = AZEmptyStateView()
+        
+        //customize
+        emptyStateView.image = #imageLiteral(resourceName: "error_cloud")
+        emptyStateView.message = "Something went wrong..."
+        emptyStateView.buttonText = "Try Again"
+        emptyStateView.addTarget(self, action: #selector(tryAgain), for: .touchUpInside)
+        
+        //add subview
+        view.addSubview(emptyStateView)
+        
+        //add autolayout
+        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        emptyStateView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
+        emptyStateView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55).isActive = true
+    }
+    
+    func tryAgain(){
+        
+    }
 }

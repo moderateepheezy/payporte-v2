@@ -13,6 +13,11 @@ protocol JSONDecodable {
     init?(_ json: [String: Any])
 }
 
+enum ResultType{
+    case Success
+    case Error
+}
+
 public class Payporte: OAKLIBServiceBinder {
     
     private var api: OAKLIBApi?
@@ -20,8 +25,10 @@ public class Payporte: OAKLIBServiceBinder {
     
     var type: String?
     
-    var coursorCount: Int!
-    var itemCounts: Int!
+    var coursorCount: Int?
+    var itemCounts: Int?
+    var error: String?
+    var message: String?
     
     init() {
         api = OAKLIBApi.getInstance(system, handler: handler, service: service)
@@ -36,26 +43,27 @@ public class Payporte: OAKLIBServiceBinder {
     static let sharedInstance = Payporte()
     
     public func configChef(module: OAKLIBMenu, package: OAKLIBPackage,
-                            params: [String: String], completed: @escaping(_ success: Bool) -> ()){
+                           params: [String: String], completed: @escaping(_ success: Bool) -> ()){
         api?.getChef()?.grab(module)?.serve(package, params: params,
                                             binder: RequestHandler(payporte: self, binder: self, completed: completed))
     }
     
-    func fetchBanners(completion: @escaping ([Banner]) -> ()){
+    func fetchBanners(completion: @escaping ([Banner], _ error: String) -> ()){
         configChef(module: OAKLIBMenu.CONFIGMODULE, package: OAKLIBPackage.BANNERS, params: ["ou": "ik"], completed: {_ in
             
             self.baseQueryTemplate(completion: completion)
         })
     }
     
-    func fetchCategories(completion: @escaping ([Category]) -> ()){
+    func fetchCategories(completion: @escaping ([Category], _ error: String) -> ()){
         configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.CATEGORYLIST, params: ["ou": "ik"], completed: {_ in
             
             self.baseQueryTemplate(completion: completion)
         })
     }
     
-    func fetchSubCategories(category_id: String, completion: @escaping ([Category]) -> ()){
+    func fetchSubCategories(category_id: String, completion: @escaping ([Category], _ error: String) -> ()){
+        
         var params = [String: String]()
         var data = [String: String]()
         params["category_id"] = category_id
@@ -76,7 +84,7 @@ public class Payporte: OAKLIBServiceBinder {
         }
     }
     
-    func fetchSortProductListing(key: String, offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+    func fetchSortProductListing(key: String, offset: Int, category_id: String, completion: @escaping ([ProductList], _ error: String) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
         type = "productList"
         var param = [String: String]()
         var data = [String: String]()
@@ -104,7 +112,7 @@ public class Payporte: OAKLIBServiceBinder {
         }
     }
     
-    func fetchFilterProductListing(key: String, value: String, offset: Int, category_id: String, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+    func fetchFilterProductListing(key: String, value: String, offset: Int, category_id: String, completion: @escaping ([ProductList], _ error: String) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
         type = "productList"
         var param = [String: String]()
         var data = [String: String]()
@@ -134,7 +142,7 @@ public class Payporte: OAKLIBServiceBinder {
     }
     
     
-    func fetchProductDetails(product_id: String, completion: @escaping (Product) -> ()){
+    func fetchProductDetails(product_id: String, completion: @escaping (Product, _ error: String) -> ()){
         
         var param = [String: String]()
         param["product_id"] = product_id
@@ -149,12 +157,16 @@ public class Payporte: OAKLIBServiceBinder {
             let json = self.createJsonString(string: a)
             let product = Product(json: json)
             DispatchQueue.main.async {
-                completion(product)
+                print(self.error ?? "")
+                completion(product, self.error ?? "")
             }
         })
     }
     
-    public func addProductToCart(product: Product, option: Options?, completion: @escaping (Bool) -> ()){
+    public func addProductToCart(product: Product, option: Options?, completion: @escaping (Bool, _ error: String) -> ()){
+        
+        type = "addProduct"
+        
         let product_id = product.productId!
         guard let product_qty = someData["Quantity"] else {return}
         
@@ -189,12 +201,25 @@ public class Payporte: OAKLIBServiceBinder {
                                      encoding: .ascii)
             param["data"] = theJSONText
             
-            configChef(module: .CHECKOUTMODULE, package: .PRODUCTADDTOCART, params: param, completed: completion)
+            configChef(module: .CHECKOUTMODULE, package: .PRODUCTADDTOCART, params: param, completed: {_ in
+                self.success(completion: completion)
+            })
         }
     }
     
     
-    func fetchSearch(suggestion: String, completion: @escaping ([ProductList]) -> ()){
+    func success(completion: @escaping (Bool, _ error: String) -> ()){
+        if self.error != nil{
+            DispatchQueue.main.async {
+                completion(false, self.error ?? "")
+            }
+        }
+        DispatchQueue.main.async {
+            completion(true, self.error ?? "")
+        }
+    }
+    
+    func fetchSearch(suggestion: String, completion: @escaping ([ProductList], _ error: String) -> ()){
         
         let param = ["keyword": suggestion]
         
@@ -205,7 +230,7 @@ public class Payporte: OAKLIBServiceBinder {
         })
     }
     
-    func fetchSearchProductLists(key: String, value: Int, search: String, offset: Int, completion: @escaping ([ProductList]) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
+    func fetchSearchProductLists(key: String, value: Int, search: String, offset: Int, completion: @escaping ([ProductList], _ error: String) -> (), itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> ()){
         type = "productList"
         var param = [String: String]()
         var data = [String: String]()
@@ -225,7 +250,7 @@ public class Payporte: OAKLIBServiceBinder {
             
             data["data"] = theJSONText
             data["key_word"] = key
-            data["sort_option"] = search
+            data["sort_option "] = search
             data["filter"] = "{\"\(key)\": \"\(value)\"}"
             
             configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.SEARCHLIST, params: data, completed: {_ in
@@ -236,9 +261,17 @@ public class Payporte: OAKLIBServiceBinder {
         }
 
     }
+    func fetchCartItems(completion: @escaping ([Cart], _ message: String, _ error: String, _ itemCount: Int, _ cursorCount: Int) -> ()){
+        type = "cartType"
+        configChef(module: .CUSTOMERMODULE, package: .PRODUCTGETCART, params: ["uk":"us"], completed: {_ in
+            
+                self.baseQueryTemplate(completion: completion)
+            
+            })
+    }
 
     
-    private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T]) -> ()){
+    private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T], _ message: String, _ error: String, _ itemCount: Int, _ cursorCount: Int) -> ()){
         if (!(cursor?.moveToFirst())!) {
             return;
         }
@@ -254,14 +287,15 @@ public class Payporte: OAKLIBServiceBinder {
         }
         
         DispatchQueue.main.async {
-            completion(models)
+            completion(models, self.message ?? "", self.error ?? "", self.itemCounts ?? 0, self.coursorCount ?? 0)
         }
     }
     
-    private func baseQueryTemplate<T: JSONDecodable>(itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> (), completion: @escaping ([T]) -> ()){
+    private func baseQueryTemplate<T: JSONDecodable>(completion: @escaping ([T], _ error: String) -> ()){
         if (!(cursor?.moveToFirst())!) {
-            return
+            return;
         }
+        
         var models  = [T]()
         
         guard let count = cursor?.getCount() else {return}
@@ -273,20 +307,73 @@ public class Payporte: OAKLIBServiceBinder {
         }
         
         DispatchQueue.main.async {
-            completion(models)
-            itemCountCompletion(self.itemCounts)
-            cursorCompletion(self.coursorCount)
+            completion(models, self.error ?? "")
+        }
+    }
+    
+    private func baseQueryTemplate<T: JSONDecodable>(itemCountCompletion: @escaping (Int) -> (), cursorCompletion: @escaping (Int) -> (), completion: @escaping ([T], _ error: String) -> ()){
+        if (!(cursor?.moveToFirst())!) {
+            return
+        }
+        
+        
+        var models  = [T]()
+        
+        guard let count = cursor?.getCount() else {return}
+        for i in 0 ..< count{
+            cursor?.move(toPosition: i)
+            guard let a = cursor?.toJson() else {return}
+            guard let dictionary = convertToDictionary(text: a) else {return}
+            models.append(T(dictionary)!)
+        }
+        
+        DispatchQueue.main.async {
+            print(self.error ?? "")
+            completion(models, self.error ?? "")
+            itemCountCompletion(self.itemCounts ?? 0)
+            cursorCompletion(self.coursorCount ?? 0)
+        }
+    }
+    
+    private func baseQueryTemplate<T: JSONDecodable>(cursorCompletion: @escaping (Int) -> (), completion: @escaping ([T], _ error: String) -> ()){
+       
+        var models  = [T]()
+        print(self.error)
+        if self.error != nil{
+            completion(models, self.error ?? "")
+            return
+        }
+        if (!(cursor?.moveToFirst())!) {
+            return
+        }
+        
+        guard let count = cursor?.getCount() else {return}
+        for i in 0 ..< count{
+            cursor?.move(toPosition: i)
+            guard let a = cursor?.toJson() else {return}
+            guard let dictionary = convertToDictionary(text: a) else {return}
+            models.append(T(dictionary)!)
+        }
+        
+        DispatchQueue.main.async {
+            completion(models,self.error ?? "")
+            cursorCompletion(self.coursorCount ?? 0)
         }
     }
     
     
     public func loadType() -> OAKLIBLoadType {
         
-        return OAKLIBLoadType.LAZY
+        if type == "addProduct"{
+            return .STRICT
+        }
+        return .LAZY
     }
     
     public func onError(_ message: String) {
-        print(message)
+        self.error = message
+        print(self.error)
+        //Utilities.getBaseNotification(text: message, type: .error)
     }
     
     public func onLoad(_ message: String, cache: Bool, cursor: OAKLIBSimpleCursor?) {
@@ -298,6 +385,11 @@ public class Payporte: OAKLIBServiceBinder {
         }
         let x = cursor?.toJson()
         print(x)
+        
+        if type == "cartType" && message != "CACHED" && message != "SUCCESS"{
+            self.message = message
+        }
+        
         if message == "CACHED" && (type == "productList") {
             self.itemCounts = Int.max
         }else if message != "SUCCESS" && (type == "productList") {

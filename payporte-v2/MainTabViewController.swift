@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MIBadgeButton_Swift
 
 class MainTabViewController: UITabBarController {
 
@@ -45,6 +46,7 @@ class MainTabViewController: UITabBarController {
         
         let controller3 = CartVC()
         controller3.tabBarItem = UITabBarItem(title: "Cart", image: #imageLiteral(resourceName: "cart"), tag: 3)
+        
         let nav3 = UINavigationController(rootViewController: controller3)
         nav3.title = ""
         
@@ -52,9 +54,8 @@ class MainTabViewController: UITabBarController {
         controller4.tabBarItem = UITabBarItem(title: "Account", image: #imageLiteral(resourceName: "profile"), tag: 4)
         let nav4 = UINavigationController(rootViewController: controller4)
         
-        
-        
         viewControllers = [nav1, nav2, nav3, nav3, nav4]
+        
     }
 
 }

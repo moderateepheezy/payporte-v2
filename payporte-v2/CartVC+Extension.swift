@@ -50,7 +50,7 @@ extension CartVC {
             })
             
             tableView.snp.makeConstraints({ (make) in
-                make.top.equalTo(cardview.snp.bottom).offset(10)
+                make.top.equalTo(cardview.snp.bottom).offset(5)
                 make.width.equalTo(view)
                 make.bottom.equalTo(cardView2.snp.top).offset(-10)
             })

@@ -1,11 +1,12 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'payporte-v2' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for payporte-v2
+  pod 'AZEmptyState'
   pod 'ParallaxHeader'
   pod 'CountdownLabel'
   pod 'NVActivityIndicatorView'
@@ -20,7 +21,7 @@ target 'payporte-v2' do
   pod 'SwiftyJSON'
   pod 'CLabsImageSlider', '~> 0.1.2'
   pod 'KJExpandableTableTree'
-  pod 'Stepperier', '~> 1.0.0'
+  pod 'Stepperier', '~> 1.1.0'
   pod 'CSStickyHeaderFlowLayout'
   pod 'DropDown'
   pod 'SwiftImageCarousel'
@@ -28,7 +29,6 @@ target 'payporte-v2' do
   pod 'SDWebImage', '~>3.8'
   pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
   pod 'ModernSearchBar'
-  pod 'YNSearch'
   target 'payporte-v2Tests' do
     inherit! :search_paths
     # Pods for testing

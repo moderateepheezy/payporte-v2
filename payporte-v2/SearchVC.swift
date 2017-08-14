@@ -127,7 +127,11 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
     var searchedArray = [ProductList]()
     
     func getList(text: String){
-        Payporte.sharedInstance.fetchSearch(suggestion: text) { (datas) in
+        Payporte.sharedInstance.fetchSearch(suggestion: text) { (datas, error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.datas = datas
             self.tableView.reloadData()
         }
@@ -135,7 +139,12 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
     
     func getProductLists(text: String){
         
-        Payporte.sharedInstance.fetchSearchProductLists(key: "0", value: 0, search: text, offset: 0, completion: { (productLists) in
+        Payporte.sharedInstance.fetchSearchProductLists(key: "0", value: 0, search: text, offset: 0, completion: { (productLists, error) in
+            
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             
             self.spinnerView.alpha = 0
             self.activityIndicator.stopAnimating()
@@ -513,7 +522,12 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: Int(value)!, search: searchField.text!, offset: page, completion: { (productList) in
+            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: Int(value)!, search: searchField.text!, offset: page, completion: { (productList, error) in
+                
+                if error != ""{
+                    Utilities.getBaseNotification(text: error, type: .error)
+                    return
+                }
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
@@ -541,7 +555,12 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: 0, search: searchField.text!, offset: page, completion: { (productList) in
+            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: 0, search: searchField.text!, offset: page, completion: { (productList, error) in
+                
+                if error != ""{
+                    Utilities.getBaseNotification(text: error, type: .error)
+                    return
+                }
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
@@ -587,7 +606,7 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
         let vc = ProductBuyDetailsVC()
-        vc.productList = productList
+        vc.productList_id = productList.product_id
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -646,7 +665,7 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource{
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
         let vc = ProductBuyDetailsVC()
-        vc.productList = productList
+        vc.productList_id = productList.product_id
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }

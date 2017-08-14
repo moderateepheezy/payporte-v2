@@ -3,6 +3,10 @@
   <img src="https://user-images.githubusercontent.com/3812601/27369632-ac3b9144-560d-11e7-895a-87d349d9a66f.gif" alt="" />
 </p>
 
+### Requierments
+  - Swift 3+
+  - iOS 9.0+
+
 ## Installation
 
 ### CocoaPods
@@ -32,13 +36,11 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
-
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate Stepperier into your project manually.
+If you prefer not to use either of the cocoapods, you can integrate Stepperier into your project manually by [downloading](https://github.com/NSDavidObject/Stepperier/archive/master.zip) the source files and integrating the [Pod](https://github.com/NSDavidObject/Stepperier/tree/master/Pod) directory in your project.
 
 ---
-
 
 ## Usage
 
@@ -56,17 +58,39 @@ class MyViewController: UIViewController {
 
         // Add as subview of the view controller's view
         view.addSubview(stepperier)
-        
+
         // Setup layout constraints
         stepperier.translatesAutoresizingMaskIntoConstraints = false
         stepperier.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stepperier.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+        // Add value change observing
+        stepperier.addTarget(self, action: #selector(stepperierValueDidChange(_:)), for: .valueChanged)
+    }
+    
+    @IBAction func stepperierValueDidChange(_ stepper: Stepperier) {
+        print("Updated value: \(stepper.value)")
     }
 }
 ```
 
 You may add a UIView inside your xib and set its custom class to `Stepperier` making sure the module is autofilled with the `Stepperier` module.
 
-## Logo License
+## Contribution
 
-The app icon is released under [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en). You are free to adapt and use it for commercial purposes without attributing the original author or source. Although not required, a link back to this project is appreciated.
+Contributions are welcomed and encouraged *♡*.
+
+# Contact
+
+David Elsonbaty
+ - [@NSDavidObject](https://twitter.com/nsdavidobject)
+ - [Website](http://elsonbaty.ca)
+ - [Email](mailto:dave@elsonbaty.ca)
+
+## Credits
+
+- Oleg Frolov ([Github](https://github.com/Volorf), [Dribble](https://dribbble.com/Volorf))
+
+## License
+
+Stepperier is released under the MIT license. See LICENSE for details.

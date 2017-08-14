@@ -15,7 +15,7 @@ import RGBottomSheet
 
 class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
 
-    var productList: ProductList?
+    var productList_id: String?
     
     var product: Product?
 
@@ -49,7 +49,12 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
     }()
     
     func fetchProductDetails(product_id: String){
-        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product) in
+        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product, error) in
+            
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.addSubViews()
             
             self.spinnerView.alpha = 0
@@ -68,11 +73,24 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9580028553, green: 0.9580028553, blue: 0.9580028553, alpha: 1)
         addSubViews()
-        guard let id = productList?.product_id else {return}
+        guard let id = productList_id else {return}
         fetchProductDetails(product_id: id)
         
         view.backgroundColor = .white
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let shareBarButton = UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(share(barButton:)))
+        shareBarButton.tintColor = UIColor.black
+//        
+//        let cartButton = UIBarButtonItem(image: #imageLiteral(resourceName: "cart"), style: .plain, target: self, action: #selector(share(barButton:)))
+//        shareBarButton.tintColor = UIColor.black
+//        
+        
+        self.navigationItem.rightBarButtonItems = [shareBarButton]
+    }
+    
+    func share(barButton: UIBarButtonItem){
+        
     }
     
     func setupViews(productImages: [String]){
@@ -657,30 +675,34 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
     }
     
     func handleAddToCart(button: UIButton){
-        
-        print(someData)
-        //print(qtyText)
-        if hasOption! &&  someData[(option?.optionTitle)!] != nil{
-                Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
-                    Utilities.getBaseNotification(text: "Item added to cart", type: .success)
-                    button.loadingIndicator(show: false)
-                    button.isEnabled = true
-                    someData.removeAll()
-                    self.productBuydetails?.navigationController?.popViewController(animated: true)
-                }
-        }else if !hasOption!{
-            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
-                Utilities.getBaseNotification(text: "Item added to cart", type: .success)
-                button.loadingIndicator(show: false)
-                button.isEnabled = true
-                someData.removeAll()
-                self.productBuydetails?.navigationController?.popViewController(animated: true)
+        Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value, error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
             }
-        }else if hasOption! &&  someData[(option?.optionTitle)!] == nil{
-            Utilities.getBaseNotification(text: "The item needs a \((option?.optionTitle)!).", type: .error)
-        }else if hasOption! &&  someData["Quantity"] == nil{
-            Utilities.getBaseNotification(text: "Please use option values for Quantity", type: .error)
+            Utilities.getBaseNotification(text: "Item added to cart", type: .success)
+            button.loadingIndicator(show: false)
+            button.isEnabled = true
+            someData.removeAll()
+            self.productBuydetails?.navigationController?.popViewController(animated: true)
         }
+//        print(someData)
+//        //print(qtyText)
+//        if hasOption! &&  someData[(option?.optionTitle)!] != nil{
+////            
+//        }else if !hasOption!{
+//            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
+//                Utilities.getBaseNotification(text: "Item added to cart", type: .success)
+//                button.loadingIndicator(show: false)
+//                button.isEnabled = true
+//                someData.removeAll()
+//                self.productBuydetails?.navigationController?.popViewController(animated: true)
+//            }
+//        }else if hasOption! &&  someData[(option?.optionTitle)!] == nil{
+//            Utilities.getBaseNotification(text: "The item needs a \((option?.optionTitle)!).", type: .error)
+//        }else if hasOption! &&  someData["Quantity"] == nil{
+//            Utilities.getBaseNotification(text: "Please use option values for Quantity", type: .error)
+//        }
         
     }
 }

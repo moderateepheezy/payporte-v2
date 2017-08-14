@@ -26,19 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
          UIApplication.shared.statusBarStyle = .default
         
-//        for family: String in UIFont.familyNames
-//        {
-//            print("\(family)")
-//            for names: String in UIFont.fontNames(forFamilyName: family)
-//            {
-//                print("== \(names)")
-//            }
-//        }
-        
-//        Payporte.sharedInstance.configChef(module: OAKLIBMenu.CATALOGMODULE, package: OAKLIBPackage.CATEGORYLIST, params: ["uiu" : "oio"], completed: { _ in
-//            
-//        })
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : Utilities.getColorWithHexString("#050505") ], for: .normal)
+        
+        if #available(iOS 10.0, *) {
+            UITabBarItem.appearance().badgeColor = primaryColor
+        } else {
+            // Fallback on earlier versions
+        }
         
         return true
     }

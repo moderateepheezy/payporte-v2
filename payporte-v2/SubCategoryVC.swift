@@ -53,7 +53,12 @@ class SubCategoryVC: MainVC {
     
     func fetchSubACategory(cat_id: String){
         
-        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories) in
+        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories, error) in
+            
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.firstLevelcatgories = categories
             let firstCat = categories[0]
             self.fetchSubBCategory(cat_id: firstCat.category_id!)
@@ -66,7 +71,11 @@ class SubCategoryVC: MainVC {
     }
     
     func fetchSubBCategory(cat_id: String){
-        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories) in
+        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories, error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.spinnerView.alpha = 0
             self.activityIndicator.stopAnimating()
             self.secondLevelcatgories = categories

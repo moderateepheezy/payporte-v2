@@ -56,7 +56,11 @@ class HomeVC: MainVC {
     
     
     func fetchCategories(){
-        Payporte.sharedInstance.fetchCategories { (categories) in
+        Payporte.sharedInstance.fetchCategories { (categories, error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
             self.categories = categories
         
             self.collectionView.reloadData()
@@ -72,9 +76,15 @@ class HomeVC: MainVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    func fetchBadgeCount(){
+        Payporte.sharedInstance.fetchCartItems { (carts, message, error, itemCount, cursorCount) in
+            self.tabBarController?.tabBar.items?[2].badgeValue = "\(cursorCount)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchBadgeCount()
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)

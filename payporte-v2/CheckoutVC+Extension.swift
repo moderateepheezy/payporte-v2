@@ -1,13 +1,10 @@
 //
 //  CheckoutVC+Extension.swift
-//  PayPorte
+//  payporte-v2
 //
-//  Created by SimpuMind on 5/19/17.
+//  Created by SimpuMind on 8/14/17.
 //  Copyright © 2017 SimpuMind. All rights reserved.
 //
-
-import Foundation
-
 
 extension CheckoutVC {
     
@@ -97,12 +94,12 @@ extension CheckoutVC {
                 make.height.equalTo(15)
             })
             
-           addressLabel.snp.makeConstraints({ (make) in
-            make.top.equalTo(addressView.snp.top).offset(30)
-            make.right.equalTo(editAddressImageView.snp.left).offset(8)
-            make.left.equalTo(addressView).offset(20)
-            make.height.equalTo(16)
-           })
+            addressLabel.snp.makeConstraints({ (make) in
+                make.top.equalTo(addressView.snp.top).offset(30)
+                make.right.equalTo(editAddressImageView.snp.left).offset(8)
+                make.left.equalTo(addressView).offset(20)
+                make.height.equalTo(16)
+            })
             
             phoneNumberLabel.snp.makeConstraints({ (make) in
                 make.top.equalTo(addressLabel.snp.top).offset(20)
@@ -154,7 +151,7 @@ extension CheckoutVC {
                 make.width.equalTo(150)
                 make.height.equalTo(25)
             })
-
+            
             
             placeOrderButton.snp.makeConstraints { (make) in
                 

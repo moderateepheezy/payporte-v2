@@ -137,14 +137,21 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
     func getProductLists(category_id: String){
         
         
-        Payporte.sharedInstance.fetchSortProductListing(key: "0", offset: 0, category_id: category_id, completion: { (productList) in
-            
-            self.spinnerView.alpha = 0
-            self.activityIndicator.stopAnimating()
-            self.productLists = productList
-            self.collectionView.reloadData()
-            self.showFilter()
-            self.showSort()
+        Payporte.sharedInstance.fetchSortProductListing(key: "0", offset: 0, category_id: category_id, completion: { (productList, error) in
+            if error != ""{
+                Utilities.getBaseNotification(text: error, type: .error)
+                return
+            }
+                if productList.count > 0{
+                    self.spinnerView.alpha = 0
+                    self.activityIndicator.stopAnimating()
+                    self.productLists = productList
+                    self.collectionView.reloadData()
+                    self.showFilter()
+                    self.showSort()
+            }else{
+                self.setupEmptyState()
+            }
             
         }, itemCountCompletion: { (itemCounts) in
             self.itemCounts = itemCounts
@@ -171,6 +178,10 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         }
     }
     
+    override func tryAgain() {
+        getProductLists(category_id: category_id!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -183,6 +194,11 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         guard let catName = categoryName else {return}
         navigationItem.title = catName
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func configSortBtnSheet(content: [SomeData], title: String){
@@ -260,7 +276,12 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         if coursorCount! >= offset {
             page = offset
             print(key)
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: category_id!, completion: { (productList) in
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: category_id!, completion: { (productList, error) in
+                
+                if error != ""{
+                    Utilities.getBaseNotification(text: error, type: .error)
+                    return
+                }
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
@@ -288,7 +309,12 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category_id!), completion: { (productList) in
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category_id!), completion: { (productList, error) in
+                
+                if error != ""{
+                    Utilities.getBaseNotification(text: error, type: .error)
+                    return
+                }
                 
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
@@ -317,7 +343,12 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: (category_id)!, completion: { (productList) in
+            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: (category_id)!, completion: { (productList, error) in
+                
+                if error != ""{
+                    Utilities.getBaseNotification(text: error, type: .error)
+                    return
+                }
                 
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
@@ -547,7 +578,7 @@ extension ProductListingVC: UICollectionViewDataSource, UICollectionViewDelegate
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
         let vc = ProductBuyDetailsVC()
-        vc.productList = productList
+        vc.productList_id = productList.product_id
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
