@@ -82,6 +82,8 @@ class CartVC: MainVC {
                 return
             }
             
+            self.view.setNeedsUpdateConstraints()
+            self.addSubViewsToView()
             self.priceLabel.text = "₦ \(message)"
             self.cartArray = carts
             self.tableView.reloadData()
@@ -93,8 +95,6 @@ class CartVC: MainVC {
         super.viewDidLoad()
 
         fetchCartItems()
-        view.setNeedsUpdateConstraints()
-        addSubViewsToView()
         
         self.tabBarItem.selectedImage = #imageLiteral(resourceName: "cart_select").withRenderingMode(.alwaysOriginal)
         self.tabBarItem.image = #imageLiteral(resourceName: "cart").withRenderingMode(.alwaysOriginal)
@@ -149,6 +149,8 @@ class CartVC: MainVC {
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
         let vc = CheckoutVC()
+        vc.numberOfItem = 10
+        vc.total = priceLabel.text!
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }

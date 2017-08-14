@@ -15,10 +15,12 @@ class CheckoutVC: UIViewController {
     
     var didSetupConstraints = false
     
+    var numberOfItem = 0
+    var total = ""
     
     let dismissButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "back_black"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "error"), for: .normal)
         button.isUserInteractionEnabled = true
         return button
     }()
@@ -61,16 +63,6 @@ class CheckoutVC: UIViewController {
         view.clipsToBounds = true
         return view
     }()
-    
-    let cartLabel: UILabel = {
-        let label = UILabel()
-        label.text = "CART"
-        label.font = UIFont(name: "Orkney-Bold", size: 14)
-        label.textAlignment = .center
-        label.textColor = UIColor(white: 0, alpha: 0.65)
-        return label
-    }()
-    
     
     let shipToLabel: UILabel = {
         let label = UILabel()
@@ -136,7 +128,6 @@ class CheckoutVC: UIViewController {
     
     let numOfItemLabel: UILabel = {
         let label = UILabel()
-        label.text = "YOU HAVE 1 ITEM(S) IN YOUR CART"
         label.textColor = UIColor(white: 0, alpha: 0.45)
         label.font = UIFont(name: "Orkney-Regular", size: 12)
         return label
@@ -144,7 +135,6 @@ class CheckoutVC: UIViewController {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "TOTAL N2,000.00"
         label.textColor = UIColor(white: 0, alpha: 0.45)
         label.font = UIFont(name: "Orkney-Bold", size: 12)
         return label
@@ -155,7 +145,7 @@ class CheckoutVC: UIViewController {
         textfield.placeholder = "ENTER COUPON CODE"
         textfield.textColor = UIColor(white: 0, alpha: 0.45)
         textfield.font = UIFont(name: "Orkney-Regular", size: 10)
-        textfield.keyboardType = .numberPad
+        textfield.setBottomBorder()
         return textfield
     }()
     
@@ -170,13 +160,12 @@ class CheckoutVC: UIViewController {
     
     var placeOrderButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(UIColor(white: 0, alpha: 0.65), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.setTitle("PLACE ORDER", for: .normal)
-        button.setImage(#imageLiteral(resourceName: "white_right_arrow"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
         button.isUserInteractionEnabled = true
         button.clipsToBounds = true
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = primaryColor
         return button
     }()
     
@@ -189,7 +178,6 @@ class CheckoutVC: UIViewController {
         view.addSubview(dismissButton)
         view.addSubview(titleLabel)
         view.addSubview(totalPriceView)
-        view.addSubview(cartLabel)
         view.addSubview(addressView)
         view.addSubview(paymentView)
         view.addSubview(placeOrderButton)
@@ -208,6 +196,12 @@ class CheckoutVC: UIViewController {
         totalPriceView.addSubview(verifyCouponButton)
         
         view.setNeedsUpdateConstraints()
+        
+        priceLabel.text = "TOTAL \(String(describing: total))"
+        numOfItemLabel.text = "YOU HAVE \(numberOfItem) ITEM(S) IN YOUR CART"
+        
+        self.navigationItem.title = "C H E C K  O U T"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
         // MARK:- Add Targets
         dismissButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
@@ -235,10 +229,7 @@ class CheckoutVC: UIViewController {
     }
     
     func handleShowItems(){
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as! CartVC
-        
-        let navVC = UINavigationController(rootViewController: vc)
-        present(navVC, animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func handleChangeAddress() {

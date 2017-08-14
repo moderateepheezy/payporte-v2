@@ -29,23 +29,16 @@ extension CheckoutVC {
             }
             
             
-            cartLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(view).offset(80)
-                make.centerX.equalTo(view)
-                make.width.equalTo(100)
-                make.height.equalTo(15)
-            }
-            
             
             totalPriceView.snp.makeConstraints { (make) in
-                make.top.equalTo(cartLabel.snp.bottom).offset(20)
+                make.top.equalTo(view.snp.top).offset(84)
                 make.left.equalTo(view.snp.left).offset(20)
                 make.right.equalTo(view.snp.right).offset(-20)
                 make.height.equalTo(150)
             }
             
             shipToLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(totalPriceView.snp.bottom).offset(20)
+                make.top.equalTo(totalPriceView.snp.bottom).offset(30)
                 make.left.equalTo(view).offset(20)
                 make.right.equalTo(view).offset(-20)
                 make.height.equalTo(15)
@@ -59,7 +52,7 @@ extension CheckoutVC {
             }
             
             shippingMethodLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(addressView.snp.bottom).offset(20)
+                make.top.equalTo(addressView.snp.bottom).offset(30)
                 make.left.equalTo(view).offset(20)
                 make.right.equalTo(view).offset(-20)
                 make.height.equalTo(15)
@@ -84,14 +77,14 @@ extension CheckoutVC {
                 make.trailing.equalTo(paymentView.snp.trailing).inset(20)
                 make.centerY.equalTo(paymentView.snp.centerY)
                 make.width.equalTo(20)
-                make.height.equalTo(15)
+                make.height.equalTo(20)
             })
             
             editAddressImageView.snp.makeConstraints({ (make) in
                 make.trailing.equalTo(addressView.snp.trailing).inset(20)
                 make.centerY.equalTo(addressView.snp.centerY)
                 make.width.equalTo(20)
-                make.height.equalTo(15)
+                make.height.equalTo(20)
             })
             
             addressLabel.snp.makeConstraints({ (make) in
@@ -148,7 +141,7 @@ extension CheckoutVC {
             couponTextField.snp.makeConstraints({ (make) in
                 make.left.equalTo(totalPriceView).inset(20)
                 make.top.equalTo(priceDetailsSubView.snp.bottom).offset(17)
-                make.width.equalTo(150)
+                make.width.equalTo(120)
                 make.height.equalTo(25)
             })
             

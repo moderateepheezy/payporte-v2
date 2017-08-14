@@ -73,7 +73,6 @@
 		948B5CD71F2ABFF300F9D020 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 948B5CC41F2ABFF300F9D020 /* Sparkle.png */; };
 		949295861F05209E00A403CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295851F05209E00A403CE /* AppDelegate.swift */; };
 		9492958B1F05209E00A403CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 949295891F05209E00A403CE /* Main.storyboard */; };
-		9492958D1F05209E00A403CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9492958C1F05209E00A403CE /* Assets.xcassets */; };
 		949295901F05209E00A403CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9492958E1F05209E00A403CE /* LaunchScreen.storyboard */; };
 		9492959B1F05209E00A403CE /* payporte_v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492959A1F05209E00A403CE /* payporte_v2Tests.swift */; };
 		949295A61F05209E00A403CE /* payporte_v2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949295A51F05209E00A403CE /* payporte_v2UITests.swift */; };
@@ -132,6 +131,7 @@
 		94F4317D1F40887600D2D5DE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4317C1F40887600D2D5DE /* Reachability.swift */; };
 		94F4317F1F41D0AE00D2D5DE /* CheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */; };
 		94F431811F41D0DD00D2D5DE /* CheckoutVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */; };
+		94F431851F41D4CE00D2D5DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F431841F41D4CE00D2D5DE /* Assets.xcassets */; };
 		94F5ED281F06CD8E0061917A /* CollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */; };
 		ED75C164D432025FF35B07C6 /* Pods_payporte_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */; };
 /* End PBXBuildFile section */
@@ -230,7 +230,6 @@
 		949295821F05209E00A403CE /* payporte-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "payporte-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		949295851F05209E00A403CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9492958A1F05209E00A403CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9492958C1F05209E00A403CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9492958F1F05209E00A403CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		949295911F05209E00A403CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		949295961F05209E00A403CE /* payporte-v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "payporte-v2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,6 +294,7 @@
 		94F4317C1F40887600D2D5DE /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutVC.swift; sourceTree = "<group>"; };
 		94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+Extension.swift"; sourceTree = "<group>"; };
+		94F431841F41D4CE00D2D5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionHeader.swift; sourceTree = "<group>"; };
 		AE40B7EDB1DFB95E681E68EC /* Pods-payporte-v2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -547,7 +547,6 @@
 				949295C01F05279600A403CE /* Helper */,
 				949295B31F05232900A403CE /* Main */,
 				949295BF1F05277700A403CE /* Resource */,
-				9492958C1F05209E00A403CE /* Assets.xcassets */,
 			);
 			path = "payporte-v2";
 			sourceTree = "<group>";
@@ -612,6 +611,7 @@
 				949295851F05209E00A403CE /* AppDelegate.swift */,
 				949295891F05209E00A403CE /* Main.storyboard */,
 				9492958E1F05209E00A403CE /* LaunchScreen.storyboard */,
+				94F431841F41D4CE00D2D5DE /* Assets.xcassets */,
 				949295911F05209E00A403CE /* Info.plist */,
 				949A31401F0A8E3E00567A17 /* Tree.json */,
 			);
@@ -888,10 +888,10 @@
 				949295901F05209E00A403CE /* LaunchScreen.storyboard in Resources */,
 				949A31491F0AA74400567A17 /* Childs2ndStageTableViewCell.xib in Resources */,
 				948B5CC61F2ABFF300F9D020 /* Info.plist in Resources */,
-				9492958D1F05209E00A403CE /* Assets.xcassets in Resources */,
 				949295C71F05280400A403CE /* AvenirNextLTPro-Light.otf in Resources */,
 				9492958B1F05209E00A403CE /* Main.storyboard in Resources */,
 				948B5CD71F2ABFF300F9D020 /* Sparkle.png in Resources */,
+				94F431851F41D4CE00D2D5DE /* Assets.xcassets in Resources */,
 				949A314B1F0AA74400567A17 /* Childs3rdStageTableViewCell.xib in Resources */,
 				942CE3CF1F3C875A00E1A0F3 /* CRNotificationsMedia.xcassets in Resources */,
 				949295C91F05280400A403CE /* AvenirNextLTPro-Regular.otf in Resources */,
