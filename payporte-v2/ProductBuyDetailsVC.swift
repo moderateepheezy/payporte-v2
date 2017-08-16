@@ -417,6 +417,9 @@ public class OptionsCell: UITableViewCell, RGBottomSheetDelegate{
         }
         
         sheet?.show()
+        let firstValue = options[0]
+        button.setTitle(firstValue, for: .normal)
+        someData[title] = "\(String(describing: firstValue))"
     }
     
     func closeButtomSheet() {
