@@ -18,13 +18,6 @@ class CheckoutVC: UIViewController {
     var numberOfItem = 0
     var total = ""
     
-    let dismissButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "error"), for: .normal)
-        button.isUserInteractionEnabled = true
-        return button
-    }()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Checkout"
@@ -55,6 +48,14 @@ class CheckoutVC: UIViewController {
         return view
     }()
     
+    let placeorderView: CardView = {
+        let view = CardView()
+        view.backgroundColor = .white
+        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
+        return view
+    }()
+
+    
     let priceDetailsSubView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -62,6 +63,15 @@ class CheckoutVC: UIViewController {
         view.layer.borderWidth = 0.85
         view.clipsToBounds = true
         return view
+    }()
+    
+    let cartLabel: UILabel = {
+        let label = UILabel()
+        label.text = "CART"
+        label.font = UIFont(name: "Orkney-Bold", size: 14)
+        label.textColor = UIColor(white: 0, alpha: 0.65)
+        label.textAlignment = .center
+        return label
     }()
     
     let shipToLabel: UILabel = {
@@ -175,12 +185,13 @@ class CheckoutVC: UIViewController {
         
         view.backgroundColor = UIColor(red: 249, green: 249, blue: 249)
         
-        view.addSubview(dismissButton)
         view.addSubview(titleLabel)
         view.addSubview(totalPriceView)
         view.addSubview(addressView)
         view.addSubview(paymentView)
-        view.addSubview(placeOrderButton)
+        view.addSubview(placeorderView)
+        placeorderView.addSubview(placeOrderButton)
+        view.addSubview(cartLabel)
         view.addSubview(shipToLabel)
         view.addSubview(shippingMethodLabel)
         paymentView.addSubview(shippingTextLabel)
@@ -204,7 +215,7 @@ class CheckoutVC: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
         // MARK:- Add Targets
-        dismissButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        addressView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeAddress)))
         editAddressImageView.addTarget(self, action: #selector(handleChangeAddress), for: .touchUpInside)
         showItemButton.addTarget(self, action: #selector(handleShowItems), for: .touchUpInside)
         
@@ -234,8 +245,12 @@ class CheckoutVC: UIViewController {
     
     func handleChangeAddress() {
         
-        //let vc = ShippingAddressVC()
-        //present(vc, animated: true, completion: nil)
+        let vc = ShippingAddressVC()
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

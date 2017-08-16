@@ -6,6 +6,7 @@ target 'payporte-v2' do
   use_frameworks!
 
   # Pods for payporte-v2
+  pod 'Eureka'
   pod 'AZEmptyState'
   pod 'ParallaxHeader'
   pod 'CountdownLabel'
@@ -21,12 +22,10 @@ target 'payporte-v2' do
   pod 'SwiftyJSON'
   pod 'CLabsImageSlider', '~> 0.1.2'
   pod 'KJExpandableTableTree'
-  pod 'Stepperier', '~> 1.1.0'
   pod 'CSStickyHeaderFlowLayout'
   pod 'DropDown'
-  pod 'SwiftImageCarousel'
-  pod 'GRDB.swift'
   pod 'SDWebImage', '~>3.8'
+  pod 'SwiftImageCarousel'
   pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
   pod 'ModernSearchBar'
   target 'payporte-v2Tests' do

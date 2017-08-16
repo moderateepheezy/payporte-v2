@@ -8,9 +8,8 @@
 
 import UIKit
 import CLabsImageSlider
-import SwiftImageCarousel
 
-class CustomHeaderView: UIView, imageSliderDelegate, SwiftImageCarouselVCDelegate  {
+class CustomHeaderView: UIView, imageSliderDelegate {
     
     var baners = [String]()
     

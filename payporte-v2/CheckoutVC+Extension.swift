@@ -13,14 +13,6 @@ extension CheckoutVC {
         
         if (!didSetupConstraints) {
             
-            
-            dismissButton.snp.makeConstraints { (make) in
-                make.left.equalTo(view).offset(20)
-                make.top.equalTo(view).offset(30)
-                make.width.equalTo(35)
-                make.height.equalTo(35)
-            }
-            
             titleLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(view).offset(40)
                 make.centerX.equalTo(view)
@@ -28,17 +20,22 @@ extension CheckoutVC {
                 make.height.equalTo(17)
             }
             
-            
+            cartLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(view.snp.top).offset(84)
+                make.left.equalTo(view).offset(20)
+                make.right.equalTo(view).offset(-20)
+                make.height.equalTo(15)
+            }
             
             totalPriceView.snp.makeConstraints { (make) in
-                make.top.equalTo(view.snp.top).offset(84)
+                make.top.equalTo(cartLabel.snp.bottom).offset(20)
                 make.left.equalTo(view.snp.left).offset(20)
                 make.right.equalTo(view.snp.right).offset(-20)
                 make.height.equalTo(150)
             }
             
             shipToLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(totalPriceView.snp.bottom).offset(30)
+                make.top.equalTo(totalPriceView.snp.bottom).offset(25)
                 make.left.equalTo(view).offset(20)
                 make.right.equalTo(view).offset(-20)
                 make.height.equalTo(15)
@@ -52,7 +49,7 @@ extension CheckoutVC {
             }
             
             shippingMethodLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(addressView.snp.bottom).offset(30)
+                make.top.equalTo(addressView.snp.bottom).offset(25)
                 make.left.equalTo(view).offset(20)
                 make.right.equalTo(view).offset(-20)
                 make.height.equalTo(15)
@@ -88,7 +85,7 @@ extension CheckoutVC {
             })
             
             addressLabel.snp.makeConstraints({ (make) in
-                make.top.equalTo(addressView.snp.top).offset(30)
+                make.top.equalTo(addressView.snp.top).offset(25)
                 make.right.equalTo(editAddressImageView.snp.left).offset(8)
                 make.left.equalTo(addressView).offset(20)
                 make.height.equalTo(16)
@@ -145,13 +142,21 @@ extension CheckoutVC {
                 make.height.equalTo(25)
             })
             
-            
-            placeOrderButton.snp.makeConstraints { (make) in
+            placeorderView.snp.makeConstraints { (make) in
                 
                 make.left.equalTo(view).offset(20)
                 make.bottom.equalTo(view).offset(-20)
                 make.right.equalTo(view).offset(-20)
-                make.height.equalTo(45)
+                make.height.equalTo(60)
+            }
+
+            
+            placeOrderButton.snp.makeConstraints { (make) in
+                
+                make.left.equalTo(placeorderView).offset(10)
+                make.bottom.equalTo(placeorderView).offset(-10)
+                make.right.equalTo(placeorderView).offset(-10)
+                make.top.equalTo(placeorderView.snp.top).offset(10)
             }
             
             didSetupConstraints = true

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stepperier
 
 class CartCell: UITableViewCell {
     
@@ -76,24 +75,14 @@ class CartCell: UITableViewCell {
         return v
     }()
     
-//    let stepper: GMStepper = {
-//       let st = GMStepper()
-//        st.backgroundColor = UIColor(white: 0, alpha: 0.05)
-//        st.buttonsTextColor = UIColor(white: 0, alpha: 0.35)
-//        st.labelTextColor = primaryColor
-//        st.labelBackgroundColor = .white
-//        st.buttonsFont = UIFont(name: "Orkney-Medium", size: 10)!
-//        st.labelFont = UIFont(name: "Orkney-Medium", size: 12)!
-//        return st
-//    }()
-    
-    let stepper: Stepperier = {
-        let st = Stepperier()
-        st.tintColor = primaryColor
-        st.backgroundColor = UIColor(white: 0, alpha: 1)
-        st.valueBackgroundColor = .white
-        st.isOperationSymbolsManualClicksEnabled = true
-        st.font = UIFont(name: "Orkney-Regular", size: 12)!
+    let stepper: GMStepper = {
+       let st = GMStepper()
+        st.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        st.buttonsTextColor = UIColor(white: 0, alpha: 0.35)
+        st.labelTextColor = primaryColor
+        st.labelBackgroundColor = .white
+        st.buttonsFont = UIFont(name: "Orkney-Medium", size: 10)!
+        st.labelFont = UIFont(name: "Orkney-Medium", size: 12)!
         return st
     }()
     
@@ -116,8 +105,8 @@ class CartCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        stepper.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        stepper.valueBackgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        stepper.buttonsTextColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        stepper.labelBackgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
     
     fileprivate func setupViews(text: String){
@@ -153,7 +142,7 @@ class CartCell: UITableViewCell {
             make.left.equalTo(productImageView.snp.right).offset(20)
             make.top.equalTo(priceLabel.snp.bottom).offset(15)
             make.width.equalTo(100)
-            make.height.equalTo(30)
+            make.height.equalTo(25)
         }
         
         deleteButton.snp.makeConstraints { (make) in

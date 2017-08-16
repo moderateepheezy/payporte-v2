@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iG6-GC-4H2">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iG6-GC-4H2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -77,25 +78,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yph-aH-N7l">
-                                <rect key="frame" x="20" y="0.0" width="40" height="40"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.082539597602739725" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="xFH-UW-67r"/>
-                                    <constraint firstAttribute="width" constant="40" id="z1p-lz-FfG"/>
-                                </constraints>
-                                <state key="normal" image="closeers.png">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissButton:" destination="y6f-61-PVO" eventType="touchUpInside" id="FLc-6e-mCB"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="xb8-AI-TVz">
-                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eY4-TJ-0hM">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -107,16 +94,33 @@
                                     <constraint firstItem="eY4-TJ-0hM" firstAttribute="leading" secondItem="xb8-AI-TVz" secondAttribute="leading" id="kON-5o-ETa"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFE-rT-WvK">
+                                <rect key="frame" x="16" y="15" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SFE-rT-WvK" secondAttribute="height" multiplier="1:1" id="4zy-2e-4La"/>
+                                    <constraint firstAttribute="height" constant="30" id="6dQ-o5-dls"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="✕">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapCloseButton:" destination="y6f-61-PVO" eventType="touchUpInside" id="Esv-De-Hah"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="xb8-AI-TVz" firstAttribute="top" secondItem="4pb-9m-ukf" secondAttribute="bottom" constant="-20" id="3Gz-tK-IOe"/>
+                            <constraint firstItem="xb8-AI-TVz" firstAttribute="top" secondItem="4pb-9m-ukf" secondAttribute="bottom" id="3Gz-tK-IOe"/>
                             <constraint firstItem="xb8-AI-TVz" firstAttribute="leading" secondItem="Ayu-fa-5zg" secondAttribute="leading" id="Eeb-HB-Dqo"/>
+                            <constraint firstItem="SFE-rT-WvK" firstAttribute="width" secondItem="SFE-rT-WvK" secondAttribute="height" multiplier="1:1" id="Gfi-8q-7mX"/>
                             <constraint firstItem="xb8-AI-TVz" firstAttribute="bottom" secondItem="uh7-qW-4MK" secondAttribute="top" id="YOq-DQ-tBq"/>
-                            <constraint firstItem="Yph-aH-N7l" firstAttribute="top" secondItem="4pb-9m-ukf" secondAttribute="bottom" id="gv2-QH-8DB"/>
+                            <constraint firstItem="SFE-rT-WvK" firstAttribute="top" secondItem="4pb-9m-ukf" secondAttribute="bottom" constant="15" id="hlK-NX-2mh"/>
                             <constraint firstAttribute="trailing" secondItem="xb8-AI-TVz" secondAttribute="trailing" id="sn8-dm-kWn"/>
-                            <constraint firstItem="Yph-aH-N7l" firstAttribute="leading" secondItem="Ayu-fa-5zg" secondAttribute="leadingMargin" constant="4" id="yBo-CR-fp9"/>
+                            <constraint firstItem="SFE-rT-WvK" firstAttribute="leading" secondItem="Ayu-fa-5zg" secondAttribute="leadingMargin" id="tKw-i8-rIe"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="AR7-m7-l7B" appends="YES" id="FY5-im-Y3h"/>
@@ -125,7 +129,7 @@
                     <navigationItem key="navigationItem" id="bIq-U5-YEn"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="closeButton" destination="Yph-aH-N7l" id="GJ7-mt-VEc"/>
+                        <outlet property="closeButton" destination="SFE-rT-WvK" id="01S-Cu-C42"/>
                         <outlet property="contentImageView" destination="eY4-TJ-0hM" id="9yY-MF-LFh"/>
                         <outlet property="scrollView" destination="xb8-AI-TVz" id="mIO-zD-5k4"/>
                         <segue destination="WKU-un-ULr" kind="unwind" identifier="unwindToSwiftImageCarouselVC" unwindAction="unwindToSwiftImageCarouselVCWithSegue:" id="oOp-20-9Im"/>
@@ -152,9 +156,6 @@
             <point key="canvasLocation" x="191" y="372"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="closeers.png" width="48" height="48"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

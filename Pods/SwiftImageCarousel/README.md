@@ -1,9 +1,9 @@
 [![Travis branch](https://img.shields.io/travis/rust-lang/rust/master.svg?style=plastic)](https://github.com/Centroida/SwiftImageCarousel)
 [![codecov.io](https://codecov.io/gh/Centroida/SwiftImageCarousel/coverage.svg?branch=master)](https://codecov.io/gh/Centroida/SwiftImageCarousel?branch=master)
-[![CocoaPods](https://img.shields.io/cocoapods/v/SwiftImageCarousel.svg)](https://img.shields.io/cocoapods/v/SwiftImageCarousel.svg)
+[![CocoaPods](https://img.shields.io/cocoapods/v/SwiftImageCarousel.svg?style=plastic)](https://img.shields.io/cocoapods/v/SwiftImageCarousel.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/SwiftImageCarousel.svg?style=plastic)](https://github.com/Centroida/SwiftImageCarousel)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftImageCarousel.svg?style=flat)](http://cocoadocs.org/docsets/SwiftImageCarousel)
-[![CocoaPods](https://img.shields.io/cocoapods/l/SwiftImageCarousel.svg)](https://img.shields.io/cocoapods/l/SwiftImageCarousel.svg)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftImageCarousel.svg?style=plastic)](http://cocoadocs.org/docsets/SwiftImageCarousel)
+[![CocoaPods](https://img.shields.io/cocoapods/l/SwiftImageCarousel.svg?style=plastic)](https://img.shields.io/cocoapods/l/SwiftImageCarousel.svg)
 
 # SwiftImageCarousel
  
@@ -160,6 +160,16 @@ import SwiftImageCarousel
        
        /// The default value of the variable is false
        vc.escapeFirstPageControlDefaultFrame = true
+```
+
+###  Enabling showing a close button in the modal gallery (GalleryItemVC) with the `showCloseButtonInModalGallery` Bool variable
+
+```swift
+       let storyboard = UIStoryboard (name: "Main", bundle: Bundle(for: SwiftImageCarouselVC.self))
+       let vc = storyboard.instantiateInitialViewController() as! SwiftImageCarouselVC
+       
+       /// Enables/disables the showing of the close button in the modal gallery
+       vc.showCloseButtonInModalGallery = true
 ```
 
 ###  Disabling the modal gallery segue transition from SwiftImageCarouselItemVC to GalleryVC with the `showModalGalleryOnTap` Bool variable 

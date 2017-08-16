@@ -109,6 +109,7 @@ extension Sequence {
 extension UIButton {
     func loadingIndicator(show: Bool) {
         if show {
+            self.isEnabled = false
             let indicator = UIActivityIndicatorView()
             let buttonHeight = self.bounds.size.height
             let buttonWidth = self.bounds.size.width
@@ -116,6 +117,7 @@ extension UIButton {
             self.addSubview(indicator)
             indicator.startAnimating()
         } else {
+            self.isEnabled = true
             for view in self.subviews {
                 if let indicator = view as? UIActivityIndicatorView {
                     indicator.stopAnimating()

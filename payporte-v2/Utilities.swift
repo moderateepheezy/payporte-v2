@@ -42,7 +42,7 @@ class Utilities{
         }else if type == .success{
             CRNotifications.showNotification(type: type, title: "Success", message: text, dismissDelay: 3)
         }else{
-            CRNotifications.showNotification(type: type, title: "Do you know!", message: text, dismissDelay: 3)
+            CRNotifications.showNotification(type: type, title: "Notice!", message: text, dismissDelay: 3)
         }
     }
     

@@ -77,15 +77,6 @@ class StoresVC: MainVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func menuClick(){
-        let vc = DrawerController()
-        vc.hidesBottomBarWhenPushed = false
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.backBarButtonItem = backItem
-        navigationController?.pushViewController(vc, animated: true)
-    }
 
 }
 

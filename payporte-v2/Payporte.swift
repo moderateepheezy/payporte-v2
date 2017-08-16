@@ -163,7 +163,7 @@ public class Payporte: OAKLIBServiceBinder {
         })
     }
     
-    public func addProductToCart(product: Product, option: Options?, completion: @escaping (Bool, _ error: String) -> ()){
+    public func addProductToCart(product: Product, option: Options?, completion: @escaping (_ message: String, _ error: String) -> ()){
         
         type = "addProduct"
         
@@ -208,14 +208,14 @@ public class Payporte: OAKLIBServiceBinder {
     }
     
     
-    func success(completion: @escaping (Bool, _ error: String) -> ()){
+    func success(completion: @escaping (_ message: String, _ error: String) -> ()){
         if self.error != nil{
             DispatchQueue.main.async {
-                completion(false, self.error ?? "")
+                completion(self.message ?? "", self.error ?? "")
             }
         }
         DispatchQueue.main.async {
-            completion(true, self.error ?? "")
+            completion(self.message ?? "", self.error ?? "")
         }
     }
     
@@ -385,6 +385,13 @@ public class Payporte: OAKLIBServiceBinder {
         }
         let x = cursor?.toJson()
         print(x)
+        if type == "addProduct"{
+            if message != "SUCCESS"{
+                self.message = message
+            }else{
+                self.message = ""
+            }
+        }
         
         if type == "cartType" && message != "CACHED" && message != "SUCCESS"{
             self.message = message

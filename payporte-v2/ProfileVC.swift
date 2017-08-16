@@ -89,15 +89,5 @@ class ProfileVC: UIViewController {
         viewHolder.addSubview(loginButton)
         viewHolder.addSubview(signupButton)
     }
-    
-    func menuClick(){
-        let vc = DrawerController()
-        vc.hidesBottomBarWhenPushed = false
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.backBarButtonItem = backItem
-        navigationController?.pushViewController(vc, animated: true)
-    }
 
 }

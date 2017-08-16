@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6EC1F09B29777E5ED29AD423E1E9179E'
+               BlueprintIdentifier = '9CB60552524E088774C9BA7E909486F9'
                BlueprintName = 'RGBottomSheet'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'RGBottomSheet.framework'>

@@ -9,12 +9,14 @@ import UIKit
 
 /// GalleryVC is pretty much the same class as SwiftImageCarouselVC both in the storyboard and in code. That is the reason most variables and functions are not described into detail below. Unlike its cousin though, it instantiates a class - GalleryItemVC - that adds on the abilities to scroll and zoom on the image in view.
 class GalleryVC: UIPageViewController {
-    
+
     // MARK: - Variables
     var pageIndicatorIndex = 0
     var contentImageURLs = [String]()
     
     var noImage: UIImage? = nil
+    /// Shows/hides the close button in the modal gallery. Default value is false.
+    var showCloseButtonInModalGallery = false
 
     // MARK: - Functions
     /// A method that helps to instantiate the correct GalleryItemVC. It gets called rightaway when segue with identifier showGalleryVC finishes.
@@ -39,6 +41,7 @@ class GalleryVC: UIPageViewController {
             galleryItemVC.itemIndex = itemIndex
             galleryItemVC.productImageURL = contentImageURLs[galleryItemVC.itemIndex]
             galleryItemVC.noImage = noImage
+            galleryItemVC.showCloseButtonInModalGallery = showCloseButtonInModalGallery
             
             return galleryItemVC
         }
@@ -64,8 +67,6 @@ class GalleryVC: UIPageViewController {
         loadPageViewController(atIndex: pageIndicatorIndex)
         setupUI()
     }
-    
-    
     
     override var prefersStatusBarHidden : Bool { return true }
 

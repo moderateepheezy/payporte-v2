@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0DC5B627A34E76098A2F56C8 /* Pods_payporte_v2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */; };
 		20F8740DE19ECC6451EBF97B /* Pods_payporte_v2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282FAC0E0479CCDA8BE9FB3D /* Pods_payporte_v2UITests.framework */; };
-		941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941B16011F1CC2DF00B4360E /* ProductDetailsVC.swift */; };
-		941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941B16031F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift */; };
 		941F64EE1F29FF8600C4E55D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941F64ED1F29FF8600C4E55D /* Product.swift */; };
 		941F64F01F2A025D00C4E55D /* ProductAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941F64EF1F2A025D00C4E55D /* ProductAttributes.swift */; };
 		941F64F21F2A0F4900C4E55D /* ProductReadMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941F64F11F2A0F4900C4E55D /* ProductReadMoreVC.swift */; };
@@ -132,6 +130,8 @@
 		94F4317F1F41D0AE00D2D5DE /* CheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */; };
 		94F431811F41D0DD00D2D5DE /* CheckoutVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */; };
 		94F431851F41D4CE00D2D5DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F431841F41D4CE00D2D5DE /* Assets.xcassets */; };
+		94F431871F41F4ED00D2D5DE /* ShippingAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F431861F41F4ED00D2D5DE /* ShippingAddressVC.swift */; };
+		94F432001F433F1400D2D5DE /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 94F431FF1F433F1400D2D5DE /* countries.json */; };
 		94F5ED281F06CD8E0061917A /* CollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */; };
 		ED75C164D432025FF35B07C6 /* Pods_payporte_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AEAAF4A8B6A60B505A13A7 /* Pods_payporte_v2.framework */; };
 /* End PBXBuildFile section */
@@ -160,8 +160,6 @@
 		367F3A903E1982010AD669AE /* Pods-payporte-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2.release.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2.release.xcconfig"; sourceTree = "<group>"; };
 		62616CA4F0E51A2CFBD60D63 /* Pods-payporte-v2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2Tests/Pods-payporte-v2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		88F19302FB0EA2065EA99FAD /* Pods_payporte_v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_payporte_v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		941B16011F1CC2DF00B4360E /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
-		941B16031F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductDetailsVC+Extension.swift"; sourceTree = "<group>"; };
 		941F64ED1F29FF8600C4E55D /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		941F64EF1F2A025D00C4E55D /* ProductAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductAttributes.swift; sourceTree = "<group>"; };
 		941F64F11F2A0F4900C4E55D /* ProductReadMoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReadMoreVC.swift; sourceTree = "<group>"; };
@@ -295,6 +293,8 @@
 		94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutVC.swift; sourceTree = "<group>"; };
 		94F431801F41D0DD00D2D5DE /* CheckoutVC+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+Extension.swift"; sourceTree = "<group>"; };
 		94F431841F41D4CE00D2D5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94F431861F41F4ED00D2D5DE /* ShippingAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingAddressVC.swift; sourceTree = "<group>"; };
+		94F431FF1F433F1400D2D5DE /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		94F5ED271F06CD8E0061917A /* CollectionViewSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionHeader.swift; sourceTree = "<group>"; };
 		AE40B7EDB1DFB95E681E68EC /* Pods-payporte-v2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2UITests/Pods-payporte-v2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD66540CFF9CF17D63EA96AE /* Pods-payporte-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-payporte-v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -431,7 +431,6 @@
 			isa = PBXGroup;
 			children = (
 				944885A91F0BB29800FEC55D /* ProductListingVC.swift */,
-				941B16011F1CC2DF00B4360E /* ProductDetailsVC.swift */,
 				941F64F11F2A0F4900C4E55D /* ProductReadMoreVC.swift */,
 				947036D81F2F38CF0093F71B /* ProductBuyDetailsVC.swift */,
 			);
@@ -442,7 +441,6 @@
 			isa = PBXGroup;
 			children = (
 				9433E7941F0E715600FD1A6D /* ProductListingVC+Extension.swift */,
-				941B16031F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -609,6 +607,7 @@
 				949295C51F05280400A403CE /* AvenirNextLTPro-Medium.otf */,
 				949295C61F05280400A403CE /* AvenirNextLTPro-Regular.otf */,
 				949295851F05209E00A403CE /* AppDelegate.swift */,
+				94F431FF1F433F1400D2D5DE /* countries.json */,
 				949295891F05209E00A403CE /* Main.storyboard */,
 				9492958E1F05209E00A403CE /* LaunchScreen.storyboard */,
 				94F431841F41D4CE00D2D5DE /* Assets.xcassets */,
@@ -704,6 +703,7 @@
 			children = (
 				949295BB1F0524A500A403CE /* CartVC.swift */,
 				94F4317E1F41D0AE00D2D5DE /* CheckoutVC.swift */,
+				94F431861F41F4ED00D2D5DE /* ShippingAddressVC.swift */,
 			);
 			name = Cart;
 			sourceTree = "<group>";
@@ -889,6 +889,7 @@
 				949A31491F0AA74400567A17 /* Childs2ndStageTableViewCell.xib in Resources */,
 				948B5CC61F2ABFF300F9D020 /* Info.plist in Resources */,
 				949295C71F05280400A403CE /* AvenirNextLTPro-Light.otf in Resources */,
+				94F432001F433F1400D2D5DE /* countries.json in Resources */,
 				9492958B1F05209E00A403CE /* Main.storyboard in Resources */,
 				948B5CD71F2ABFF300F9D020 /* Sparkle.png in Resources */,
 				94F431851F41D4CE00D2D5DE /* Assets.xcassets in Resources */,
@@ -953,13 +954,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-payporte-v2-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7E90ECCD20152C44A8F4A579 /* [CP] Embed Pods Frameworks */ = {
@@ -998,13 +1002,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-payporte-v2UITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A662DBB5F1CBC5FA404B5ADB /* [CP] Embed Pods Frameworks */ = {
@@ -1013,9 +1020,54 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-payporte-v2/Pods-payporte-v2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AZEmptyState/AZEmptyState.framework",
+				"${BUILT_PRODUCTS_DIR}/CLabsImageSlider/CLabsImageSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/CountdownLabel/CountdownLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/JNDropDownMenu/JNDropDownMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/KJExpandableTableTree/KJExpandableTableTree.framework",
+				"${BUILT_PRODUCTS_DIR}/MIBadgeButton-Swift/MIBadgeButton_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/ModernSearchBar/ModernSearchBar.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ParallaxHeader/ParallaxHeader.framework",
+				"${BUILT_PRODUCTS_DIR}/RGBottomSheet/RGBottomSheet.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftImageCarousel/SwiftImageCarousel.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/UICheckbox.Swift/UICheckbox_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AZEmptyState.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CLabsImageSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountdownLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JNDropDownMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KJExpandableTableTree.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIBadgeButton_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ModernSearchBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParallaxHeader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RGBottomSheet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftImageCarousel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICheckbox_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1043,13 +1095,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-payporte-v2Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1066,6 +1121,7 @@
 				94ED9F7D1F0C05DD0037A7D5 /* Utilities.swift in Sources */,
 				948B5CC51F2ABFF300F9D020 /* CountdownLabel.swift in Sources */,
 				948B5CAA1F2AA39600F9D020 /* StoreCountDownVC.swift in Sources */,
+				94F431871F41F4ED00D2D5DE /* ShippingAddressVC.swift in Sources */,
 				942CE3D11F3C875A00E1A0F3 /* CRNotification.swift in Sources */,
 				94DAEC291F06C376005E4AE4 /* CustomHeaderView.swift in Sources */,
 				94CF59EE1F276E2D00D8653C /* ProductList.swift in Sources */,
@@ -1105,7 +1161,6 @@
 				949295D01F05898000A403CE /* CardView.swift in Sources */,
 				947036D51F2EAD360093F71B /* Options.swift in Sources */,
 				942CE3D01F3C875A00E1A0F3 /* Colors.swift in Sources */,
-				941B16021F1CC2DF00B4360E /* ProductDetailsVC.swift in Sources */,
 				94F1E4BC1F27C1D800F34F9D /* LayerFilter.swift in Sources */,
 				94F431811F41D0DD00D2D5DE /* CheckoutVC+Extension.swift in Sources */,
 				949295BC1F0524A500A403CE /* CartVC.swift in Sources */,
@@ -1129,7 +1184,6 @@
 				94F4317D1F40887600D2D5DE /* Reachability.swift in Sources */,
 				947036DD1F2F4A930093F71B /* ProductDetailsParallaxHeader.swift in Sources */,
 				949295C31F0527AF00A403CE /* Extensions.swift in Sources */,
-				941B16041F1CD8ED00B4360E /* ProductDetailsVC+Extension.swift in Sources */,
 				9472E0571F333D2B00947F32 /* ConfigModel.swift in Sources */,
 				948B5CC71F2ABFF300F9D020 /* LTCharacterDiffResult.swift in Sources */,
 				948B5CAC1F2AA3ED00F9D020 /* CountDownLauncher.swift in Sources */,
@@ -1332,10 +1386,6 @@
 					"-framework",
 					"\"Spring\"",
 					"-framework",
-					"\"Stepperier\"",
-					"-framework",
-					"\"SwiftImageCarousel\"",
-					"-framework",
 					"\"SwiftSoup\"",
 					"-framework",
 					"\"SwiftyJSON\"",
@@ -1386,10 +1436,6 @@
 					"\"SnapKit\"",
 					"-framework",
 					"\"Spring\"",
-					"-framework",
-					"\"Stepperier\"",
-					"-framework",
-					"\"SwiftImageCarousel\"",
 					"-framework",
 					"\"SwiftSoup\"",
 					"-framework",

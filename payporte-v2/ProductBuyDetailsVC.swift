@@ -10,11 +10,17 @@ import UIKit
 import CSStickyHeaderFlowLayout
 import NVActivityIndicatorView
 import ParallaxHeader
-import SwiftImageCarousel
 import RGBottomSheet
+import SwiftImageCarousel
+
+protocol RGBottomSheetDelegate {
+    
+    func closeButtomSheet()
+}
 
 class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
 
+    
     var productList_id: String?
     
     var product: Product?
@@ -134,7 +140,7 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
         vc.contentImageURLs = array
         
         vc.noImage = #imageLiteral(resourceName: "placeholder")
-        vc.contentMode = .scaleAspectFill
+        vc.contentMode = .scaleAspectFit
         vc.swiftImageCarouselVCDelegate = self
         vc.escapeFirstPageControlDefaultFrame = true
         vc.willMove(toParentViewController: self)
@@ -675,34 +681,41 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
     }
     
     func handleAddToCart(button: UIButton){
-        Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value, error) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
-                return
-            }
-            Utilities.getBaseNotification(text: "Item added to cart", type: .success)
+        
+        button.loadingIndicator(show: true)
+        guard let status = product?.stockStatus else {return}
+        if  status == "false"{
             button.loadingIndicator(show: false)
-            button.isEnabled = true
-            someData.removeAll()
-            self.productBuydetails?.navigationController?.popViewController(animated: true)
+            Utilities.getBaseNotification(text: "Product is out of Stock", type: .info)
         }
-//        print(someData)
-//        //print(qtyText)
-//        if hasOption! &&  someData[(option?.optionTitle)!] != nil{
-////            
-//        }else if !hasOption!{
-//            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (value) in
-//                Utilities.getBaseNotification(text: "Item added to cart", type: .success)
-//                button.loadingIndicator(show: false)
-//                button.isEnabled = true
-//                someData.removeAll()
-//                self.productBuydetails?.navigationController?.popViewController(animated: true)
-//            }
-//        }else if hasOption! &&  someData[(option?.optionTitle)!] == nil{
-//            Utilities.getBaseNotification(text: "The item needs a \((option?.optionTitle)!).", type: .error)
-//        }else if hasOption! &&  someData["Quantity"] == nil{
-//            Utilities.getBaseNotification(text: "Please use option values for Quantity", type: .error)
-//        }
+        else if hasOption! &&  someData[(option?.optionTitle)!] == nil{
+            button.loadingIndicator(show: false)
+            Utilities.getBaseNotification(text: "The item needs a \((option?.optionTitle)!).", type: .info)
+        }else if !hasOption! &&  someData["Quantity"] == nil || hasOption! &&  someData["Quantity"] == nil{
+            button.loadingIndicator(show: false)
+            Utilities.getBaseNotification(text: "Please set item Quantity", type: .info)
+        }else{
+            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (message, error) in
+                if error != ""{
+                    button.loadingIndicator(show: false)
+                    Utilities.getBaseNotification(text: error, type: .info)
+                    return
+                }
+                
+                if message != ""{
+                    button.loadingIndicator(show: false)
+                    Utilities.getBaseNotification(text: message, type: .info)
+                    return
+                }
+                
+                Utilities.getBaseNotification(text: "Item added to cart", type: .success)
+                button.loadingIndicator(show: false)
+                button.isEnabled = true
+                someData.removeAll()
+                self.productBuydetails?.navigationController?.popViewController(animated: true)
+            }
+
+        }
         
     }
 }
