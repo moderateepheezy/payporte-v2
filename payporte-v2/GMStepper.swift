@@ -83,7 +83,7 @@ import UIKit
     }
     
     /// Background color of the buttons. Defaults to dark blue.
-    @IBInspectable public var buttonsBackgroundColor: UIColor = UIColor(white: 0, alpha: 0.05) {
+    @IBInspectable public var buttonsBackgroundColor: UIColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1) {
         didSet {
             for button in [leftButton, rightButton] {
                 button.backgroundColor = buttonsBackgroundColor
@@ -321,23 +321,10 @@ import UIKit
         leftButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: bounds.size.height)
         label.frame = CGRect(x: buttonWidth, y: 0, width: labelWidth, height: bounds.size.height)
         rightButton.frame = CGRect(x: labelWidth + buttonWidth, y: 0, width: buttonWidth, height: bounds.size.height)
-
         
         labelMaximumCenterX = label.center.x + labelSlideLength
         labelMinimumCenterX = label.center.x - labelSlideLength
         labelOriginalCenter = label.center
-        
-        label.layer.cornerRadius = self.frame.height / 2
-        label.clipsToBounds = true
-        label.layer.borderColor = UIColor(white: 0.15, alpha: 0.05).cgColor
-        label.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        label.layer.shadowRadius = 3.0
-        label.layer.shadowColor = UIColor(white: 0.15, alpha: 0.45).cgColor
-        label.layer.borderWidth = 1.5
-        
-        
-        self.layer.cornerRadius = self.frame.height / 2
-        self.backgroundColor = UIColor(white: 0.15, alpha: 0.05)
     }
     
     func updateValue() {
@@ -353,6 +340,18 @@ import UIKit
         NotificationCenter.default.removeObserver(self)
     }
     
+    /// Useful closure for logging the timer interval. You can call this in the timer handler to test the autorepeat option. Not used in the current implementation.
+    //    lazy var printTimerGaps: () -> () = {
+    //        var prevTime: CFAbsoluteTime?
+    //
+    //        return { _ in
+    //            var now = CFAbsoluteTimeGetCurrent()
+    //            if let prevTime = prevTime {
+    //                print(now - prevTime)
+    //            }
+    //            prevTime = now
+    //        }
+    //    }()
 }
 
 // MARK: Pan Gesture

@@ -137,44 +137,41 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
     func getProductLists(category_id: String){
         
         
-        Payporte.sharedInstance.fetchSortProductListing(key: "0", offset: 0, category_id: category_id, completion: { (productList, error) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+        Payporte.sharedInstance.fetchSortProductListing(key: "0", offset: 0, category_id: category_id) { (productList, error, message, itemCount, cursorCount) in
+            
+            if error != nil{
+                self.setupEmptyState()
                 return
             }
-                if productList.count > 0{
-                    self.spinnerView.alpha = 0
-                    self.activityIndicator.stopAnimating()
-                    self.productLists = productList
-                    self.collectionView.reloadData()
-                    self.showFilter()
-                    self.showSort()
-            }else{
-                self.setupEmptyState()
-            }
             
-        }, itemCountCompletion: { (itemCounts) in
-            self.itemCounts = itemCounts
-        }) { (coursorCount) in
-            self.coursorCount = coursorCount
+            self.spinnerView.alpha = 0
+            self.activityIndicator.stopAnimating()
+            self.productLists = productList
+            self.collectionView.reloadData()
+            self.showFilter()
+            self.showSort()
+            
+            self.itemCounts = itemCount
+            self.coursorCount = cursorCount
             
             self.collectionView.dataSource = self
             self.collectionView.delegate = self
             self.collectionView.register(ProductListCell.self, forCellWithReuseIdentifier: cellIndetifier)
             
             self.refreshControl.endRefreshing()
-        }
-
-        self.collectionView.addInfiniteScroll(handler: { (collectionView) in
-            self.collectionView.performBatchUpdates({
-                self.fetchData()
-            }, completion: { (completed) in
-                self.collectionView.finishInfiniteScroll()
+        
+            self.collectionView.addInfiniteScroll(handler: { (collectionView) in
+                    self.collectionView.performBatchUpdates({
+                        self.fetchData()
+                    }, completion: { (completed) in
+                        self.collectionView.finishInfiniteScroll()
             })
         })
         
         self.collectionView.setShouldShowInfiniteScrollHandler { (collectionView) -> Bool in
             return self.page < self.itemCounts!
+        }
+            
         }
     }
     
@@ -275,23 +272,24 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         let  offset = (coursorCount != 0) ? index * limit: 0
         if coursorCount! >= offset {
             page = offset
-            print(key)
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: category_id!, completion: { (productList, error) in
+            
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: category_id!, completion: { (productList, error, message, itemCount, cursorCount) in
                 
                 if error != ""{
-                    Utilities.getBaseNotification(text: error, type: .error)
+                    Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                     return
                 }
+                
+                self.itemCounts = itemCount
+                self.coursorCount = cursorCount
+                
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
                 self.collectionView.reloadData()
                 
-            }, itemCountCompletion: { (itemCount) in
-                self.itemCounts = itemCount
-            }) { (count) in
-                self.coursorCount = count
-            }
+                
+            })
             
         }
     }
@@ -309,23 +307,23 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category_id!), completion: { (productList, error) in
+            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: category_id!, completion: { (productList, error, message, itemCount, cursorCount) in
                 
                 if error != ""{
-                    Utilities.getBaseNotification(text: error, type: .error)
+                    Utilities.getBaseNotification(text: "\(error)", type: .error)
                     return
                 }
+                
+                self.itemCounts = itemCount
+                self.coursorCount = cursorCount
                 
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
                 self.collectionView.reloadData()
                 
-            }, itemCountCompletion: { (itemCount) in
-                
-            }, cursorCompletion: { (coursorCount) in
-                self.coursorCount = coursorCount
             })
+            
             
         }
     }
@@ -343,36 +341,21 @@ class ProductListingVC: MainVC, RGBottomSheetDelegate, ProductListingDelegate {
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: (category_id)!, completion: { (productList, error) in
+            Payporte.sharedInstance.fetchFilterProductListing(key: key, value: value, offset: page, category_id: category_id!, completion: { (productList, error, message, itemCount, cursorCount) in
                 
                 if error != ""{
-                    Utilities.getBaseNotification(text: error, type: .error)
+                    Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                     return
                 }
+                
+                self.itemCounts = itemCount
+                self.coursorCount = cursorCount
                 
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
                 self.collectionView.reloadData()
-                
-            }, itemCountCompletion: { (itemCount) in
-                
-            }, cursorCompletion: { (coursorCount) in
-                self.coursorCount = coursorCount
             })
-            
-//            Payporte.sharedInstance.fetchSortProductListing(key: key, offset: page, category_id: (category?.category_id!)!, completion: { (productList) in
-//                
-//                self.spinnerView.alpha = 0
-//                self.activityIndicator.stopAnimating()
-//                self.productLists = productList
-//                self.collectionView.reloadData()
-//                
-//            }, itemCountCompletion: { (itemCount) in
-//                
-//            }, cursorCompletion: { (coursorCount) in
-//                self.coursorCount = coursorCount
-//            })
             
         }
     }

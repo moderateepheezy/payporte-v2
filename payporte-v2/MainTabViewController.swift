@@ -9,6 +9,9 @@
 import UIKit
 import MIBadgeButton_Swift
 
+
+let itemCountlNotificationKey = "com.simpumind.countKey"
+
 class MainTabViewController: UITabBarController {
 
     override func viewDidLoad() {
@@ -57,5 +60,6 @@ class MainTabViewController: UITabBarController {
         viewControllers = [nav1, nav2, nav3, nav3, nav4]
         
     }
+    
 
 }

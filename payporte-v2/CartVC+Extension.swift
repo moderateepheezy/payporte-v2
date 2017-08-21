@@ -15,7 +15,7 @@ extension CartVC {
         if (!didSetupConstraints) {
             
             cardview.snp.makeConstraints({ (make) in
-                make.top.equalTo(view.snp.top).offset(64)
+                make.top.equalTo(view).offset(64)
                 make.left.equalTo(view.snp.left)
                 make.right.equalTo(view.snp.right)
                 make.height.equalTo(64)

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = MainTabViewController()
+        window?.rootViewController = SplashVC()
         
          UIApplication.shared.statusBarStyle = .default
         

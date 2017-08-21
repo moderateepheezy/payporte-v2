@@ -53,27 +53,33 @@ class SubCategoryVC: MainVC {
     
     func fetchSubACategory(cat_id: String){
         
-        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories, error) in
+        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories, error, message, cursorCount) in
             
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+            if error != nil{
+                self.spinnerView.alpha = 0
+                self.activityIndicator.stopAnimating()
+                self.setupEmptyState()
                 return
             }
+            
             self.firstLevelcatgories = categories
             let firstCat = categories[0]
             self.fetchSubBCategory(cat_id: firstCat.category_id!)
             self.menu = JNDropDownMenu(origin: CGPoint(x: 0, y: 64), height: 40, width: self.view.frame.size.width)
             self.menu.datasource = self
             self.menu.delegate = self
-        
+            
             self.view.addSubview(self.menu)
+            
         }
+        
     }
     
     func fetchSubBCategory(cat_id: String){
-        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories, error) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+        Payporte.sharedInstance.fetchSubCategories(category_id: cat_id) { (categories, error, message, cursorCount) in
+            
+            if error != nil{
+                Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                 return
             }
             self.spinnerView.alpha = 0
@@ -109,6 +115,9 @@ class SubCategoryVC: MainVC {
     
     }
     
+    override func tryAgain() {
+        fetchSubACategory(cat_id: category_id!)
+    }
     
     private func addSubViewsToView(){
         

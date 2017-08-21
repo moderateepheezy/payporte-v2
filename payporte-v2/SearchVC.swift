@@ -127,22 +127,26 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
     var searchedArray = [ProductList]()
     
     func getList(text: String){
-        Payporte.sharedInstance.fetchSearch(suggestion: text) { (datas, error) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+        
+        Payporte.sharedInstance.fetchSearch(suggestion: text) { (datas, error, message, itemCount, cursorCount) in
+            
+            if error != nil{
+                Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                 return
             }
             self.datas = datas
             self.tableView.reloadData()
+            
+            
         }
     }
     
     func getProductLists(text: String){
         
-        Payporte.sharedInstance.fetchSearchProductLists(key: "0", value: 0, search: text, offset: 0, completion: { (productLists, error) in
+        Payporte.sharedInstance.fetchSearchProductLists(key: "0", value: 0, search: text, offset: 0) { (productLists, error, message, itemCount, cursorCount) in
             
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+            if error != nil{
+                Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                 return
             }
             
@@ -152,30 +156,29 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
             self.collectionView.reloadData()
             self.showSort()
             self.showFilter()
-            
-        }, itemCountCompletion: { (itemCount) in
             self.itemCounts = itemCount
-        }) { (coursorCount) in
-            self.coursorCount = coursorCount
+            self.coursorCount = cursorCount
             
             self.collectionView.dataSource = self
             self.collectionView.delegate = self
             self.collectionView.register(ProductListCell.self, forCellWithReuseIdentifier: cellIndetifier)
             
             self.refreshControl.endRefreshing()
-        }
-        
-        self.collectionView.addInfiniteScroll(handler: { (collectionView) in
-            self.collectionView.performBatchUpdates({
-                self.fetchData()
-            }, completion: { (completed) in
-                self.collectionView.finishInfiniteScroll()
+            
+            self.collectionView.addInfiniteScroll(handler: { (collectionView) in
+                self.collectionView.performBatchUpdates({
+                    self.fetchData()
+                }, completion: { (completed) in
+                    self.collectionView.finishInfiniteScroll()
+                })
             })
-        })
-        
-        self.collectionView.setShouldShowInfiniteScrollHandler { (collectionView) -> Bool in
-            return self.page < self.itemCounts!
+            
+            self.collectionView.setShouldShowInfiniteScrollHandler { (collectionView) -> Bool in
+                return self.page < self.itemCounts ?? 0
+            }
         }
+        
+        
     }
 
     override func viewDidLoad() {
@@ -522,22 +525,22 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: Int(value)!, search: searchField.text!, offset: page, completion: { (productList, error) in
+            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: Int(value)!, search: searchField.text!, offset: page, completion: { (productList, error, message, itemCount, cursorCount) in
                 
-                if error != ""{
-                    Utilities.getBaseNotification(text: error, type: .error)
+                if error != nil{
+                    Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                     return
                 }
+                
+                self.itemCounts = itemCount
+                self.coursorCount = cursorCount
+                
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
                 self.collectionView.reloadData()
-            }, itemCountCompletion: { (itemCount) in
-                self.itemCounts = itemCount
-            }, cursorCompletion: { (coursorCount) in
-                self.coursorCount = coursorCount
+                
             })
-            
             
         }
     }
@@ -555,20 +558,19 @@ class SearchVC: UIViewController, RGBottomSheetDelegate, ProductListingDelegate 
         if coursorCount! >= offset {
             page = offset
             
-            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: 0, search: searchField.text!, offset: page, completion: { (productList, error) in
+            Payporte.sharedInstance.fetchSearchProductLists(key: key, value: 0, search: searchField.text!, offset: page, completion: { (productList, error, message, itemCount, cursorCount) in
                 
-                if error != ""{
-                    Utilities.getBaseNotification(text: error, type: .error)
+                if error != nil{
+                    Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                     return
                 }
+                
                 self.spinnerView.alpha = 0
                 self.activityIndicator.stopAnimating()
                 self.productLists = productList
                 self.collectionView.reloadData()
-            }, itemCountCompletion: { (itemCount) in
                 self.itemCounts = itemCount
-            }, cursorCompletion: { (coursorCount) in
-                self.coursorCount = coursorCount
+                self.coursorCount = cursorCount
             })
             
         }

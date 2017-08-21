@@ -28,5 +28,6 @@ public class Cart: NSObject, JSONDecodable  {
         self.product_price = json["product_price"] as? String ?? ""
         self.product_qty = json["product_qty"] as? String ?? ""
         self.product_name = json["product_name"] as? String ?? ""
+        self.product_max_qty = json["product_max_qty"] as? String ?? ""
     }
 }

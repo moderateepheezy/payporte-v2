@@ -56,15 +56,17 @@ class HomeVC: MainVC {
     
     
     func fetchCategories(){
-        Payporte.sharedInstance.fetchCategories { (categories, error) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+        
+        Payporte.sharedInstance.fetchCategories { (categories, error, message, cursorCount) in
+            if error != nil{
+                Utilities.getBaseNotification(text: error!, type: .error)
                 return
             }
             self.categories = categories
-        
+            
             self.collectionView.reloadData()
         }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,15 +78,18 @@ class HomeVC: MainVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func fetchBadgeCount(){
-        Payporte.sharedInstance.fetchCartItems { (carts, message, error, itemCount, cursorCount) in
-            self.tabBarController?.tabBar.items?[2].badgeValue = "\(cursorCount)"
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchBadgeCount()
+        
+        
+        Payporte.sharedInstance.fetchCartItems { (carts, total, error, message, itemCount, cursorCount) in
+            
+            self.fetchBadgeCount()
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchBadgeCount), name: NSNotification.Name(rawValue: itemCountlNotificationKey), object: nil)
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
@@ -127,6 +132,16 @@ class HomeVC: MainVC {
         addingViewsAddSubViews()
     }
     
+    func fetchBadgeCount() {
+        Payporte.sharedInstance.fetchCartItems { (carts, total, error, message, itemCount, cursorCount) in
+            
+            if error != nil{
+                return
+            }
+            
+            self.tabBarController?.tabBar.items?[2].badgeValue = "\(cursorCount)"
+        }
+    }
     
     
     func addingViewsAddSubViews(){

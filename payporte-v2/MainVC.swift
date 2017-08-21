@@ -32,11 +32,12 @@ class MainVC: UIViewController {
 
     func setupEmptyState(){
         emptyStateView = AZEmptyStateView()
-        
+        emptyStateView.alpha = 1
         //customize
-        emptyStateView.image = #imageLiteral(resourceName: "error_cloud")
         emptyStateView.message = "Something went wrong..."
         emptyStateView.buttonText = "Try Again"
+        emptyStateView.button.backgroundColor = primaryColor
+        emptyStateView.buttonTint = .white
         emptyStateView.addTarget(self, action: #selector(tryAgain), for: .touchUpInside)
         
         //add subview

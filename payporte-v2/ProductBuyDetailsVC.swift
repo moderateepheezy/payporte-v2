@@ -55,10 +55,11 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
     }()
     
     func fetchProductDetails(product_id: String){
-        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product, error) in
+        
+        Payporte.sharedInstance.fetchProductDetails(product_id: product_id) { (product, error, message) in
             
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+            if error != nil{
+                Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                 return
             }
             self.addSubViews()
@@ -73,6 +74,8 @@ class ProductBuyDetailsVC: UIViewController, SwiftImageCarouselVCDelegate {
             guard let options = product.options else {return}
             self.options = options.group { $0.optionTypeId ?? "" }
         }
+        
+        
     }
     
     override func viewDidLoad() {
@@ -683,6 +686,11 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
         }
     }
     
+    func badgeUpdate(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: itemCountlNotificationKey), object: nil)
+    }
+    
+    
     func handleAddToCart(button: UIButton){
         
         button.loadingIndicator(show: true)
@@ -698,19 +706,22 @@ public class AddToCartButtonCell: UITableViewCell, NVActivityIndicatorViewable{
             button.loadingIndicator(show: false)
             Utilities.getBaseNotification(text: "Please set item Quantity", type: .info)
         }else{
-            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (message, error) in
-                if error != ""{
+            Payporte.sharedInstance.addProductToCart(product: product!, option: option) { (error, message) in
+                if error != nil{
                     button.loadingIndicator(show: false)
-                    Utilities.getBaseNotification(text: error, type: .info)
+                    guard let err = error else {return}
+                    Utilities.getBaseNotification(text: err, type: .info)
                     return
                 }
                 
-                if message != ""{
+                if message != "SUCCESS"{
+                    print(someData)
                     button.loadingIndicator(show: false)
-                    Utilities.getBaseNotification(text: message, type: .info)
+                    guard let msg = message else {return}
+                    Utilities.getBaseNotification(text: msg, type: .info)
                     return
                 }
-                
+                self.badgeUpdate()
                 Utilities.getBaseNotification(text: "Item added to cart", type: .success)
                 button.loadingIndicator(show: false)
                 button.isEnabled = true

@@ -194,6 +194,14 @@ extension UITabBarController {
             tabBar.items?[2].badgeValue = nil
         }
     }
+    
+    func decreaseBadge() {
+        if let badgeValue = tabBar.items?.first?.badgeValue {
+            tabBar.items?.first?.badgeValue = String((Int(badgeValue) ?? 0) - 1)
+        } else {
+            tabBar.items?[2].badgeValue = nil
+        }
+    }
 }
 
 extension UITextField {
@@ -206,5 +214,18 @@ extension UITextField {
         self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 0.0
+    }
+}
+
+extension UIView {
+    func fadeIn(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.alpha = 1.0
+        }, completion: completion)  }
+    
+    func fadeOut(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.alpha = 0.0
+        }, completion: completion)
     }
 }

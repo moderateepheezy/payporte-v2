@@ -13,8 +13,6 @@ class CustomHeaderView: UIView, imageSliderDelegate {
     
     var baners = [String]()
     
-    let imgArray = ["03", "04", "05", "6"]
-    
     var banners: CLabsImageSlider = {
         let zc = CLabsImageSlider()
         return zc
@@ -43,14 +41,17 @@ class CustomHeaderView: UIView, imageSliderDelegate {
     }
     
     func fetchBanners(){
-        Payporte.sharedInstance.fetchBanners { (bans: [Banner], error) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+        
+        Payporte.sharedInstance.fetchBanners { (banners, error, message, cursorCount) in
+            
+            if error != nil{
+                Utilities.getBaseNotification(text: error!, type: .error)
                 return
             }
+            
             self.baners.removeAll()
-            for i in 0 ..< (bans.count - 1){
-                guard let img = bans[i].image_path else {return}
+            for i in 0 ..< (banners.count - 1){
+                guard let img = banners[i].image_path else {return}
                 self.baners.append(img)
             }
             
@@ -59,7 +60,6 @@ class CustomHeaderView: UIView, imageSliderDelegate {
                                                      placeHolderImage:UIImage(named:"placeholder")),slideType:.Automatic(timeIntervalinSeconds: 5),isArrowBtnEnabled: false)
             
             self.pageController.numberOfPages = self.baners.count
-            
         }
     }
     

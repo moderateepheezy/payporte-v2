@@ -8,7 +8,12 @@
 
 import UIKit
 
-class CartVC: MainVC {
+
+protocol CartVCDelegate {
+    func updatePrice(newPrice: String)
+}
+
+class CartVC: MainVC, CartVCDelegate {
     
     let cellIdentifier = "cellIdentifier"
     
@@ -76,19 +81,36 @@ class CartVC: MainVC {
     var didSetupConstraints = false
     
     func fetchCartItems(){
-        Payporte.sharedInstance.fetchCartItems { (carts, message, error, itemCount, cursorCount) in
-            if error != ""{
-                Utilities.getBaseNotification(text: error, type: .error)
+        Payporte.sharedInstance.fetchCartItems { (carts, totalPrice, error, message, itemCount, cursorCount) in
+            if error != nil{
+                Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
                 return
             }
             
             self.view.setNeedsUpdateConstraints()
             self.addSubViewsToView()
-            self.priceLabel.text = "₦ \(message)"
+            self.priceLabel.text = "₦ \(totalPrice)"
             self.cartArray = carts
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    func fetchRefeshItems(){
+        Payporte.sharedInstance.fetchCartItemsRefresh { (carts, totalPrice, error, message, itemCount, cursorCount) in
+            if error != nil{
+                Utilities.getBaseNotification(text: "\(String(describing: error))", type: .error)
+                return
+            }
+            
+            self.view.setNeedsUpdateConstraints()
+            self.addSubViewsToView()
+            self.priceLabel.text = "₦ \(totalPrice)"
+            self.cartArray = carts
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+
     }
     
     override func viewDidLoad() {
@@ -121,6 +143,7 @@ class CartVC: MainVC {
     
     override func viewWillAppear(_ animated: Bool) {
         fetchCartItems()
+        checkoutButton.setTitle("CHECK OUT", for: .normal)
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = nil
@@ -137,33 +160,59 @@ class CartVC: MainVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.syncCart()
+    }
+    
     func addSubViewsToView(){
         view.addSubview(cardview)
         cardview.addSubview(totalLabel)
         cardview.addSubview(priceLabel)
-        view.addSubview(cardView2)
         view.addSubview(tableView)
+        view.addSubview(cardView2)
         cardView2.addSubview(checkoutButton)
         tableView.addSubview(refreshControl)
     }
     
+    func updatePrice(newPrice: String) {
+        priceLabel.text = newPrice
+    }
+    
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         
-        fetchCartItems()
+        fetchRefeshItems()
     }
     
     func handlePushToCartVc(button: UIButton){
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.backBarButtonItem = backItem
-        let vc = CheckoutVC()
-        vc.numberOfItem = 10
-        vc.total = priceLabel.text!
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+        
+        if button.titleLabel?.text == "SAVE CHANGES"{
+            button.setTitle("CHECK OUT", for: .normal)
+            
+        self.syncCart()
+            
+        }else{
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            navigationController?.navigationBar.tintColor = .black
+            self.navigationItem.backBarButtonItem = backItem
+            let vc = CheckoutVC()
+            vc.numberOfItem = 10
+            vc.total = priceLabel.text!
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-
+    
+    func syncCart(){
+        Payporte.sharedInstance.syncCarts { (completed, value) in
+            if completed{
+                print("\(value)")
+            }else{
+                print("\(value)")
+            }
+        }
+    }
 }
 
 extension CartVC: UITableViewDelegate, UITableViewDataSource {
@@ -182,7 +231,7 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
         cell.cartVc = self
         let arr = cartArray[indexPath.item]
         cell.cart = arr
-        
+        cell.cartVcDelegate = self
         cell.selectionStyle = .none
         return cell
     }
