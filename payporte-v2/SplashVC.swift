@@ -84,8 +84,6 @@ class SplashVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Payporte.sharedInstance.fetchCountriesandStates()
         
         view.backgroundColor = .white
         

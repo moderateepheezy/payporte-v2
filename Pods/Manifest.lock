@@ -1,4 +1,5 @@
 PODS:
+  - AZDialogView (1.1.4)
   - AZEmptyState (1.0.1)
   - CLabsImageSlider (0.1.2)
   - CountdownLabel (2.0.1)
@@ -27,6 +28,7 @@ PODS:
   - UIScrollView-InfiniteScroll (1.0.2)
 
 DEPENDENCIES:
+  - AZDialogView
   - AZEmptyState
   - CLabsImageSlider (~> 0.1.2)
   - CountdownLabel
@@ -67,6 +69,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  AZDialogView: 01ee03e0c26de3593090433b11afaf44eab3bcbb
   AZEmptyState: d6dc312a6336a03a74a6003d7effe7622d26a2d9
   CLabsImageSlider: 49c296c17e2fb15f1abe8b5dd6157927912abb7c
   CountdownLabel: 1297533b42ef5c1a441cd458136c35ad93210da1
@@ -90,6 +93,6 @@ SPEC CHECKSUMS:
   UICheckbox.Swift: 85715689206fac5bae38b308f19c2a3e00442c3b
   UIScrollView-InfiniteScroll: c132d6d5851daff229ab4a1060ccf70a05a051c9
 
-PODFILE CHECKSUM: f37a3db084f4ca97f3886495d6148ca959e0557a
+PODFILE CHECKSUM: 1fe3b2026b7f83ded178b98a892b36bb43400335
 
 COCOAPODS: 1.3.1

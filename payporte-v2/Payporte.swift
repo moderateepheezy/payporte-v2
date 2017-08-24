@@ -317,6 +317,38 @@ public class Payporte: OAKLIBServiceBinder {
     }
     
     
+    func fetchCountriesandStates(completion: @escaping ([Country], _ error: String?, _ message: String?) -> ()){
+        
+        configChef(module: .CONFIGMODULE, package: .ALLOWEDLOCATION, loadType: .STATIC, params: ["u": "us"]) { (error, message, cache, cursor) in
+            
+            if error != nil{
+                completion([], error?.message, "\(String(describing: message))")
+            }
+            
+            var model = [Country]()
+            guard let cursor = cursor else {return}
+            
+            if (!(cursor.moveToFirst())) {
+                return
+            }
+            
+            let count = cursor.getCount()
+            for i in 0 ..< count{
+                cursor.move(toPosition: i)
+                let a = cursor.toJson()
+                let json = self.createJsonString(string: a)
+                let country = Country(json: json)
+                model.append(country)
+            }
+            
+            DispatchQueue.main.async {
+                completion(model, nil, "\(String(describing: message))")
+            }
+            
+        }
+    }
+    
+    
     func syncCarts( completion: @escaping (Bool, _ message: String) -> ()){
         
         type = "syncType"
@@ -439,25 +471,42 @@ public class Payporte: OAKLIBServiceBinder {
             self.baseQueryTemplate(error, message, cache, cursor, completion: completion)
         }
     }
-
-    func fetchCountriesandStates(){
+    
+    func saveAddress(arry: [String], completion: @escaping ( (Payment), _ error: String?, _ message: String?) -> ()){
         
-        configChef(module: .CONFIGMODULE, package: .ALLOWEDLOCATION, loadType: .STATIC, params: ["u": "us"]) { (error, message, cache, cursor) in
+        var params = [String: String]()
+        params["name"] = arry[5]
+        params["email"] = arry[6]
+        params["street"] = arry[4]
+        params["city"] = arry[0]
+        params["country_code"] = arry[8]
+        params["country_name"] = arry[2]
+        params["state_id"] = arry[9]
+        params["phone"] = arry[3]
+        params["state_code"] = arry[10]
+        params["state_name"] = arry[1]
+        params["zip"] = arry[7]
+        
+        configChef(module: .CHECKOUTMODULE, package: .ORDERCONFIG, loadType: .STRICT, params: params) { (error, message, cache, cursor) in
             
-            
+            if error != nil {
+                completion(Payment(json: JSON.null), error?.message, message)
+            }
             guard let cursor = cursor else {return}
-            
-            if (!(cursor.moveToFirst())) {
+            if !cursor.moveToLast() {
+                print("Error saving address")
+                completion(Payment(json: JSON.null), "Error saving address", message)
                 return
             }
             
-            let count = cursor.getCount()
-            for i in 0 ..< count{
-                cursor.move(toPosition: i)
-                let x = cursor.toJson()
-                
-            }
+            cursor.moveToLast()
+            let a = cursor.toJson()
+            let json = self.createJsonString(string: a)
+            let payment = Payment(json: json)
             
+            DispatchQueue.main.async {
+                completion(payment, nil, message)
+            }
         }
     }
     

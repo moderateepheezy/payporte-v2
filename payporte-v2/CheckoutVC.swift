@@ -8,15 +8,38 @@
 
 import UIKit
 import SnapKit
+import RGBottomSheet
 
-class CheckoutVC: UIViewController {
+
+protocol CheckoutDelegate {
+    
+    func getShippingMethods(options: [String])
+    func getPaymentMethods(options: [String])
+    func getTotalAmount(total: String)
+    func getUserAddress(street: String, phone: String)
+    func getSelectedPaymentMethod(method: String)
+    func getSelectedShippingMethod(method: String)
+}
+
+class CheckoutVC: UIViewController, RGBottomSheetDelegate, CheckoutDelegate {
     
     let colors = [UIColor(red: 250, green: 152, blue: 36), UIColor(red: 247, green: 60, blue: 100)]
     
     var didSetupConstraints = false
     
+    var sheet: RGBottomSheet?
+    
     var numberOfItem = 0
     var total = ""
+    var street: String?
+    var phoneNumber: String?
+    var paymentType: String?
+    var shippingType: String?
+    
+    var pymentData: [String]?
+    
+    var shippingData: [String]?
+    
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -27,156 +50,11 @@ class CheckoutVC: UIViewController {
         return label
     }()
     
-    let totalPriceView: CardView = {
-        let view = CardView()
-        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
-        view.backgroundColor = .white
-        return view
-    }()
-    
-    let addressView: CardView = {
-        let view = CardView()
-        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
-        view.backgroundColor = .white
-        return view
-    }()
-    
-    let paymentView: CardView = {
-        let view = CardView()
-        view.backgroundColor = .white
-        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
-        return view
-    }()
-    
-    let placeorderView: CardView = {
-        let view = CardView()
-        view.backgroundColor = .white
-        view.shadowColor = UIColor(white: 0.2, alpha: 0.2)
-        return view
-    }()
-
-    
-    let priceDetailsSubView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.borderColor = UIColor(white: 0, alpha: 0.07).cgColor
-        view.layer.borderWidth = 0.85
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    let cartLabel: UILabel = {
-        let label = UILabel()
-        label.text = "CART"
-        label.font = UIFont(name: "Orkney-Bold", size: 14)
-        label.textColor = UIColor(white: 0, alpha: 0.65)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let shipToLabel: UILabel = {
-        let label = UILabel()
-        label.text = "SHIP TO"
-        label.font = UIFont(name: "Orkney-Bold", size: 14)
-        label.textColor = UIColor(white: 0, alpha: 0.65)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let shippingMethodLabel: UILabel = {
-        let label = UILabel()
-        label.text = "SHIPPING METHOD"
-        label.textColor = UIColor(white: 0, alpha: 0.65)
-        label.font = UIFont(name: "Orkney-Bold", size: 14)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    
-    let shippingTextLabel: UILabel = {
-        let label = UILabel()
-        label.text = "NO SHIPPING METHOD SELECTED"
-        label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "Orkney-Regular", size: 12)
-        return label
-    }()
-    
-    let addressLabel: UILabel = {
-        let label = UILabel()
-        label.text = "JOHN ADDRESS, OFF GORILLA STREET LAGOS"
-        label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "Orkney-Regular", size: 12)
-        return label
-    }()
-    
-    let phoneNumberLabel: UILabel = {
-        let label = UILabel()
-        label.text = "JOHN (0705456789045)"
-        label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "Orkney-Bold", size: 12)
-        return label
-    }()
-    
-    let editShippingImageView: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
-        return button
-    }()
-    
-    let editAddressImageView: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
-        return button
-    }()
-    
-    let showItemButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "eye"), for: .normal)
-        return button
-    }()
-    
-    
-    let numOfItemLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "Orkney-Regular", size: 12)
-        return label
-    }()
-    
-    let priceLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(white: 0, alpha: 0.45)
-        label.font = UIFont(name: "Orkney-Bold", size: 12)
-        return label
-    }()
-    
-    let couponTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.placeholder = "ENTER COUPON CODE"
-        textfield.textColor = UIColor(white: 0, alpha: 0.45)
-        textfield.font = UIFont(name: "Orkney-Regular", size: 10)
-        textfield.setBottomBorder()
-        return textfield
-    }()
-    
-    let verifyCouponButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("VERIFY", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = primaryColor
-        button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 12)
-        return button
-    }()
-    
-    var placeOrderButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.setTitle("PLACE ORDER", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Orkney-Bold", size: 14)
-        button.isUserInteractionEnabled = true
-        button.clipsToBounds = true
-        button.backgroundColor = primaryColor
-        return button
+    let tableView: UITableView = {
+       let tv = UITableView()
+        tv.backgroundColor = UIColor(red: 249, green: 249, blue: 249)
+        tv.separatorStyle = .none
+        return tv
     }()
     
     
@@ -186,54 +64,74 @@ class CheckoutVC: UIViewController {
         view.backgroundColor = UIColor(red: 249, green: 249, blue: 249)
         
         view.addSubview(titleLabel)
-        view.addSubview(totalPriceView)
-        view.addSubview(addressView)
-        view.addSubview(paymentView)
-        view.addSubview(placeorderView)
-        placeorderView.addSubview(placeOrderButton)
-        view.addSubview(cartLabel)
-        view.addSubview(shipToLabel)
-        view.addSubview(shippingMethodLabel)
-        paymentView.addSubview(shippingTextLabel)
-        paymentView.addSubview(editShippingImageView)
-        addressView.addSubview(addressLabel)
-        addressView.addSubview(phoneNumberLabel)
-        addressView.addSubview(editAddressImageView)
-        totalPriceView.addSubview(priceDetailsSubView)
-        priceDetailsSubView.addSubview(showItemButton)
-        priceDetailsSubView.addSubview(priceLabel)
-        priceDetailsSubView.addSubview(numOfItemLabel)
-        totalPriceView.addSubview(couponTextField)
-        totalPriceView.addSubview(verifyCouponButton)
+        
+        view.addSubview(tableView)
         
         view.setNeedsUpdateConstraints()
         
-        priceLabel.text = "TOTAL \(String(describing: total))"
-        numOfItemLabel.text = "YOU HAVE \(numberOfItem) ITEM(S) IN YOUR CART"
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        tableView.register(CartCardCell.self, forCellReuseIdentifier: "cartCell")
+        tableView.register(ShipToCardCell.self, forCellReuseIdentifier: "shipToCell")
+        tableView.register(ShippingMethodCardCell.self, forCellReuseIdentifier: "shippingMethodCell")
+        tableView.register(PaymentMethodCardCell.self, forCellReuseIdentifier: "paymentMethodCell")
+        tableView.register(PlaceOrderCardCell.self, forCellReuseIdentifier: "placeOrderCell")
+        
         
         self.navigationItem.title = "C H E C K  O U T"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Orkney-Bold", size: 16)!]
         
-        // MARK:- Add Targets
-        addressView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeAddress)))
-        editAddressImageView.addTarget(self, action: #selector(handleChangeAddress), for: .touchUpInside)
-        showItemButton.addTarget(self, action: #selector(handleShowItems), for: .touchUpInside)
-        
-        
-        
-        placeOrderButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        placeOrderButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        placeOrderButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        placeOrderButton.imageView?.snp.makeConstraints({ (make) in
-            
-            make.leading.equalTo(placeOrderButton.snp.leading).offset(16)
-            make.centerY.equalTo(placeOrderButton.snp.centerY)
-            
-        })
         
     }
     
-    //MARK:- Handle Targets
+    func closeButtomSheet() {
+        sheet?.hide()
+    }
+    
+    func getPaymentMethods(options: [String]) {
+        self.pymentData = options
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getShippingMethods(options: [String]) {
+        self.shippingData = options
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getTotalAmount(total: String) {
+        self.total = "TOTAL \(String(describing: total))"
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getUserAddress(street: String, phone: String) {
+        self.street = street
+        self.phoneNumber = phone
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getSelectedPaymentMethod(method: String) {
+        self.paymentType = method
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getSelectedShippingMethod(method: String) {
+        self.shippingType = method
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     func handleDismiss(){
         dismiss(animated: true, completion: nil)
@@ -250,7 +148,186 @@ class CheckoutVC: UIViewController {
         backItem.title = ""
         navigationController?.navigationBar.tintColor = .black
         self.navigationItem.backBarButtonItem = backItem
+        vc.cartVcDelegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func handleShippingType(options: [String]){
+        let title = "Select a Shipping Method"
+        var bottomView: PaymentSheetView {
+            var screenBound = UIScreen.main.bounds
+            screenBound.size.height = 200.0
+            let bottomView = PaymentSheetView(frame: screenBound)
+            bottomView.backgroundColor = UIColor.white
+            bottomView.options = options
+            bottomView.titleLabel.text = title
+            bottomView.bottomSheetDelegate = self
+            bottomView.dropType = .SHIPPING
+            bottomView.checkoutDelegate = self
+            return bottomView
+        }
+        
+        if #available(iOS 10.0, *) {
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5), blurTintColor: UIColor.black, blurStyle: .regular, customOverlayView: nil, customBlurView: nil)
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        } else {
+            // Fallback on earlier versions
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5))
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        }
+        self.sheet?.show()
+    }
+    
+    
+    func handlePaymentType(options: [String]) {
+
+        let title =  "Select a Payment Method"
+        var bottomView: PaymentSheetView {
+            var screenBound = UIScreen.main.bounds
+            screenBound.size.height = 200.0
+            let bottomView = PaymentSheetView(frame: screenBound)
+            bottomView.backgroundColor = UIColor.white
+            bottomView.options = options
+            bottomView.titleLabel.text = title
+            bottomView.bottomSheetDelegate = self
+            bottomView.checkOutVC = self
+            bottomView.dropType = .PAYMENT
+            bottomView.checkoutDelegate = self
+            return bottomView
+        }
+        
+        if #available(iOS 10.0, *) {
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5), blurTintColor: UIColor.black, blurStyle: .regular, customOverlayView: nil, customBlurView: nil)
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        } else {
+            // Fallback on earlier versions
+            let config = RGBottomSheetConfiguration(showOverlay: true, showBlur: false, overlayTintColor: UIColor(white: 0, alpha: 0.5))
+            
+            sheet = RGBottomSheet(
+                withContentView: bottomView,
+                configuration: config
+            )
+        }
+        self.sheet?.show()
+    }
+
 }
+
+extension CheckoutVC: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        
+        if indexPath.item == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as! CartCardCell
+            
+            cell.priceLabel.text = "TOTAL \(String(describing: total))"
+            cell.numOfItemLabel.text = "YOU HAVE \(numberOfItem) ITEM(S) IN YOUR CART"
+            
+            cell.selectionStyle = .none
+            
+            return cell
+        }else if indexPath.item == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "shipToCell", for: indexPath) as! ShipToCardCell
+            
+            if let street = self.street, let phone = self.phoneNumber {
+                cell.addressLabel.text = street.uppercased()
+                cell.phoneNumberLabel.text = phone
+            }
+            cell.selectionStyle = .none
+            
+            return cell
+        }else if indexPath.item == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "shippingMethodCell", for: indexPath) as! ShippingMethodCardCell
+            
+            if let shippingName = shippingType {
+                cell.shippingTextLabel.text = shippingName
+            }
+            
+            cell.selectionStyle = .none
+            
+            return cell
+        }else if indexPath.item == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "paymentMethodCell", for: indexPath) as! PaymentMethodCardCell
+            
+            
+            if let paymentName = paymentType{
+                cell.paymentTextLabel.text = paymentName
+            }
+            
+            cell.selectionStyle = .none
+            
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "placeOrderCell", for: indexPath) as! PlaceOrderCardCell
+            
+            cell.selectionStyle = .none
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+            if indexPath.item == 0 {
+                handleShowItems()
+            }else if indexPath.item == 1{
+                handleChangeAddress()
+            }else if indexPath.item == 2 {
+                guard let shippingData = shippingData else {
+                    Utilities.getBaseNotification(text: "Please add Shipping Address", type: .info)
+                    return
+                }
+                
+                handleShippingType(options: shippingData)
+            }
+            else if indexPath.item == 3{
+                
+                guard let paymentData = pymentData else {
+                    Utilities.getBaseNotification(text: "Please add Shipping Method", type: .info)
+                    return
+                }
+                
+                handlePaymentType(options: paymentData)
+            }
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.item == 0{
+            return 210
+        }else if indexPath.item == 1 {
+            return 165
+        }else if indexPath.item == 2{
+            return 145
+        }else if indexPath.item == 3{
+            return 145
+        }else{
+            return 80
+        }
+    }
+}
+
+
